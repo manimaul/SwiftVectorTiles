@@ -1,0 +1,12 @@
+PODS:
+  - geos (3.5.0)
+
+DEPENDENCIES:
+  - geos
+
+SPEC CHECKSUMS:
+  geos: e96c6ca3f3ce02d20feaa8d90d4af383e11e7198
+
+PODFILE CHECKSUM: 75f23e49ce8c646016f5f172ffdb711b1ce6cf2b
+
+COCOAPODS: 1.1.1
