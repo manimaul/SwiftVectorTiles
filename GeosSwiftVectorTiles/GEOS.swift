@@ -109,6 +109,18 @@ public typealias CoordinateDegrees = Double
         }
         return self.create(GEOSGeom)
     }
+    
+    /// Create a Geometry subclass from its Well Known Binary representation.
+    /// - parameter WKB: The geometry representation in Well Known Binary format.
+    /// - returns: The proper Geometry subclass as parsed from the binary data (i.e. `Waypoint`).
+    open class func createFromData(_ WKB: Data) -> Geometry? {
+        let WKBReader = GEOSWKBReader_create_r(GEOS_HANDLE)
+        defer { GEOSWKBReader_destroy_r(GEOS_HANDLE, WKBReader) }
+        guard let GEOSGeom = GEOSWKBReader_read_r(GEOS_HANDLE, WKBReader, [UInt8](WKB), WKB.count) else {
+            return nil
+        }
+        return self.create(GEOSGeom)
+    }
 
     /// Create a Geometry subclass from its Well Known Binary representation.
     /// - parameter WKB: The geometry representation in Well Known Binary format.

@@ -74,7 +74,7 @@ private func toIntArray(intArray arr: [Int]) -> [UInt32] {
     return ints
 }
 
-func toGeomType(geometry g: Geometry) -> VectorTile.Tile.GeomType {
+private func toGeomType(geometry g: Geometry) -> VectorTile.Tile.GeomType {
     if (g is Waypoint) || (g is MultiPoint) {
         return .point
     }
@@ -90,12 +90,12 @@ func toGeomType(geometry g: Geometry) -> VectorTile.Tile.GeomType {
     return .unknown
 }
 
-func zigZagencode(number n: UInt32) -> UInt32 {
-    // https://developers.google.com/protocol-buffers/docs/encoding#types
+/// https://developers.google.com/protocol-buffers/docs/encoding#types
+private func zigZagencode(number n: UInt32) -> UInt32 {
     return (n << 1) ^ (n >> 31)
 }
 
-func commandAndLenght(command c: Command, repeated r: UInt32) -> UInt32 {
+private func commandAndLenght(command c: Command, repeated r: UInt32) -> UInt32 {
     return r << 3 | c.rawValue
 }
 
@@ -210,7 +210,23 @@ public class VectorTileEncoder {
             fatalError("could not build tile")
         }
     }
+    
+    public func addFeature(layerName name: String, attributes attrs: [String: Attribute], geometry wkb: Data) {
+        guard let geo = Geometry.createFromData(wkb) else {
+            NSLog("could not create geometry")
+            return
+        }
+        addFeature(layerName: name, attributes: attrs, geometry: geo)
+    }
 
+    public func addFeature(layerName name: String, attributes attrs: [String: Attribute], geometry wkt: String) {
+        guard let geo = Geometry.create(wkt) else {
+            NSLog("could not create geometry")
+            return
+        }
+        addFeature(layerName: name, attributes: attrs, geometry: geo)
+    }
+    
     /// Add a feature with layer name (typically feature type name), some attributes and a Geometry. The Geometry must
     /// be in "pixel" space 0,0 lower left and 256,256 upper right.
     ///
@@ -220,7 +236,7 @@ public class VectorTileEncoder {
     /// - parameter layerName:
     /// - parameter attributes:
     /// - parameter geometry:
-    public func addFeature(layerName name: String, attributes attrs: [String: Attribute], geometry geo: Geometry?) {
+    public func addFeature(layerName name: String, attributes attrs: [String: Attribute], geometry geo: Geometry) {
         
         // split up MultiPolygon and GeometryCollection (without subclasses)
         if let collection = geo as? GeometryCollection<Geometry> {
@@ -279,7 +295,7 @@ public class VectorTileEncoder {
     
     }
     
-    func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool, isMultiPoint mp: Bool) -> [UInt32] {
+    private func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool, isMultiPoint mp: Bool) -> [UInt32] {
         let count = cs.count
         
         if count == 0 {
@@ -347,11 +363,11 @@ public class VectorTileEncoder {
         return r
     }
     
-    func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool) -> [UInt32] {
+    private func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool) -> [UInt32] {
         return commands(coordinates: cs, closePathAtEnd: closedEnd, isMultiPoint: false)
     }
     
-    func commands(geometry geo: Geometry) -> [UInt32] {
+    private func commands(geometry geo: Geometry) -> [UInt32] {
         
         _x = 0
         _y = 0
