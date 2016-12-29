@@ -1,12 +1,15 @@
 PODS:
   - geos (3.5.0)
+  - ProtocolBuffers-Swift (3.0.6)
 
 DEPENDENCIES:
   - geos
+  - ProtocolBuffers-Swift
 
 SPEC CHECKSUMS:
   geos: e96c6ca3f3ce02d20feaa8d90d4af383e11e7198
+  ProtocolBuffers-Swift: ee072e78456f2332a0b0f759f718b9c59443bbc8
 
-PODFILE CHECKSUM: 75f23e49ce8c646016f5f172ffdb711b1ce6cf2b
+PODFILE CHECKSUM: b18e30e32caac78d9b60f9078e0a199b34daff7d
 
 COCOAPODS: 1.1.1

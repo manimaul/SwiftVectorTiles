@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B32BB5D4BF864F993FB71EF /* Pods_GeosSwiftVectorTilesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7E9E064773B60769287D88 /* Pods_GeosSwiftVectorTilesTests.framework */; };
 		D01B3A8B1E155A3200E1AB36 /* VectorTileEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3A8A1E155A3200E1AB36 /* VectorTileEncoder.swift */; };
+		D01B3ACB1E15820D00E1AB36 /* VectorTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B3ACA1E15820D00E1AB36 /* VectorTile.swift */; };
 		D06EF0EF1E1340900028F7FF /* GeosSwiftVectorTiles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06EF0E51E1340900028F7FF /* GeosSwiftVectorTiles.framework */; };
 		D06EF0F41E1340900028F7FF /* GeosSwiftVectorTilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF0F31E1340900028F7FF /* GeosSwiftVectorTilesTests.swift */; };
 		D06EF0F61E1340900028F7FF /* GeosSwiftVectorTiles.h in Headers */ = {isa = PBXBuildFile; fileRef = D06EF0E81E1340900028F7FF /* GeosSwiftVectorTiles.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -38,6 +39,7 @@
 		754B718F3D8944EA72658A27 /* Pods-GeosSwiftVectorTilesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GeosSwiftVectorTilesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GeosSwiftVectorTilesTests/Pods-GeosSwiftVectorTilesTests.release.xcconfig"; sourceTree = "<group>"; };
 		8163215DEEA612AFB620B8CD /* Pods_GeosSwiftVectorTiles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GeosSwiftVectorTiles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01B3A8A1E155A3200E1AB36 /* VectorTileEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VectorTileEncoder.swift; path = GeosSwiftVectorTiles/VectorTileEncoder.swift; sourceTree = "<group>"; };
+		D01B3ACA1E15820D00E1AB36 /* VectorTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VectorTile.swift; path = proto/VectorTile.swift; sourceTree = "<group>"; };
 		D06EF0E51E1340900028F7FF /* GeosSwiftVectorTiles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GeosSwiftVectorTiles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06EF0E81E1340900028F7FF /* GeosSwiftVectorTiles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeosSwiftVectorTiles.h; sourceTree = "<group>"; };
 		D06EF0E91E1340900028F7FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		D06EF0DB1E1340900028F7FF = {
 			isa = PBXGroup;
 			children = (
+				D01B3ACA1E15820D00E1AB36 /* VectorTile.swift */,
 				D01B3A8A1E155A3200E1AB36 /* VectorTileEncoder.swift */,
 				D06EF0FF1E1341820028F7FF /* Geometries.swift */,
 				D06EF1001E1341820028F7FF /* GEOS.swift */,
@@ -338,6 +341,7 @@
 				D06EF1071E1341820028F7FF /* GEOS.swift in Sources */,
 				D06EF1081E1341820028F7FF /* LinearRef.swift in Sources */,
 				D06EF1091E1341820028F7FF /* MiscFunctions.swift in Sources */,
+				D01B3ACB1E15820D00E1AB36 /* VectorTile.swift in Sources */,
 				D06EF10B1E1341820028F7FF /* SpatialAnalysis.swift in Sources */,
 				D06EF10C1E1341820028F7FF /* SpatialRelations.swift in Sources */,
 				D01B3A8B1E155A3200E1AB36 /* VectorTileEncoder.swift in Sources */,

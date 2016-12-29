@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "GeosSwiftVectorTiles"
   s.version      = "0.1.0"
-  s.summary      = "A Swift Mapbox Vector tile encoder"
+  s.summary      = "A Swift Mapbox vector tile encoder"
 
   s.description  = <<-DESC
 A Swift encoder for vector tiles according to the Mapbox Vector Tile Spec: https://github.com/mapbox/vector-tile-spec

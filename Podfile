@@ -5,8 +5,10 @@ use_frameworks!
 
 target 'GeosSwiftVectorTiles' do
   pod 'geos'
+  pod 'ProtocolBuffers-Swift'
 end
 
 target 'GeosSwiftVectorTilesTests' do
   pod 'geos'
+  pod 'ProtocolBuffers-Swift'
 end
