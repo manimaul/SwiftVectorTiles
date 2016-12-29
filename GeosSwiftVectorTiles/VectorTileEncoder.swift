@@ -66,6 +66,9 @@ private func createTileEnvelope(buffer b: Int, size s: Int) -> Geometry? {
     return LineString(points: _coords)
 }
 
+/**
+ * Encodes geometries into Mapbox Vector tiles.
+ */
 public class VectorTileEncoder {
     private var _layers = [String: Layer]()
     private var _layerKeysOrdered = [String]()
@@ -73,27 +76,53 @@ public class VectorTileEncoder {
     let _extent: Int
     let _clipGeometry: Geometry
     let _autoScale: Bool
-    
+
+    /// Create a 'VectorTileEncoder' with the default extent of 4096 and clip buffer of 8.
     convenience init() {
         self.init(extent: 4096, clipBuffer: 8, autoScale: true)
     }
-    
+
+    /// Create a 'VectorTileEncoder' with the given extent and a clip buffer of 8.
     convenience init(extent e: Int) {
         self.init(extent: e, clipBuffer: 8, autoScale: true)
     }
-    
+
+    /// Create a {@link VectorTileEncoder} with the given extent value.
+    ///
+    /// The extent value control how detailed the coordinates are encoded in the
+    /// vector tile. 4096 is a good default, 256 can be used to reduce density.
+    ///
+    /// The clip buffer value control how large the clipping area is outside of
+    /// the tile for geometries. 0 means that the clipping is done at the tile
+    /// border. 8 is a good default.
+    ///
+    /// - parameter extent: a int with extent value. 4096 is a good value.
+    /// - parameter clipBuffer: a int with clip buffer size for geometries. 8 is a good value.
+    /// - parameter autoScale: when true, the encoder expects coordinates in the 0..255 range and will scale them
+    ///                        automatically to the 0..extent-1 range before encoding. when false, the encoder expects
+    ///                        coordinates in the 0..extent-1 range.
     public init(extent e: Int, clipBuffer buffer: Int, autoScale auto: Bool) {
         _extent = e
         _autoScale = auto
         let size = auto ? 256 : e
         _clipGeometry = createTileEnvelope(buffer: buffer, size: size)!
     }
-    
+
+    /// - returns: 'Data' with the vector tile
     public func encode() -> Data {
         // todo:
         return Data()
     }
-    
+
+    /// Add a feature with layer name (typically feature type name), some attributes and a Geometry. The Geometry must
+    /// be in "pixel" space 0,0 lower left and 256,256 upper right.
+    ///
+    /// For optimization, geometries will be clipped, geometries will simplified and features with geometries outside
+    /// of the tile will be skipped.
+    ///
+    /// - parameter layerName:
+    /// - parameter attributes:
+    /// - parameter geometry:
     public func addFeature(layerName name: String, attributes attrs: [String: AnyHashable], geometry geo: Geometry?) {
         
         // split up MultiPolygon and GeometryCollection (without subclasses)
@@ -172,11 +201,16 @@ public class VectorTileEncoder {
         }
         return intersect
     }
-    
+
+    /// A short circuit clip to the tile extent (tile boundary + buffer) for points to improve performance. This method
+    /// can be overridden to change clipping behavior. See also 'clipGeometry(Geometry)'.
+    ///
+    /// see https://github.com/ElectronicChartCentre/java-vector-tile/issues/13
     private func clipCovers(geometry geo: Geometry) -> Bool {
         return _clipGeometry.covers(geo);
     }
-    
+
+
     private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: AnyHashable], geometry geo: GeometryCollection<Geometry>?) {
         if let items = geo?.geometries.makeIterator() {
             while let item = items.next() {
