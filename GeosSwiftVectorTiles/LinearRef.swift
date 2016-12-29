@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- Linear referencing functions
+ * Linear referencing functions
  */
 public extension LineString {
     

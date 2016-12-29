@@ -7,7 +7,9 @@
 
 import Foundation
 
-/// Topological operations
+/*
+ * Topological operations
+ */
 public extension Geometry {
     
     /// - returns: A Polygon that represents all points whose distance from this geometry is less than or equal to the given width.

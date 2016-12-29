@@ -8,9 +8,8 @@
 import Foundation
 
 /**
- Misc functions
+ * Misc functions
  */
-
 public extension Geometry {
     
     func empty() -> Bool {        
@@ -42,12 +41,5 @@ public extension Geometry {
         assert (result == 1)
         return dist
     }
-
-    // TODO: implement other misc functions
-//    public func GEOSArea_r(handle: GEOSContextHandle_t, _ g: COpaquePointer, _ area: UnsafeMutablePointer<Double>) -> Int32
-//    public func GEOSLength_r(handle: GEOSContextHandle_t, _ g: COpaquePointer, _ length: UnsafeMutablePointer<Double>) -> Int32
-//    public func GEOSHausdorffDistance_r(handle: GEOSContextHandle_t, _ g1: COpaquePointer, _ g2: COpaquePointer, _ dist: UnsafeMutablePointer<Double>) -> Int32
-//    public func GEOSHausdorffDistanceDensify_r(handle: GEOSContextHandle_t, _ g1: COpaquePointer, _ g2: COpaquePointer, _ densifyFrac: Double, _ dist: UnsafeMutablePointer<Double>) -> Int32
-//    public func GEOSGeomGetLength_r(handle: GEOSContextHandle_t, _ g: COpaquePointer, _ length: UnsafeMutablePointer<Double>) -> Int32
 
 }

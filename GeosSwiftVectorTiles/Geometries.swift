@@ -9,9 +9,9 @@
 import Foundation
 
 /**
-A `Waypoint` is a 0-dimensional geometry and represents a single location in coordinate space. A `Waypoint` has a x- coordinate value and a y-coordinate value.
-The boundary of a `Waypoint` is the empty set.
-*/
+ *A `Waypoint` is a 0-dimensional geometry and represents a single location in coordinate space. A `Waypoint` has a x- coordinate value and a y-coordinate value.
+ * The boundary of a `Waypoint` is the empty set.
+ */
 open class Waypoint : Geometry {
     open let coordinate: Coordinate
     
@@ -55,17 +55,17 @@ open class Waypoint : Geometry {
 }
 
 /**
-A `Polygon` is a planar surface, defined by 1 exterior boundary and 0 or more interior boundaries. Each interior boundary defines a hole in the `Polygon`.
-
-The assertions for polygons (the rules that define valid polygons) are:
-
-1. Polygons are topologically closed.
-2. The boundary of a Polygon consists of a set of LinearRings that make up its exterior and interior boundaries.
-3. No two rings in the boundary cross, the rings in the boundary of a Polygon may intersect at a Point but only as a tangent.
-4. A Polygon may not have cut lines, spikes or punctures.
-5. The Interior of every Polygon is a connected point set.
-6. The Exterior of a Polygon with 1 or more holes is not connected. Each hole defines a connected component of the Exterior.
-*/
+ * A `Polygon` is a planar surface, defined by 1 exterior boundary and 0 or more interior boundaries. Each interior boundary defines a hole in the `Polygon`.
+ *
+ * The assertions for polygons (the rules that define valid polygons) are:
+ *
+ * 1. Polygons are topologically closed.
+ * 2. The boundary of a Polygon consists of a set of LinearRings that make up its exterior and interior boundaries.
+ * 3. No two rings in the boundary cross, the rings in the boundary of a Polygon may intersect at a Point but only as a tangent.
+ * 4. A Polygon may not have cut lines, spikes or punctures.
+ * 5. The Interior of every Polygon is a connected point set.
+ * 6. The Exterior of a Polygon with 1 or more holes is not connected. Each hole defines a connected component of the Exterior.
+ */
 open class Polygon : Geometry {
     
     open override class func geometryTypeId() -> Int32 {
@@ -130,8 +130,8 @@ open class Polygon : Geometry {
 }
 
 /**
-    A `LineString` is a Curve with linear interpolation between points. Each consecutive pair of points defines a line segment.
-*/
+ * A `LineString` is a Curve with linear interpolation between points. Each consecutive pair of points defines a line segment.
+ */
 open class LineString : Geometry {
     
     open override class func geometryTypeId() -> Int32 {
@@ -164,15 +164,15 @@ open class LineString : Geometry {
 }
 
 /**
-    A LinearRing is a LineString that is both closed and simple.
-*/
+ * A LinearRing is a LineString that is both closed and simple.
+ */
 open class LinearRing : LineString {
     
 }
 
 /**
-A GeometryCollection is a geometry that is a collection of 1 or more geometries.
-*/
+ * A GeometryCollection is a geometry that is a collection of 1 or more geometries.
+ */
 open class GeometryCollection<T: Geometry> : Geometry {
     
     open override class func geometryTypeId() -> Int32 {
@@ -197,9 +197,7 @@ open class GeometryCollection<T: Geometry> : Geometry {
         self.init(GEOSGeom: GEOSGeom, destroyOnDeinit: true)
     }
 
-/**
-    - returns: An Array of geometries in this GeometryCollection.
-*/
+    /// - returns: An Array of geometries in this GeometryCollection.
     public convenience init?(geometries: Array<Geometry>) {
         let geometriesPointer = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geometries.count)
         defer { geometriesPointer.deallocate(capacity: geometries.count) }
@@ -216,8 +214,8 @@ open class GeometryCollection<T: Geometry> : Geometry {
 }
 
 /**
-A `MultiLineString` is a `GeometryCollection` of `LineStrings`.
-*/
+ * A `MultiLineString` is a `GeometryCollection` of `LineStrings`.
+ */
 open class MultiLineString<T: LineString> : GeometryCollection<LineString> {
     
     open override class func geometryTypeId() -> Int32 {
@@ -253,8 +251,8 @@ open class MultiLineString<T: LineString> : GeometryCollection<LineString> {
 }
 
 /**
-A `MultiPoint` is a `GeometryCollection` of `Point`s.
-*/
+ * A `MultiPoint` is a `GeometryCollection` of `Point`s.
+ */
 open class MultiPoint<T: Waypoint> : GeometryCollection<Waypoint> {
     open override class func geometryTypeId() -> Int32 {
         return 4 // GEOS_MULTIPOINT
@@ -289,8 +287,8 @@ open class MultiPoint<T: Waypoint> : GeometryCollection<Waypoint> {
 }
 
 /**
-A `MultiPolygon` is a `GeometryCollection` of `Polygon`s.
-*/
+ * A `MultiPolygon` is a `GeometryCollection` of `Polygon`s.
+ */
 open class MultiPolygon<T: Polygon> : GeometryCollection<Polygon> {
     open override class func geometryTypeId() -> Int32 {
         return 6 // GEOS_MULTIPOLYGON

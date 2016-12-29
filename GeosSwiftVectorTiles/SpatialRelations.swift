@@ -8,10 +8,10 @@
 import Foundation
 
 /** 
-Spatial predicates methods
-
-All of the following spatial predicate methods take another Geometry instance (other) as a parameter, and return a boolean.
-*/
+ * Spatial predicates methods
+ *
+ * All of the following spatial predicate methods take another Geometry instance (other) as a parameter, and return a boolean.
+ */
 public extension Geometry {
  
     /// - returns: TRUE if the geometry is spatially equal to `geometry`
@@ -59,11 +59,9 @@ public extension Geometry {
         return GEOSCovers_r(GEOS_HANDLE, self.geometry, geometry.geometry) > 0
     }
 
-    /**
-    - parameter pattern: A String following the Dimensionally Extended Nine-Intersection Model (DE-9IM).
     
-    - returns: TRUE if the geometry spatially relates `geometry`, by testing for intersections between the Interior, Boundary and Exterior of the two geometries as specified by the values in the pattern.
-    */
+    /// - parameter pattern: A String following the Dimensionally Extended Nine-Intersection Model (DE-9IM).
+    /// - returns: TRUE if the geometry spatially relates `geometry`, by testing for intersections between the Interior, Boundary and Exterior of the two geometries as specified by the values in the pattern.
     public func relate(_ geometry: Geometry, pattern: String) -> Bool {
         return GEOSRelatePattern_r(GEOS_HANDLE, self.geometry, geometry.geometry, (pattern as NSString).utf8String) > 0;
     }

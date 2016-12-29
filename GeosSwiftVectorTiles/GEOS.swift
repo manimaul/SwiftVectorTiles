@@ -16,17 +16,18 @@ let swiftCallback : GEOSCallbackFunction = { args -> Void in
 }
 
 var GEOS_HANDLE: OpaquePointer = {
-//    return initGEOSWrapper_r();
     return initGEOS_r(unsafeBitCast(swiftCallback, to: GEOSMessageHandler.self),
         unsafeBitCast(swiftCallback, to: GEOSMessageHandler.self))
 }()
 
 public typealias CoordinateDegrees = Double
 
-/// A base abstract geometry class
-// Geometry is a model data type, so a struct would be a better fit, but it is actually a wrapper of GEOS native objects,
-// that are in fact C pointers, and structs in Swift don't have a dealloc where one can release allocated memory.
-// Furthermore, being a class Geometry can inherit from NSObject so that debugQuickLookObject() can be implemented
+/**
+ * A base abstract geometry class
+ * Geometry is a model data type, so a struct would be a better fit, but it is actually a wrapper of GEOS native objects,
+ * that are in fact C pointers, and structs in Swift don't have a dealloc where one can release allocated memory.
+ * Furthermore, being a class Geometry can inherit from NSObject so that debugQuickLookObject() can be implemented
+ */
 @objc open class Geometry : NSObject {
 
     let geometry: OpaquePointer
@@ -97,13 +98,9 @@ public typealias CoordinateDegrees = Double
         return self.create(GEOSGeom, destroyOnDeinit: true)
     }
 
-    /**
-    Create a Geometry subclass from its Well Known Text representation.
-    
-    - parameter WKT: The geometry representation in Well Known Text format (i.e. `POINT(10 45)`).
-    
-    - returns: The proper Geometry subclass as parsed from the string (i.e. `Waypoint`).
-    */
+    /// Create a Geometry subclass from its Well Known Text representation.
+    /// - parameter WKT: The geometry representation in Well Known Text format (i.e. `POINT(10 45)`).
+    /// - returns: The proper Geometry subclass as parsed from the string (i.e. `Waypoint`).
     open class func create(_ WKT: String) -> Geometry? {
         let WKTReader = GEOSWKTReader_create_r(GEOS_HANDLE)
         defer { GEOSWKTReader_destroy_r(GEOS_HANDLE, WKTReader) }
@@ -113,14 +110,10 @@ public typealias CoordinateDegrees = Double
         return self.create(GEOSGeom)
     }
 
-    /**
-    Create a Geometry subclass from its Well Known Binary representation.
-    
-    - parameter WKB: The geometry representation in Well Known Binary format.
-    - parameter size: The size of the binary representation in bytes.
-    
-    - returns: The proper Geometry subclass as parsed from the binary data (i.e. `Waypoint`).
-    */
+    /// Create a Geometry subclass from its Well Known Binary representation.
+    /// - parameter WKB: The geometry representation in Well Known Binary format.
+    /// - parameter size: The size of the binary representation in bytes.
+    /// - returns: The proper Geometry subclass as parsed from the binary data (i.e. `Waypoint`).
     open class func create(_ WKB: UnsafePointer<UInt8>, size: Int)  -> Geometry? {
         let WKBReader = GEOSWKBReader_create_r(GEOS_HANDLE)
         defer { GEOSWKBReader_destroy_r(GEOS_HANDLE, WKBReader) }

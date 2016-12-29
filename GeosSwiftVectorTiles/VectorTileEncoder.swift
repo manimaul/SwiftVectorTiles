@@ -90,7 +90,7 @@ public class VectorTileEncoder {
     }
     
     public func encode() -> Data {
-        //todo:
+        // todo:
         return Data()
     }
     
