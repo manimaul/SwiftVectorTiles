@@ -12,6 +12,13 @@ import Foundation
  */
 public extension Geometry {
     
+    func coordinates() -> CoordinatesCollection {
+        guard let op = GEOSGeom_getCoordSeq_r(GEOS_HANDLE, self.geometry) else {
+            fatalError("error getting coordinates")
+        }
+        return CoordinatesCollection(geometry: op)
+    }
+    
     func empty() -> Bool {        
         let result = GEOSisEmpty(self.geometry)
         return result == 1

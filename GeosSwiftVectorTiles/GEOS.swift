@@ -235,4 +235,8 @@ public struct Coordinate {
         self.x = x
         self.y = y
     }
+    
+    public static func == (lhs: Coordinate, rhs: Coordinate) -> Bool {
+        return lhs.x == rhs.x && lhs.y == lhs.y
+    }
 }

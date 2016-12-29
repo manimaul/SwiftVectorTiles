@@ -35,4 +35,17 @@ public extension LineString {
     public func middlePoint() -> Waypoint {
         return self.interpolatePoint(fraction: 0.5)
     }
+    
+ }
+
+public extension LinearRing {
+    
+    public func isCCW() -> Bool {
+        //todo:
+        return true
+    }
+    
+    public func reverse() -> LinearRing? {
+        return LinearRing(points: self.coordinates().reversed())
+    }
 }

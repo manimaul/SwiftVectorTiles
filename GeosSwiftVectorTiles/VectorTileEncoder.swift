@@ -25,8 +25,8 @@ private class Layer {
     var _keys = [String: Int]()
     var _keysKeysOrdered = [String]()
     
-    var _values = [AnyHashable: Int]()
-    var _valuesKeysOrdered = [AnyHashable]()
+    var _values = [Attribute: Int]()
+    var _valuesKeysOrdered = [Attribute]()
     
     func key(key k: String) -> Int {
         guard let i = _keys[k] else {
@@ -41,7 +41,7 @@ private class Layer {
         return _keysKeysOrdered
     }
     
-    func value(object obj: AnyHashable) -> Int {
+    func value(object obj: Attribute) -> Int {
         guard let i = _values[obj] else {
             _values[obj] = _values.count
             _valuesKeysOrdered.append(obj)
@@ -50,7 +50,7 @@ private class Layer {
         return i
     }
     
-    func values() -> [AnyHashable] {
+    func values() -> [Attribute] {
         return _valuesKeysOrdered
     }
 }
@@ -66,6 +66,40 @@ private func createTileEnvelope(buffer b: Int, size s: Int) -> Geometry? {
     return LineString(points: _coords)
 }
 
+private func toIntArray(intArray arr: [Int]) -> [UInt32] {
+    var ints = [UInt32]()
+    for i in arr {
+        ints.append(UInt32(i))
+    }
+    return ints
+}
+
+func toGeomType(geometry g: Geometry) -> VectorTile.Tile.GeomType {
+    if (g is Waypoint) || (g is MultiPoint) {
+        return .point
+    }
+    
+    if (g is LineString) || (g is MultiLineString) || (g is LinearRing) {
+        return .linestring
+    }
+    
+    if (g is Polygon) || (g is MultiPolygon) {
+        return .polygon
+    }
+    
+    return .unknown
+}
+
+func zigZagencode(number n: UInt32) -> UInt32 {
+    // https://developers.google.com/protocol-buffers/docs/encoding#types
+    return (n << 1) ^ (n >> 31)
+}
+
+func commandAndLenght(command c: Command, repeated r: UInt32) -> UInt32 {
+    return r << 3 | c.rawValue
+}
+
+
 /**
  * Encodes geometries into Mapbox Vector tiles.
  */
@@ -76,6 +110,8 @@ public class VectorTileEncoder {
     let _extent: Int
     let _clipGeometry: Geometry
     let _autoScale: Bool
+    var _x: UInt32 = 0
+    var _y: UInt32 = 0
 
     /// Create a 'VectorTileEncoder' with the default extent of 4096 and clip buffer of 8.
     convenience init() {
@@ -110,8 +146,69 @@ public class VectorTileEncoder {
 
     /// - returns: 'Data' with the vector tile
     public func encode() -> Data {
-        // todo:
-        return Data()
+        let tileBuilder = VectorTile.Tile.Builder()
+        var tileLayers = Array<VectorTile.Tile.Layer>()
+        for layerName in _layerKeysOrdered {
+            let layer = _layers[layerName]!
+            
+            let tileLayerBuilder = VectorTile.Tile.Layer.Builder()
+            tileLayerBuilder.version = 2
+            tileLayerBuilder.name = layerName
+            tileLayerBuilder.keys = layer.keys()
+            
+            var values = Array<VectorTile.Tile.Value>()
+            for attributeValue in layer.values() {
+                let tileValueBuilder = VectorTile.Tile.Value.Builder()
+                switch attributeValue {
+                case let .attInt(aInt):
+                    tileValueBuilder.setIntValue(aInt)
+                case let .attFloat(aFloat):
+                    tileValueBuilder.setFloatValue(aFloat)
+                case let .attDouble(aDouble):
+                    tileValueBuilder.setDoubleValue(aDouble)
+                case let .attString(aString):
+                    tileValueBuilder.setStringValue(aString)
+                }
+                do {
+                    let tv = try tileValueBuilder.build()
+                    values.append(tv)
+                } catch {
+                    NSLog("could not build tile value")
+                }
+            }
+            tileLayerBuilder.values = values
+            tileLayerBuilder.setExtent(UInt32(_extent))
+            
+            var features = Array<VectorTile.Tile.Feature>()
+            for feature in layer._features {
+                let geo = feature._geometry
+                let featureBuilder = VectorTile.Tile.Feature.Builder()
+                featureBuilder.setTags(toIntArray(intArray: feature._tags))
+                featureBuilder.setType(toGeomType(geometry: geo))
+                featureBuilder.setGeometry(commands(geometry: geo))
+                do {
+                    let f = try featureBuilder.build()
+                    features.append(f)
+                } catch {
+                    NSLog("could not build feature")
+                }
+            }
+            
+            tileLayerBuilder.setFeatures(features)
+            do {
+                let tl = try tileLayerBuilder.build()
+                tileLayers.append(tl)
+            } catch {}
+            
+        }
+        
+        tileBuilder.setLayers(tileLayers)
+        do {
+            let t = try tileBuilder.build()
+            return t.data()
+        } catch {
+            fatalError("could not build tile")
+        }
     }
 
     /// Add a feature with layer name (typically feature type name), some attributes and a Geometry. The Geometry must
@@ -123,7 +220,7 @@ public class VectorTileEncoder {
     /// - parameter layerName:
     /// - parameter attributes:
     /// - parameter geometry:
-    public func addFeature(layerName name: String, attributes attrs: [String: AnyHashable], geometry geo: Geometry?) {
+    public func addFeature(layerName name: String, attributes attrs: [String: Attribute], geometry geo: Geometry?) {
         
         // split up MultiPolygon and GeometryCollection (without subclasses)
         if let collection = geo as? GeometryCollection<Geometry> {
@@ -182,6 +279,126 @@ public class VectorTileEncoder {
     
     }
     
+    func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool, isMultiPoint mp: Bool) -> [UInt32] {
+        let count = cs.count
+        
+        if count == 0 {
+            fatalError("empty geometry")
+        }
+        
+        var r = [UInt32]()
+        var lineToIndex = 0
+        var lineToLength :UInt32 = 0
+        let scale = _autoScale ? (Double(_extent) - 256.0) : 1.0
+        
+        var i: UInt32 = 0
+        let first = cs[0]
+        for c in cs {
+            if i == 0 {
+                r.append(commandAndLenght(command: .moveTo, repeated: mp ? cs.count: 1))
+            }
+            
+            let x = UInt32(round(c.x * scale))
+            let y = UInt32(round(c.y * scale))
+            
+            // prevent point equal to the previous
+            if i > 0 && x == _x && y == _y {
+                lineToLength -= 1
+                continue
+            }
+            
+            // prevent double closing
+            if closedEnd && (cs.count > 1) && (i == (count - 1)) && first == c {
+                lineToLength -= 1
+                continue
+            }
+            
+            // delta, then zigzag
+            r.append(zigZagencode(number: x - _x))
+            r.append(zigZagencode(number: y - _y))
+            
+            _x = x
+            _y = y
+            
+            if (i == 0) && (count > 1) && !mp {
+                // can length be too long?
+                lineToIndex = r.count
+                lineToLength = count - 1
+                r.append(commandAndLenght(command: .lineTo, repeated: lineToLength))
+                
+            }
+            i += 1
+        }
+        
+        // update LineTo length
+        if lineToIndex > 0 {
+            if lineToLength == 0 {
+                r.remove(at: lineToIndex)
+            } else {
+                // update LineTo with new length
+                r.insert(commandAndLenght(command: .lineTo, repeated: lineToLength), at: lineToIndex)
+            }
+        }
+        
+        if closedEnd {
+            r.append(commandAndLenght(command: .closePath, repeated: 1))
+        }
+        
+        return r
+    }
+    
+    func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool) -> [UInt32] {
+        return commands(coordinates: cs, closePathAtEnd: closedEnd, isMultiPoint: false)
+    }
+    
+    func commands(geometry geo: Geometry) -> [UInt32] {
+        
+        _x = 0
+        _y = 0
+        
+        if let polygon = geo as? Polygon {
+            var result = [UInt32]()
+            
+            // According to the vector tile specification, the exterior ring of a polygon
+            // must be in clockwise order, while the interior ring in counter-clockwise order.
+            // In the tile coordinate system, Y axis is positive down.
+            //
+            // However, in geographic coordinate system, Y axis is positive up.
+            // Therefore, we must reverse the coordinates.
+            // So, the code below will make sure that exterior ring is in counter-clockwise order
+            // and interior ring in clockwise order.
+            var exteriorRing = polygon.exteriorRing
+            if !exteriorRing.isCCW() {
+                exteriorRing = exteriorRing.reverse()!
+            }
+            result.append(contentsOf: commands(coordinates: exteriorRing.coordinates(), closePathAtEnd: true))
+            
+            for interiorRing in polygon.interiorRings {
+                var ir :LinearRing? = interiorRing
+                if !(interiorRing.isCCW()) {
+                    ir = interiorRing.reverse()
+                }
+                result.append(contentsOf: commands(coordinates: ir!.coordinates(), closePathAtEnd: true))
+            }
+            
+            return result
+        }
+        
+        if let mls = geo as? MultiLineString {
+            var result = [UInt32]()
+            for iGeo in mls.geometries {
+                result.append(contentsOf: commands(coordinates: iGeo.coordinates(), closePathAtEnd: false))
+            }
+            return result
+        }
+        let isMp = geo is MultiPoint
+        return commands(coordinates: geo.coordinates(), closePathAtEnd: shouldClosePath(geometry: geo), isMultiPoint: isMp)
+    }
+    
+    private func shouldClosePath(geometry: Geometry) -> Bool {
+        return (geometry is Polygon) || (geometry is LinearRing)
+    }
+    
     private func createdClippedGeometry(geometry g: Geometry?) -> Geometry? {
         guard let geo = g else {
             return nil
@@ -211,7 +428,7 @@ public class VectorTileEncoder {
     }
 
 
-    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: AnyHashable], geometry geo: GeometryCollection<Geometry>?) {
+    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute], geometry geo: GeometryCollection<Geometry>?) {
         if let items = geo?.geometries.makeIterator() {
             while let item = items.next() {
                 addFeature(layerName: name, attributes: attrs, geometry: item)
