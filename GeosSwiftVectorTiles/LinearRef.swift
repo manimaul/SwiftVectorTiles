@@ -42,7 +42,7 @@ public extension LinearRing {
     
     public func isCCW() -> Bool {
         //todo:
-        return true
+        return false
     }
     
     public func reverse() -> LinearRing? {

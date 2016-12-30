@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal enum Command : UInt32 {
+internal enum Command : Int {
     case moveTo = 1, lineTo
     case closePath = 7
     

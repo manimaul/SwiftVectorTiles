@@ -21,16 +21,16 @@ class GeosSwiftVectorTilesTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testWKTPolygon() {
+        let encoder = VectorTileEncoder()
+        let wkt = "POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))"
+        let geometry = Geometry.create(wkt)
+        var atts = [String: Attribute]()
+        atts["some_key"] = Attribute.attString("some_value")
+        encoder.addFeature(layerName: "land", attributes: nil, geometry: geometry)
+        let data = encoder.encode()
+        XCTAssertNotNil(data)
+        XCTAssertEqual(35, data.count)
     }
     
 }
