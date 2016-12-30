@@ -41,8 +41,7 @@ public extension LineString {
 public extension LinearRing {
     
     public func isCCW() -> Bool {
-        //todo:
-        return false
+        return coordinates().isCCW()
     }
     
     public func reverse() -> LinearRing? {
