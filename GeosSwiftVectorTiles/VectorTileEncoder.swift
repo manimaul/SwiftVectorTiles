@@ -207,7 +207,7 @@ public class VectorTileEncoder {
         }
     }
     
-    public func addFeature(layerName name: String, attributes attrs: [String: Attribute], geometry wkb: Data) {
+    public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry wkb: Data) {
         guard let geo = Geometry.createFromData(wkb) else {
             NSLog("could not create geometry")
             return
@@ -215,7 +215,7 @@ public class VectorTileEncoder {
         addFeature(layerName: name, attributes: attrs, geometry: geo)
     }
 
-    public func addFeature(layerName name: String, attributes attrs: [String: Attribute], geometry wkt: String) {
+    public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry wkt: String) {
         guard let geo = Geometry.create(wkt) else {
             NSLog("could not create geometry")
             return

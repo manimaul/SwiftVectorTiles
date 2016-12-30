@@ -6,4 +6,27 @@ A Swift encoder for vector tiles according to the [Mapbox vector tile spec](http
 * [GEOS Swift](https://github.com/andreacremaschi/GEOSwift)
 
 ###Status
-WIP
+WIP - Alpha
+
+###Example
+
+```swift
+
+let encoder = VectorTileEncoder()
+// initialize an encoder
+let encoder = VectorTileEncoder()
+
+// create some attributes
+var atts = [String: Attribute]()
+atts["some_key"] = Attribute.attString("some_value")
+
+// polygon geometry "well known text"
+let wkt = "POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))"
+
+// add the geometry and it's attributes as a "feature"
+encoder.addFeature(layerName: "land", attributes: atts, geometry: wkt)
+
+// encode to Mapbox vector tile
+let data :Data = encoder.encode()
+
+```
