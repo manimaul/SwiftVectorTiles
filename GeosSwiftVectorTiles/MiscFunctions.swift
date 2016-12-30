@@ -13,10 +13,10 @@ import Foundation
 public extension Geometry {
     
     func coordinates() -> CoordinatesCollection {
-        guard let op = GEOSGeom_getCoordSeq_r(GEOS_HANDLE, self.geometry) else {
-            fatalError("error getting coordinates")
+        if (self is LineString) || (self is Waypoint) {
+            return CoordinatesCollection(geometry: self.geometry)
         }
-        return CoordinatesCollection(geometry: op)
+        fatalError("coordinates only available for LineString or WayPoint")
     }
     
     func empty() -> Bool {        
