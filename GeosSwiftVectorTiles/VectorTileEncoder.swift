@@ -56,14 +56,10 @@ private class Layer {
 }
 
 private func createTileEnvelope(buffer b: Int, size s: Int) -> Geometry? {
-    let _start = (Double) (0 - b)
-    let _end = (Double) (s + b)
-    let _coords = [Coordinate(x: _start, y: _end),
-                  Coordinate(x: _end,    y:_end),
-                  Coordinate(x: _end,    y:_start),
-                  Coordinate(x: _start,  y:_start),
-                  Coordinate(x: _start,  y: _end)]
-    return LineString(points: _coords)
+    let start = (Double) (0 - b)
+    let end = (Double) (s + b)
+    let wkt = "POLYGON (( \(start) \(end), \(end) \(end), \(end) \(start), \(start) \(start), \(start) \(end) ))"
+    return Geometry.create(wkt)
 }
 
 private func toIntArray(intArray arr: [Int]) -> [UInt32] {
@@ -91,11 +87,11 @@ private func toGeomType(geometry g: Geometry) -> VectorTile.Tile.GeomType {
 }
 
 /// https://developers.google.com/protocol-buffers/docs/encoding#types
-private func zigZagencode(number n: UInt32) -> UInt32 {
+private func zigZagencode(number n: Int) -> Int {
     return (n << 1) ^ (n >> 31)
 }
 
-private func commandAndLenght(command c: Command, repeated r: UInt32) -> UInt32 {
+private func commandAndLength(command c: Command, repeated r: Int) -> Int {
     return r << 3 | c.rawValue
 }
 
@@ -110,8 +106,8 @@ public class VectorTileEncoder {
     let _extent: Int
     let _clipGeometry: Geometry
     let _autoScale: Bool
-    var _x: UInt32 = 0
-    var _y: UInt32 = 0
+    var _x = 0
+    var _y = 0
 
     /// Create a 'VectorTileEncoder' with the default extent of 4096 and clip buffer of 8.
     convenience init() {
@@ -236,7 +232,10 @@ public class VectorTileEncoder {
     /// - parameter layerName:
     /// - parameter attributes:
     /// - parameter geometry:
-    public func addFeature(layerName name: String, attributes attrs: [String: Attribute], geometry geo: Geometry) {
+    public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry geom: Geometry?) {
+        guard let geo = geom else {
+            return
+        }
         
         // split up MultiPolygon and GeometryCollection (without subclasses)
         if let collection = geo as? GeometryCollection<Geometry> {
@@ -283,9 +282,11 @@ public class VectorTileEncoder {
                 }
                 
                 var tags = [Int]()
-                for (key, val) in attrs {
-                    tags.append(layer!.key(key: key))
-                    tags.append(layer!.value(object: val))
+                if let attributes = attrs {
+                    for (key, val) in attributes {
+                        tags.append(layer!.key(key: key))
+                        tags.append(layer!.value(object: val))
+                    }
                 }
                 let feature = Feature(geometry: clippedGeo, tags: tags)
                 layer!._features.append(feature)
@@ -296,26 +297,26 @@ public class VectorTileEncoder {
     }
     
     private func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool, isMultiPoint mp: Bool) -> [UInt32] {
-        let count = cs.count
+        let count = Int(cs.count)
         
         if count == 0 {
             fatalError("empty geometry")
         }
         
-        var r = [UInt32]()
+        var r = [Int]()
         var lineToIndex = 0
-        var lineToLength :UInt32 = 0
-        let scale = _autoScale ? (Double(_extent) - 256.0) : 1.0
+        var lineToLength = 0
+        let scale = _autoScale ? (Double(_extent) / 256.0) : 1.0
         
-        var i: UInt32 = 0
+        var i = 0
         let first = cs[0]
         for c in cs {
             if i == 0 {
-                r.append(commandAndLenght(command: .moveTo, repeated: mp ? cs.count: 1))
+                r.append(commandAndLength(command: .moveTo, repeated: mp ? count: 1))
             }
             
-            let x = UInt32(round(c.x * scale))
-            let y = UInt32(round(c.y * scale))
+            let x = Int(round(c.x * scale))
+            let y = Int(round(c.y * scale))
             
             // prevent point equal to the previous
             if i > 0 && x == _x && y == _y {
@@ -340,7 +341,7 @@ public class VectorTileEncoder {
                 // can length be too long?
                 lineToIndex = r.count
                 lineToLength = count - 1
-                r.append(commandAndLenght(command: .lineTo, repeated: lineToLength))
+                r.append(commandAndLength(command: .lineTo, repeated: lineToLength))
                 
             }
             i += 1
@@ -352,15 +353,15 @@ public class VectorTileEncoder {
                 r.remove(at: lineToIndex)
             } else {
                 // update LineTo with new length
-                r.insert(commandAndLenght(command: .lineTo, repeated: lineToLength), at: lineToIndex)
+                r.insert(commandAndLength(command: .lineTo, repeated: lineToLength), at: lineToIndex)
             }
         }
         
         if closedEnd {
-            r.append(commandAndLenght(command: .closePath, repeated: 1))
+            r.append(commandAndLength(command: .closePath, repeated: 1))
         }
         
-        return r
+        return toIntArray(intArray: r)
     }
     
     private func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool) -> [UInt32] {
@@ -444,7 +445,7 @@ public class VectorTileEncoder {
     }
 
 
-    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute], geometry geo: GeometryCollection<Geometry>?) {
+    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: GeometryCollection<Geometry>?) {
         if let items = geo?.geometries.makeIterator() {
             while let item = items.next() {
                 addFeature(layerName: name, attributes: attrs, geometry: item)
