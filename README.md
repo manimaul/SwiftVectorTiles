@@ -12,7 +12,6 @@ WIP - Alpha
 
 ```swift
 
-let encoder = VectorTileEncoder()
 // initialize an encoder
 let encoder = VectorTileEncoder()
 
