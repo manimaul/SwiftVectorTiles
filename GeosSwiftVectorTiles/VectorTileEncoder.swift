@@ -110,12 +110,12 @@ public class VectorTileEncoder {
     var _y = 0
 
     /// Create a 'VectorTileEncoder' with the default extent of 4096 and clip buffer of 8.
-    convenience init() {
+    public convenience init() {
         self.init(extent: 4096, clipBuffer: 8, autoScale: true)
     }
 
     /// Create a 'VectorTileEncoder' with the given extent and a clip buffer of 8.
-    convenience init(extent e: Int) {
+    public convenience init(extent e: Int) {
         self.init(extent: e, clipBuffer: 8, autoScale: true)
     }
 
