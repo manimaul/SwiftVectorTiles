@@ -12,14 +12,10 @@ DESC
   s.license      = { :type => "BSD", :file => "LICENSE.md" }
   s.author       = { "Will Kamp" => "will@madrona.io" }
   s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/manimaul/GeosSwiftVectorTiles.git" }
+  s.source       = { :git => "https://github.com/manimaul/GeosSwiftVectorTiles.git", :tag => s.version.to_s}
 
-  s.subspec 'Core' do |cs|
-    cs.source_files = "GEOSwift/*"
-    cs.dependency "geos", "3.5.0"
-  end
 
+  s.dependency "geos", "3.5.0"
   s.dependency 'ProtocolBuffers-Swift'
-  s.default_subspec = 'Core'
 
 end
