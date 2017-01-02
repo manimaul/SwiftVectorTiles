@@ -15,7 +15,7 @@ DESC
   s.source       = { :git => "https://github.com/manimaul/GeosSwiftVectorTiles.git", :tag => s.version.to_s}
 
   s.subspec 'Core' do |cs|
-    cs.source_files = 'GeosSwiftVectorTiles/**/*.{swift}'
+    cs.source_files = 'GeosSwiftVectorTiles/**/*.{swift,h}'
     cs.dependency 'geos', '3.5.0'
     s.dependency 'ProtocolBuffers-Swift'
   end
