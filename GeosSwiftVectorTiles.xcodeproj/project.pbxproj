@@ -480,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B749FE58ABB2E9B221BBB5C /* Pods-GeosSwiftVectorTiles.debug.xcconfig */;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = TH39V46468;
@@ -500,6 +501,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2000539FFF761CAFD19E75E0 /* Pods-GeosSwiftVectorTiles.release.xcconfig */;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = TH39V46468;
@@ -521,6 +523,7 @@
 			baseConfigurationReference = D2F4D5AD9F3FDA1BD6DAAF86 /* Pods-GeosSwiftVectorTilesTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LIBRARY = "compiler-default";
 				DEVELOPMENT_TEAM = TH39V46468;
 				INFOPLIST_FILE = GeosSwiftVectorTilesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -535,6 +538,7 @@
 			baseConfigurationReference = 754B718F3D8944EA72658A27 /* Pods-GeosSwiftVectorTilesTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_CXX_LIBRARY = "compiler-default";
 				DEVELOPMENT_TEAM = TH39V46468;
 				INFOPLIST_FILE = GeosSwiftVectorTilesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
