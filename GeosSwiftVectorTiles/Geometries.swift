@@ -98,6 +98,13 @@ open class Polygon : Geometry {
         return interiorRings
         }()
     
+    override public func transform(transform: CoordinateTransform) {
+        exteriorRing.transform(transform: transform)
+        for ring in interiorRings {
+            ring.transform(transform: transform)
+        }
+    }
+    
     public convenience init?(WKT: String) {
         guard let GEOSGeom = GEOSGeomFromWKT(GEOS_HANDLE, WKT: WKT),
             Geometry.classForGEOSGeom(GEOSGeom) === Polygon.self else {
@@ -160,6 +167,10 @@ open class LineString : Geometry {
             return nil
         }
         self.init(GEOSGeom: GEOSGeom, destroyOnDeinit: true)
+    }
+    
+    override public func transform(transform: CoordinateTransform) {
+        points.transform(transform: transform)
     }
 }
 

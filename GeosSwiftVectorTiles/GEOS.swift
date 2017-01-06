@@ -8,6 +8,8 @@
 import Foundation
 
 typealias GEOSCallbackFunction = @convention(c) (UnsafeMutableRawPointer) -> Void
+public typealias CoordinateTransform = (Coordinate) -> ()
+
 
 let swiftCallback : GEOSCallbackFunction = { args -> Void in
     if let string = String(validatingUTF8: unsafeBitCast(args, to: UnsafeMutablePointer<CChar>.self)) {
@@ -53,6 +55,10 @@ public typealias CoordinateDegrees = Double
             return nil
         }
         return subclass.init(GEOSGeom: GEOSGeom, destroyOnDeinit: destroyOnDeinit)
+    }
+    
+    public func transform(transform: CoordinateTransform) {
+        // Abstract
     }
     
     open class func geometryTypeId() -> Int32 {
@@ -197,6 +203,12 @@ public struct CoordinatesCollection: Sequence {
         }
     }
     
+    public func transform(transform: CoordinateTransform) {
+        for coord in self {
+            transform(coord)
+        }
+    }
+    
     public func map<U>(_ transform: (Coordinate) -> U) -> [U] {
         var array = Array<U>()
         for coord in self {
@@ -219,6 +231,12 @@ public struct GeometriesCollection<T: Geometry>: Sequence {
         let GEOSGeom = GEOSGetGeometryN_r(GEOS_HANDLE, self.geometry, index)!
         let geom = Geometry.create(GEOSGeom, destroyOnDeinit: false) as! T
         return geom
+    }
+    
+    public func transform(transform: CoordinateTransform) {
+        for geom in self {
+            geom.transform(transform: transform)
+        }
     }
     
     public func makeIterator() -> AnyIterator<T> {
