@@ -6,14 +6,14 @@ A Swift encoder for vector tiles according to the [Mapbox vector tile spec](http
 * [GEOS Swift](https://github.com/andreacremaschi/GEOSwift)
 
 ###Status
-Beta
+Alpha - This is a work in progress
 
 ###Cocoapods
 ```ruby
 use_frameworks!
 
 target 'YourTarget' do
-  pod 'GeosSwiftVectorTiles', :git => 'https://github.com/manimaul/GeosSwiftVectorTiles.git', :tag => '0.1.0'
+  pod 'GeosSwiftVectorTiles', :git => 'https://github.com/manimaul/GeosSwiftVectorTiles.git', :tag => '0.1.2'
 end
 ```
 
