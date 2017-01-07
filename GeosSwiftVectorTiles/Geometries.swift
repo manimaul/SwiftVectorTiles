@@ -52,6 +52,11 @@ open class Waypoint : Geometry {
         }
         self.init(GEOSGeom: GEOSGeom, destroyOnDeinit: true)
     }
+
+    override public func transform(transform: CoordinateTransform) -> Waypoint? {
+        let c = transform(self.coordinate)
+        return Waypoint(latitude: c.y, longitude: c.x)
+    }
 }
 
 /**
@@ -97,14 +102,7 @@ open class Polygon : Geometry {
         }
         return interiorRings
         }()
-    
-    override public func transform(transform: CoordinateTransform) {
-        exteriorRing.transform(transform: transform)
-        for ring in interiorRings {
-            ring.transform(transform: transform)
-        }
-    }
-    
+
     public convenience init?(WKT: String) {
         guard let GEOSGeom = GEOSGeomFromWKT(GEOS_HANDLE, WKT: WKT),
             Geometry.classForGEOSGeom(GEOSGeom) === Polygon.self else {
@@ -134,6 +132,25 @@ open class Polygon : Geometry {
         }
         self.init(GEOSGeom: geometry, destroyOnDeinit: true)
     }
+
+    override public func transform(transform: CoordinateTransform) -> Polygon? {
+        guard let ext = exteriorRing.transform(transform: transform) else {
+            return nil
+        }
+        var interior :[LinearRing]? = nil
+
+        if (interiorRings.count > 0) {
+            interior = [LinearRing]()
+            for ring in interiorRings {
+                guard let cloneRing = ring.transform(transform: transform) else {
+                    return nil
+                }
+                interior?.append(cloneRing)
+            }
+        }
+
+        return Polygon(shell: ext, holes: interior)
+    }
 }
 
 /**
@@ -156,6 +173,13 @@ open class LineString : Geometry {
         }
         self.init(GEOSGeom: GEOSGeom, destroyOnDeinit: true)
     }
+
+    public convenience init?(coordinates: CoordinatesCollection) {
+        guard let GEOSGeom = GEOSGeom_createLineString_r(GEOS_HANDLE, coordinates.sequence) else {
+            return nil
+        }
+        self.init(GEOSGeom: GEOSGeom, destroyOnDeinit: true)
+    }
     
     public convenience init?(points: [Coordinate]) {
         let seq = GEOSCoordSeq_create_r(GEOS_HANDLE, UInt32(points.count), 2)
@@ -168,9 +192,10 @@ open class LineString : Geometry {
         }
         self.init(GEOSGeom: GEOSGeom, destroyOnDeinit: true)
     }
-    
-    override public func transform(transform: CoordinateTransform) {
-        points.transform(transform: transform)
+
+    override public func transform(transform: CoordinateTransform) -> LineString? {
+        let coords = coordinates().transform(transform: transform)
+        return LineString(coordinates: coords)
     }
 }
 
@@ -178,6 +203,18 @@ open class LineString : Geometry {
  * A LinearRing is a LineString that is both closed and simple.
  */
 open class LinearRing : LineString {
+
+    public convenience init?(coordinates: CoordinatesCollection) {
+        guard let GEOSGeom = GEOSGeom_createLinearRing_r(GEOS_HANDLE, coordinates.sequence) else {
+            return nil
+        }
+        self.init(GEOSGeom: GEOSGeom, destroyOnDeinit: true)
+    }
+
+    override public func transform(transform: CoordinateTransform) -> LinearRing? {
+        let coords = coordinates().transform(transform: transform)
+        return LinearRing(coordinates: coords)
+    }
     
 }
 

@@ -33,6 +33,16 @@ class GeosSwiftVectorTilesTests: XCTestCase {
         XCTAssertEqual(35, data.count)
     }
 
+    func testTransformPolygon() {
+        let wkt = "POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))"
+        let g = Geometry.create(wkt) as? Polygon
+        let tg = g?.transform { c in
+            Coordinate(x: c.x * 2, y: c.y * 2)
+        }
+        XCTAssertNotNil(tg)
+        XCTAssertEqual("POLYGON ((0 0, 8192 0, 8192 8192, 0 8192, 0 0))", tg?.WKT)
+    }
+
     func testWKTPolygon() {
         // initialize an encoder
         let encoder = VectorTileEncoder()
