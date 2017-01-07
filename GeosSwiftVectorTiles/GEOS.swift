@@ -8,6 +8,7 @@
 import Foundation
 
 typealias GEOSCallbackFunction = @convention(c) (UnsafeMutableRawPointer) -> Void
+public typealias CoordinateTransform = (Coordinate) -> (Coordinate)
 
 let swiftCallback : GEOSCallbackFunction = { args -> Void in
     if let string = String(validatingUTF8: unsafeBitCast(args, to: UnsafeMutablePointer<CChar>.self)) {
@@ -57,6 +58,10 @@ public typealias CoordinateDegrees = Double
     
     open class func geometryTypeId() -> Int32 {
         return -1 // Abstract
+    }
+
+    public func transform(transform: CoordinateTransform) -> Geometry? {
+        fatalError("abstract")
     }
     
     internal class func classForGEOSGeom(_ GEOSGeom: OpaquePointer) -> Geometry.Type? {
@@ -163,13 +168,18 @@ func GEOSGeomFromWKT(_ handle: GEOSContextHandle_t, WKT: String) -> OpaquePointe
 }
 
 public struct CoordinatesCollection: Sequence {
-    let geometry: OpaquePointer
+    let sequence: OpaquePointer
     public let count: UInt32
     
     init(geometry: OpaquePointer) {
-        self.geometry = geometry
+        self.sequence = GEOSGeom_getCoordSeq_r(GEOS_HANDLE, geometry)
+        var numCoordinates: UInt32 = 0
+        GEOSCoordSeq_getSize_r(GEOS_HANDLE, sequence, &numCoordinates);
+        self.count = numCoordinates
+    }
 
-        let sequence = GEOSGeom_getCoordSeq_r(GEOS_HANDLE, self.geometry)
+    init(sequence: OpaquePointer) {
+        self.sequence = sequence
         var numCoordinates: UInt32 = 0
         GEOSCoordSeq_getSize_r(GEOS_HANDLE, sequence, &numCoordinates);
         self.count = numCoordinates
@@ -180,11 +190,21 @@ public struct CoordinatesCollection: Sequence {
         var y: Double = 0
 
         assert(self.count>index, "Index out of bounds")
-        let sequence = GEOSGeom_getCoordSeq_r(GEOS_HANDLE, self.geometry)
-        GEOSCoordSeq_getX_r(GEOS_HANDLE, sequence, index, &x);
-        GEOSCoordSeq_getY_r(GEOS_HANDLE, sequence, index, &y);
+        GEOSCoordSeq_getX_r(GEOS_HANDLE, self.sequence, index, &x);
+        GEOSCoordSeq_getY_r(GEOS_HANDLE, self.sequence, index, &y);
 
         return Coordinate(x: x, y: y)
+    }
+
+    public func transform(transform: CoordinateTransform) -> CoordinatesCollection {
+        let cloneSequence = GEOSCoordSeq_clone_r(GEOS_HANDLE, self.sequence)
+        let cloneCollection = CoordinatesCollection(sequence: cloneSequence!)
+        for i in 0...(count - 1) {
+            let c = transform(cloneCollection[i])
+            GEOSCoordSeq_setX_r(GEOS_HANDLE, cloneCollection.sequence, i, c.x)
+            GEOSCoordSeq_setY_r(GEOS_HANDLE, cloneCollection.sequence, i, c.y)
+        }
+        return cloneCollection
     }
     
     public func makeIterator() -> AnyIterator<Coordinate> {
@@ -196,7 +216,7 @@ public struct CoordinatesCollection: Sequence {
             return item
         }
     }
-    
+
     public func map<U>(_ transform: (Coordinate) -> U) -> [U] {
         var array = Array<U>()
         for coord in self {

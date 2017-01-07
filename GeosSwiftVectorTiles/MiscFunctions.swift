@@ -72,7 +72,6 @@ public extension CoordinatesCollection {
     /// -throws: If there are too few points to determine orientation (< 3)
     ///
     public func isCCW() -> Bool {
-        // for future O(1) access to elements
         let ring = [Coordinate](self)
 
         // # of points without closing endpoint
