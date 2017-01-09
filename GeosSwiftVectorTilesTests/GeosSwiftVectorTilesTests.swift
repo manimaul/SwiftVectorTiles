@@ -42,6 +42,25 @@ class GeosSwiftVectorTilesTests: XCTestCase {
         XCTAssertNotNil(tg)
         XCTAssertEqual("POLYGON ((0 0, 8192 0, 8192 8192, 0 8192, 0 0))", tg?.WKT)
     }
+    
+    func testCollection() {
+        let g1 = Geometry.create("POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))")
+        let g2 = Geometry.create("POLYGON ((0 0, 2048 0, 2048 2048, 0 2048, 0 0))")
+        XCTAssertNotNil(g1)
+        XCTAssertNotNil(g2)
+        let gc = GeometryCollection(geometries: [g1!, g2!])
+        guard let gct = gc?.transform(transform: { coord in
+            Coordinate(x: coord.x * 2, y: coord.y * 2)
+        }) else {
+            XCTFail()
+            return
+        }
+        let gt1 = gct.geometries[0]
+        let gt2 = gct.geometries[1]
+        
+        XCTAssertEqual("POLYGON ((0 0, 8192 0, 8192 8192, 0 8192, 0 0))", gt1.WKT)
+        XCTAssertEqual("POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))", gt2.WKT)
+    }
 
     func testWKTPolygon() {
         // initialize an encoder

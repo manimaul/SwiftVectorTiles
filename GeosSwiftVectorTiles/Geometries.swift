@@ -259,6 +259,17 @@ open class GeometryCollection<T: Geometry> : Geometry {
         }
         self.init(GEOSGeom: geometry, destroyOnDeinit: true)
     }
+    
+    override public func transform(transform: CoordinateTransform) -> GeometryCollection<T>? {
+        var tGeometrys = [Geometry]()
+        for geo in geometries {
+            guard let tGeo = geo.transform(transform: transform) else {
+                return nil
+            }
+            tGeometrys.append(tGeo)
+        }
+        return GeometryCollection(geometries: tGeometrys)
+    }
 }
 
 /**
