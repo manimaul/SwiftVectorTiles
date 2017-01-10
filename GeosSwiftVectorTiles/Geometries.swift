@@ -218,10 +218,14 @@ open class LinearRing : LineString {
     
 }
 
+protocol MultiGeometry {
+    func getGeometries() -> [Geometry]
+}
+
 /**
  * A GeometryCollection is a geometry that is a collection of 1 or more geometries.
  */
-open class GeometryCollection<T: Geometry> : Geometry {
+open class GeometryCollection<T: Geometry> : Geometry, MultiGeometry {
     
     open override class func geometryTypeId() -> Int32 {
         return 7 // GEOS_GEOMETRYCOLLECTION
@@ -269,6 +273,14 @@ open class GeometryCollection<T: Geometry> : Geometry {
             tGeometrys.append(tGeo)
         }
         return GeometryCollection(geometries: tGeometrys)
+    }
+    
+    internal func getGeometries() -> [Geometry] {
+        var geos = [Geometry]()
+        for each in geometries {
+            geos.append(each)
+        }
+        return geos
     }
 }
 

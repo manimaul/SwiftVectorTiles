@@ -237,9 +237,9 @@ public class VectorTileEncoder {
             return
         }
         
-        // split up MultiPolygon and GeometryCollection (without subclasses)
-        if let collection = geo as? GeometryCollection<Geometry> {
-            splitAndAddFeatures(layerName: name, attributes: attrs, geometry: collection)
+        if let mg = geo as? MultiGeometry {
+            splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mg)
+            return
         }
         
         // skip small Polygon/LineString.
@@ -445,12 +445,17 @@ public class VectorTileEncoder {
     }
 
 
-    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: GeometryCollection<Geometry>?) {
-        if let items = geo?.geometries.makeIterator() {
-            while let item = items.next() {
-                addFeature(layerName: name, attributes: attrs, geometry: item)
-            }
+    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: MultiGeometry) {
+        
+        for each in geo.getGeometries() {
+            addFeature(layerName: name, attributes: attrs, geometry: each)
         }
+        
+//        if let items = geo?.geometries.makeIterator() {
+//            while let item = items.next() {
+//                addFeature(layerName: name, attributes: attrs, geometry: item)
+//            }
+//        }
     }
     
     

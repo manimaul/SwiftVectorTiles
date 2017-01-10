@@ -21,7 +21,7 @@ class GeosSwiftVectorTilesTests: XCTestCase {
         super.tearDown()
     }
     
-    func testPolygon() {
+    func testEncodePolygon() {
         let encoder = VectorTileEncoder()
         let wkt = "POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))"
         let geometry = Geometry.create(wkt)
@@ -43,7 +43,7 @@ class GeosSwiftVectorTilesTests: XCTestCase {
         XCTAssertEqual("POLYGON ((0 0, 8192 0, 8192 8192, 0 8192, 0 0))", tg?.WKT)
     }
     
-    func testCollection() {
+    func testTransformGeometryCollection() {
         let g1 = Geometry.create("POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))")
         let g2 = Geometry.create("POLYGON ((0 0, 2048 0, 2048 2048, 0 2048, 0 0))")
         XCTAssertNotNil(g1)
@@ -60,6 +60,18 @@ class GeosSwiftVectorTilesTests: XCTestCase {
         
         XCTAssertEqual("POLYGON ((0 0, 8192 0, 8192 8192, 0 8192, 0 0))", gt1.WKT)
         XCTAssertEqual("POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))", gt2.WKT)
+    }
+    
+    func testEncodeMultiPolygon() {
+        let p1 = Geometry.create("POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))") as! Polygon
+        let p2 = Geometry.create("POLYGON ((0 0, 2048 0, 2048 2048, 0 2048, 0 0))") as! Polygon
+        let mp = MultiPolygon(geometries: [p1, p2])!
+        
+        let encoder = VectorTileEncoder()
+        encoder.addFeature(layerName: "land", attributes: nil, geometry: mp)
+        let data = encoder.encode()
+        
+        XCTAssertNotNil(data)
     }
 
     func testWKTPolygon() {
