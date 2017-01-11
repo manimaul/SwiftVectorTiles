@@ -27,10 +27,13 @@ class GeosSwiftVectorTilesTests: XCTestCase {
         let geometry = Geometry.create(wkt)
         var atts = [String: Attribute]()
         atts["some_key"] = Attribute.attString("some_value")
-        encoder.addFeature(layerName: "land", attributes: nil, geometry: geometry)
+        encoder.addFeature(layerName: "land", attributes: atts, geometry: geometry)
         let data = encoder.encode()
         XCTAssertNotNil(data)
-        XCTAssertEqual(35, data.count)
+        let expected :[UInt8] = [26, 60, 10, 4, 108, 97, 110, 100, 18, 23, 18, 2, 0, 0, 24, 3, 34, 15, 9, 0, 128, 66,
+                              26, 0, 255, 65, 128, 66, 0, 0, 128, 66, 15, 26, 8, 115, 111, 109, 101, 95, 107, 101,
+                              121, 34, 12, 10, 10, 115, 111, 109, 101, 95, 118, 97, 108, 117, 101, 40, 128, 32, 120, 2]
+        XCTAssertEqual(expected, [UInt8](data))
     }
 
     func testTransformPolygon() {

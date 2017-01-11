@@ -30,9 +30,10 @@ private class Layer {
     
     func key(key k: String) -> Int {
         guard let i = _keys[k] else {
-            _keys[k] = _keys.count
+            let index = _keys.count
+            _keys[k] = index
             _keysKeysOrdered.append(k)
-            return _keys.count
+            return index
         }
         return i
     }
@@ -43,9 +44,10 @@ private class Layer {
     
     func value(object obj: Attribute) -> Int {
         guard let i = _values[obj] else {
-            _values[obj] = _values.count
+            let index = _values.count
+            _values[obj] = index
             _valuesKeysOrdered.append(obj)
-            return _values.count
+            return index
         }
         return i
     }
@@ -353,7 +355,7 @@ public class VectorTileEncoder {
                 r.remove(at: lineToIndex)
             } else {
                 // update LineTo with new length
-                r.insert(commandAndLength(command: .lineTo, repeated: lineToLength), at: lineToIndex)
+                r[lineToIndex] = commandAndLength(command: .lineTo, repeated: lineToLength)
             }
         }
         
