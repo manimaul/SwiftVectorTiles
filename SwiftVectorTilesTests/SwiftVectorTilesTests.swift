@@ -7,9 +7,9 @@
 //
 
 import XCTest
-@testable import GeosSwiftVectorTiles
+@testable import SwiftVectorTiles
 
-class GeosSwiftVectorTilesTests: XCTestCase {
+class SwiftVectorTilesTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
