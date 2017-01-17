@@ -1,0 +1,6 @@
+framework module gdal_mm {
+  umbrella header "gdal-mm-umbrella.h"
+
+  export *
+  module * { export * }
+}

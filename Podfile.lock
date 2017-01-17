@@ -1,15 +1,19 @@
 PODS:
-  - geos (3.5.0)
+  - gdal-mm (0.1.0)
   - ProtocolBuffers-Swift (3.0.6)
 
 DEPENDENCIES:
-  - geos
+  - gdal-mm (from `../gdal-mm`)
   - ProtocolBuffers-Swift
 
+EXTERNAL SOURCES:
+  gdal-mm:
+    :path: ../gdal-mm
+
 SPEC CHECKSUMS:
-  geos: e96c6ca3f3ce02d20feaa8d90d4af383e11e7198
+  gdal-mm: 682831a8771bab6c8bc77033c7641f959b48adf0
   ProtocolBuffers-Swift: ee072e78456f2332a0b0f759f718b9c59443bbc8
 
-PODFILE CHECKSUM: b18e30e32caac78d9b60f9078e0a199b34daff7d
+PODFILE CHECKSUM: 0c3ded5f7f4767f35a2ecdeb807771fb7192b45a
 
 COCOAPODS: 1.1.1

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@import geos;
+//@import geos;
 
 //! Project version number for GeosSwiftVectorTiles.
 FOUNDATION_EXPORT double GeosSwiftVectorTilesVersionNumber;

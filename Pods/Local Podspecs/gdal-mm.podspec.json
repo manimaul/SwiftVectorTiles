@@ -1,0 +1,34 @@
+{
+  "name": "gdal-mm",
+  "version": "0.1.0",
+  "summary": "Gdal Mini Marine",
+  "description": "GdalMM is scavanged Gdal components used in the OpenCPN project with a special\nfocus on working with BSB and S57 nautical charts.",
+  "homepage": "https://github.com/manimaul/gdal-mm",
+  "license": {
+    "type": "MIT"
+  },
+  "authors": {
+    "William Kamp": "manimaul@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/manimaul/gdal-mm.git"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": [
+    "mygdal/*.cpp",
+    "myiso8211/*.cpp",
+    "mygdal/*.h",
+    "include/*.h"
+  ],
+  "public_header_files": [
+    "mygdal/*.h",
+    "include/*.h"
+  ],
+  "libraries": "c++",
+  "xcconfig": {
+    "CLANG_CXX_LANGUAGE_STANDARD": "c++14",
+    "CLANG_CXX_LIBRARY": "libc++"
+  }
+}
