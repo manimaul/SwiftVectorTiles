@@ -4,13 +4,13 @@
 use_frameworks!
 
 target 'SwiftVectorTiles' do
-  #  pod 'gdal-mm', :git => 'https://github.com/manimaul/gdal-mm.git', :commit => 'd6c71d9888c6122e42e5af7b2e1149863bcbb64a'
-  pod 'gdal-mm', :path => '../gdal-mm'
+    pod 'gdal-mm', :git => 'https://github.com/manimaul/gdal-mm.git', :commit => 'd6c71d9888c6122e42e5af7b2e1149863bcbb64a'
+#  pod 'gdal-mm', :path => '../gdal-mm'
   pod 'ProtocolBuffers-Swift'
 end
 
 target 'SwiftVectorTilesTests' do
-  # pod 'gdal-mm', :git => 'https://github.com/manimaul/gdal-mm.git', :commit => 'd6c71d9888c6122e42e5af7b2e1149863bcbb64a'
-  pod 'gdal-mm', :path => '../gdal-mm'
+   pod 'gdal-mm', :git => 'https://github.com/manimaul/gdal-mm.git', :commit => 'd6c71d9888c6122e42e5af7b2e1149863bcbb64a'
+#  pod 'gdal-mm', :path => '../gdal-mm'
   pod 'ProtocolBuffers-Swift'
 end
