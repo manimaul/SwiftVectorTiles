@@ -8,18 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "MADCoordinate.hh"
+#import "MADGeometryType.h"
 
 @interface MADGeometry : NSObject
-
-+(MADGeometry*) create:(NSString *)wkt;
-+(MADGeometry*) createFromData:(NSData *)wkb;
 
 -(BOOL) covers:(MADGeometry*)other;
 -(BOOL) intersects:(MADGeometry*)other;
 -(BOOL) empty;
--(MADGeometry *)intersection:(MADGeometry *)other;
 -(NSArray<MADCoordinate*>*)coordinates;
-
-@property NSString* WKT;
+-(MADGeometryType)getGeometryType;
+-(NSString*)getWellKnownText;
 
 @end

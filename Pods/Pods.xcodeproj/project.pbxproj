@@ -7,105 +7,105 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00C761801B8B3A5E9893BC687C007D5E /* ogrpolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 77C3237FF60B7A00232114130F9AA4A5 /* ogrpolygon.cpp */; };
-		0C09B6CD3D41F910FCCC0640D169690F /* ogr_feature.h in Headers */ = {isa = PBXBuildFile; fileRef = F8A8813723F400E4A78FE2343088AC2B /* ogr_feature.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0D667DC29DA938A11333FFD13AAB3B89 /* ddfmodule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0ADE137840A6C77575BCB762E9F10F62 /* ddfmodule.cpp */; };
-		0E53762D2F00F04519600A60DA4E03D2 /* CodedOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902E88F3921E948993DB60CD6E807C1A /* CodedOutputStream.swift */; };
-		1033446D6F687AB7D15B1B9232496516 /* ogrgeometrycollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 294FEA31759601FD16F936C122E66042 /* ogrgeometrycollection.cpp */; };
-		12627374F20CA25D9849A43F496FFCE4 /* gdal-mm-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EA2214813C75B661948216A34A89224 /* gdal-mm-dummy.m */; };
-		12BF7EE87531E728F1506C26194DB1A7 /* Google.Protobuf.Duration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483EC177E87B29B43D2AB161BE200D1B /* Google.Protobuf.Duration.proto.swift */; };
+		03B4F5BA1BEC9C436E97AFCD331CD2C4 /* ogrgeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9EC86A17BE6C9082BF85DDEEC5B0671 /* ogrgeometry.cpp */; };
+		082220026D729D2B6CB74EE68BE20F13 /* gdal_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = EF06DA07E37D2043D9EF5775AD8FB098 /* gdal_priv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B42EB8EC376A595CF8F8E00B407474A /* cpl_vsi.h in Headers */ = {isa = PBXBuildFile; fileRef = 31C6996829B3EDFE7D62ECEE11937B7D /* cpl_vsi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0E53762D2F00F04519600A60DA4E03D2 /* CodedOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50914BA79E612BDC8D57E8B4893E40A /* CodedOutputStream.swift */; };
+		12BF7EE87531E728F1506C26194DB1A7 /* Google.Protobuf.Duration.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B522BD31FB336BB2BC6AA62F2253BA /* Google.Protobuf.Duration.proto.swift */; };
+		13AF7D4AC740952E39E8942C0C9A9990 /* ogr_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F9936EF5B673EDD40699F4B67F7687D /* ogr_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1540F6EB97164DDFB19B854248E69AED /* Pods-SwiftVectorTilesTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6274C2BA03BDFB1F83F39B54B8EA5EC0 /* Pods-SwiftVectorTilesTests-dummy.m */; };
-		16D11FB2646179385BC9440886EDDAA6 /* gdal-mm-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CADC460A919107B344A9D17F8AFFF952 /* gdal-mm-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1857590DA220F28B8AD4B0C68CC57389 /* ogrfielddefn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08792F7BD1F637124459EA1014609E4C /* ogrfielddefn.cpp */; };
+		169F94387E129B6A7D560ED5A960E347 /* cpl_minixml.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A23A23DFF41753E85122CC68FBF2680 /* cpl_minixml.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18B9FE4155258424A2FBEC0EB8541A41 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		18E697741EB7F4A3B23AE74E92DDB24E /* Google.Protobuf.Any.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8D7A57EE912ECEE49E6B72CC41331E /* Google.Protobuf.Any.proto.swift */; };
-		1B185527021600B8B68A5CCA3FE69DC3 /* ogr_s57.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B04E67D267F326513EB126A63557AED /* ogr_s57.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1D69A7612795E254A4F6A002E3195A17 /* ConcreateExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7E0680CA646A406E99652AE34B2717 /* ConcreateExtensionField.swift */; };
-		1E46F5121018B9E09E8E4A71692B1B93 /* cpl_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F1EFE57F9E79DABC7E5B6834473666C /* cpl_list.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		214A5523BAD48DB975D42AF47A26F859 /* ogrmultipolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B78D76521711EF36F2BA505CC7B42A36 /* ogrmultipolygon.cpp */; };
-		22793495F2D3DA3DCE1184632CB8112A /* ogrs57datasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2A1BA3D940660DFED23BA7A6C59CC26 /* ogrs57datasource.cpp */; };
-		245E5DD5F77949394112313FE6E0A3DB /* ogr_spatialref.h in Headers */ = {isa = PBXBuildFile; fileRef = D138771521C69233A2A363D5A26FB173 /* ogr_spatialref.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		28BADFDDCC54C193DC6D344F7346E607 /* ExtensionRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A27950339119B3A50AA967F807CFCA /* ExtensionRegistry.swift */; };
-		28C6F71D78672583E3B5306E470563FD /* ogr_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 4657A009F27235DF93B27A517CC2D755 /* ogr_api.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		29DA2A15C495FBAEE0C32AD78907FFC1 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C4D7BF0463B27D1116AC6313A077EA /* Field.swift */; };
-		29DA601FA4D63DE5BF54235C00C3A133 /* s57reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41F514EB30EA10BC23BED155F88BDEF /* s57reader.cpp */; };
-		2D900A6F4E8E9D1278BAB2F4C7E24C85 /* ExtendableMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C0744E2ACF649A9ED2309258AF8702C /* ExtendableMessage.swift */; };
-		2F9D47F57AF71F38A50E926F8B323954 /* ogrlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAF9C15FAF80DADEEAD49EF495170055 /* ogrlayer.cpp */; };
-		31E9BCCBBB631BA35E4F9C1FE3E98BDF /* s57featuredefns.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F6A8C8BF9B9C333D5F9FA65FB55E8F3 /* s57featuredefns.cpp */; };
-		36851B6B5E357F0F8BD0A4B2B3F388BD /* ogr_attrind.h in Headers */ = {isa = PBXBuildFile; fileRef = DC272BE711C658478D9E1691A465017E /* ogr_attrind.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		39766CCAE5F2D33E35ECF852AE221B85 /* Google.Protobuf.Wrappers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACDB58B278E4A075EB9EA69C74D6EBA /* Google.Protobuf.Wrappers.proto.swift */; };
-		3AA0D5A14B4C0CF29C700031F091EE17 /* cpl_vsi.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E053C8A23B077E8021E7FA57E029958 /* cpl_vsi.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3D03E4906911F101E34A7E798D4614BE /* ogrsf_frmts.h in Headers */ = {isa = PBXBuildFile; fileRef = B0F5FC6C80A5D2322B5CEF8FE368CC1E /* ogrsf_frmts.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FA6F15901D67C3A3624FDDB41D3DC84 /* cplgetsymbol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF83CF6D190037ABB6A7D5466E82FCDC /* cplgetsymbol.cpp */; };
+		18E697741EB7F4A3B23AE74E92DDB24E /* Google.Protobuf.Any.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F37BE0737820FD42053E7258CA352A /* Google.Protobuf.Any.proto.swift */; };
+		1D69A7612795E254A4F6A002E3195A17 /* ConcreateExtensionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1A8E89881B607AE8E39AACAA1AF46C /* ConcreateExtensionField.swift */; };
+		1DBFBB8D2C03CE783F617C969E91A640 /* ddfsubfielddefn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A87A95527F0F6A5D4D794572BFC9F34 /* ddfsubfielddefn.cpp */; };
+		1EA68394111B971C7A2CE524291746AD /* gdal.h in Headers */ = {isa = PBXBuildFile; fileRef = 81A6B9AB30C247921E0AB9B0682807F9 /* gdal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2064AD806E44334DC6EEAC8E76BF3BD1 /* gdal-mm-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8487D86E86111B8A714A296148BAA934 /* gdal-mm-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2112C7A0A07DE0FF925A188631528D09 /* ddffield.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F23DB290B0CB8F8A635E52ABB816E9E3 /* ddffield.cpp */; };
+		2241F736875877C5FBCC631D9ABD7B4C /* ddfmodule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7EA49CFB75488BBA3ABA1F7157816A33 /* ddfmodule.cpp */; };
+		248971CD169AD610688473E056318189 /* cpl_odbc.h in Headers */ = {isa = PBXBuildFile; fileRef = 7687BE4A5496F701D71F64BEF4DC2FB9 /* cpl_odbc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		27562CE7353B16E28908044E3485DACF /* cpl_conv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 767928468D06C0B54B663DD65CEAF4BB /* cpl_conv.cpp */; };
+		285326E01C155BCBCCE567633007B57A /* cpl_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C97B850171DAAAF3869C754757F6C160 /* cpl_error.cpp */; };
+		285920ABD98C1EB079E9C59221C19A8D /* ogr_spatialref.h in Headers */ = {isa = PBXBuildFile; fileRef = 63298A189536F8EFA75BECEFF91FC575 /* ogr_spatialref.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		28BADFDDCC54C193DC6D344F7346E607 /* ExtensionRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21916BE56E7E1D11579A1885674794FF /* ExtensionRegistry.swift */; };
+		29DA2A15C495FBAEE0C32AD78907FFC1 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F086D0BB0D5C7986E11193AEA9E42B /* Field.swift */; };
+		2D900A6F4E8E9D1278BAB2F4C7E24C85 /* ExtendableMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8C447F8F703666184DCCC5A9E7CF3D /* ExtendableMessage.swift */; };
+		2DF7BD124C9D83FCD80DE53079782F3A /* ddfutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28934BE579ACE270E5AA79A330E513DD /* ddfutils.cpp */; };
+		39766CCAE5F2D33E35ECF852AE221B85 /* Google.Protobuf.Wrappers.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1DB4148E83032F63E2AD7D62A75EB3 /* Google.Protobuf.Wrappers.proto.swift */; };
+		3C6CA3537E6C2DE66DEE40361E7E87BA /* s57classregistrar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71785D59B2ADEA9B8A42261615C83D4D /* s57classregistrar.cpp */; };
 		458E79FD355C9BCE09A01AE295DC486F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		484E65945DCBC0A00F55DA53AE8C152B /* Google.Protobuf.Type.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394B7E48C9934A6602DC8B0E03B42D8D /* Google.Protobuf.Type.proto.swift */; };
-		4C506F1867967280C1BFFF10C911D81B /* cpl_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E51ABD22F4DDC6862B87AA00D7F43BF /* cpl_string.cpp */; };
-		5170A15628133DA95F7CC39CB775880D /* ogrs57layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16C647912A15524D7E091C1A7A52F095 /* ogrs57layer.cpp */; };
-		5524F6D0A7FB3ECC297425C47C93569B /* cpl_findfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B1009D9E6D2F00C6B4EE5B2DC0F852 /* cpl_findfile.cpp */; };
-		62E2BBB0937B44FB41DF13CDC346D1AA /* cpl_port.h in Headers */ = {isa = PBXBuildFile; fileRef = 565A8811B4A8AA2F788C29DF996D9460 /* cpl_port.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		63F4140288F4848F982CA6AC751B0879 /* cpl_config.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D356D461C33AA0A59EB0A8523CA938E /* cpl_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		645807496C0E3C2614B87E89EEED5441 /* gdal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1296E45358733EA4161011E73603C591 /* gdal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		47F44C03D774F38F49313DEA5226CEE4 /* cpl_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16809D17FB0D12EFB8035083DD4C12F4 /* cpl_path.cpp */; };
+		484E65945DCBC0A00F55DA53AE8C152B /* Google.Protobuf.Type.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43E59699AEBC5B16983EDB217B35912 /* Google.Protobuf.Type.proto.swift */; };
+		4E756AA2EE5B9013E0298080FC72ED60 /* cpl_findfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAB369001B13131F5FB25DAD566C25 /* cpl_findfile.cpp */; };
+		5048F5E2221A16F89755AD876E25C848 /* s57featuredefns.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 54C633B4F6B788FD1654D47E45A86F69 /* s57featuredefns.cpp */; };
+		52EF980D0C3769E78CA36B631B3A243E /* ogrlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E75F68DE68EB18680D255F54BD00C7FF /* ogrlayer.cpp */; };
+		54F41D9C00F92C0A5D3E63FD144C31CB /* ogr_p.h in Headers */ = {isa = PBXBuildFile; fileRef = A6999781FF541C00D53D6E453C2A956E /* ogr_p.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5841BD48333D9E8A0D798653186B5F9C /* cpl_csv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F9E8DFE730B2EB6197C52FB1EBF1B003 /* cpl_csv.cpp */; };
+		5C620AF0BAD56166FC7DF393654EC18A /* cpl_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 85767FA36589C348A55ADD44F22737E2 /* cpl_list.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		612DD230AD40EA03DDE81390C0DFE681 /* ogr_attrind.h in Headers */ = {isa = PBXBuildFile; fileRef = 57F20059DF31AA5D614C5BF30F6D1B7F /* ogr_attrind.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		621E2F95DA6046E0C1694DE2D2FAA4B4 /* ogrs57datasource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF5BE36EE1B2C7FEA03C319581EE2E32 /* ogrs57datasource.cpp */; };
+		636855C3F4C657F23A5147C0B0704186 /* cpl_csv.h in Headers */ = {isa = PBXBuildFile; fileRef = 834F0A2A956609AD010D4D0457491FCA /* cpl_csv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64263363CA5498DAA154046DF87950C4 /* ddfrecordindex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 62D7868B0D14142053C254905D0116AF /* ddfrecordindex.cpp */; };
+		67AF2C86571C6F294E84088B1F48732B /* S57ClassRegistrar.h in Headers */ = {isa = PBXBuildFile; fileRef = B876B9A20BCCF9101357727773A2ADA5 /* S57ClassRegistrar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		68B45BD8E98DA05256BCFCC93C52B255 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		6A4054AC7E85BE624CAD7AFFBF550DF0 /* S57ClassRegistrar.h in Headers */ = {isa = PBXBuildFile; fileRef = 26E1194A97117FDDD69AD03903C569A5 /* S57ClassRegistrar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		70FF833799FB7FFFABD47AAE0BB8B26F /* ddfutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8748C4D879C1244A099AACE117B1AD92 /* ddfutils.cpp */; };
-		71DA0F5CC7EC2151B5A8B0858349B18E /* gdal_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = B7A7CD8CB78EC93BF34895B687223033 /* gdal_priv.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7215E530B4EB5C567A6BE9282E27857A /* ogrmultilinestring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B87FC9A8E919138CAB7048323FC3B905 /* ogrmultilinestring.cpp */; };
-		736E07B5EDF2491E36476CEE883A4209 /* ogrcurve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D07F0C6E2111AD907E350BF6283DE32 /* ogrcurve.cpp */; };
-		74DE1EA85F6B2061E455F527E21E6BF0 /* gdal_misc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8D06E5B1B8854B8DD93A632CD4B1A230 /* gdal_misc.cpp */; };
-		753F56C967B35A65036E6F8566F80F06 /* ProtocolBuffers-Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 813D064769CEFB7F41964198C0146E1A /* ProtocolBuffers-Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6216D3A4DDA10BFBD957E8E0872AC8 /* ogrfeaturedefn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C888A38005C94DB6DE6CB22697BA2FC9 /* ogrfeaturedefn.cpp */; };
+		71A3C0322304261C8562654A5D196D3D /* cpl_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 9998F4F8D03CD1FD03F98DDF784B950C /* cpl_string.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73298029850AF89A1399338B18E8CFA1 /* ogrmultilinestring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7DC23521DE35D6D8B5FFB4C9589A4B88 /* ogrmultilinestring.cpp */; };
+		753F56C967B35A65036E6F8566F80F06 /* ProtocolBuffers-Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 98E3BF6A010CEA4D718498DA207E22CF /* ProtocolBuffers-Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7688F12015FD71D8D77C5A4E647D5A90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
-		7908426354BD71A986C81D1A55F916E1 /* ogrlinearring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F7BDB59DC98F8D0E73EED78932FE19F /* ogrlinearring.cpp */; };
-		7A050756C98F9D513C9720394E6C3B2C /* Google.Protobuf.Empty.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A74CA71B5BD7C720AA4C6E3B0494FA3 /* Google.Protobuf.Empty.proto.swift */; };
-		7B06E37B5A62E8A279F48A733F285E4A /* cpl_odbc.h in Headers */ = {isa = PBXBuildFile; fileRef = DEEC6C825C902938E74E3F70BACEEEC7 /* cpl_odbc.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7BC2BD1BD1E9D7591C4CE1CE9B53BA64 /* ogrfeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2244D3239F9603C54FFDD268ABDC3C60 /* ogrfeature.cpp */; };
-		7C552DB7469BCF9C8E28BB9E8DE5D141 /* cpl_minixml.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FFAA3D30AE254F1143CCC00B073C389 /* cpl_minixml.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7D23FE47B684E325C0FEDF9EE460A35C /* iso8211.h in Headers */ = {isa = PBXBuildFile; fileRef = 2242DAD2AEB160A05D5C8576E837B200 /* iso8211.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7D9D7FD5896E8260A100030C9E92218B /* cpl_multiproc.h in Headers */ = {isa = PBXBuildFile; fileRef = DE60A699F6E2D50AD75058AA370F7A0F /* cpl_multiproc.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7E817F7DA021A8ABCE278416DBD14F27 /* ogrgeometry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFC29176D1C07B8811A823EC57EE7FDE /* ogrgeometry.cpp */; };
-		81CEB182E2755E8C6DB8EA7F92201774 /* Google.Protobuf.FieldMask.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16476DA6F3C5BCBA845E413778FA47E5 /* Google.Protobuf.FieldMask.proto.swift */; };
-		827B6BF44A8110538838400F05F0A2CF /* ogrfeaturedefn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69439E067970E65889DE1A17CEA4A1B6 /* ogrfeaturedefn.cpp */; };
-		86C0C5BC1CB15EFF86FA22DE8530ADE8 /* ogr_geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 86D07B71F6A52CC588FCEA33795C4FC9 /* ogr_geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		876CC11035C764FE8CF76CB928134C9B /* ogr_p.h in Headers */ = {isa = PBXBuildFile; fileRef = 815A5482152EDCED3E82C4D0514B9BEC /* ogr_p.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		888EF0358566D3CC11E576A5C5C10A87 /* Google.Protobuf.Struct.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85355579E9F16B68CD8CE7A6CBD4C522 /* Google.Protobuf.Struct.proto.swift */; };
-		8C73E5521EA6DA7513AEC79A0A629478 /* ogrutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6CC094BA2F7E9C72BF82B6D4E1C6A0D8 /* ogrutils.cpp */; };
-		90583FED3F025F6B00F6D7916AD0593A /* ddfrecord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3D9B3C0093BD43DC58EAF14A6B9046D /* ddfrecord.cpp */; };
-		9308C34593AD92C08503F5936FA906DE /* s57.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D3732EFF73585D92343A8A0F3534E0 /* s57.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		938746D67AE5B21D730BED8E3C96B215 /* WireFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF9626B55A6C68AA3B62066C56C923A /* WireFormat.swift */; };
-		997BAFA8F3BB9C1A3B5F7E59FDD4F427 /* ogrpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 02D11A3A1E7C13C0DB88994D996C2024 /* ogrpoint.cpp */; };
-		9B76FCDC41BA6A5A306B6E0547CDD101 /* ddffield.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0B421B9DB2C2AD6CD938C661B492509 /* ddffield.cpp */; };
-		9D3EFD69F8EB4825B2306A646727E8D6 /* ProtocolBuffers-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D0F0DBDB798442B4EB68E0FE88868 /* ProtocolBuffers-Swift-dummy.m */; };
-		A17F6C969DB06D20C0F0EB354B38A113 /* cpl_error.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B274B3C1A59298A443B2C48A88FAA99 /* cpl_error.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A28C1ADB9E178218ED12DE005D049153 /* ddffielddefn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 86F0168B8C1FEB37A550E1AF60FC407B /* ddffielddefn.cpp */; };
-		A39DE8470D6CB2C94A6E6D447BFB83C3 /* cpl_conv.h in Headers */ = {isa = PBXBuildFile; fileRef = 51EB245B751B5B68691B5D63AF21FE30 /* cpl_conv.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A56603B80A8F8D47AA42C71B51D4B785 /* cpl_minixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD08B53DA592D3119B5321B004A58B55 /* cpl_minixml.cpp */; };
-		A862DB2B4ECFFBB0BB71A90D91858F7D /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0C0856BC708D92B7F171D92C4CAF16 /* RingBuffer.swift */; };
-		A9E7DB7F5C7D03D8A4800299811A278D /* Google.Protobuf.SourceContext.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34567D81F690D601F6225FB107B9FC30 /* Google.Protobuf.SourceContext.proto.swift */; };
-		B0FE7368C722DB661F1590D2A62DA909 /* ddfrecordindex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504E66E6F976B7E01B0302D03604CAAD /* ddfrecordindex.cpp */; };
-		B31A5EB6AD1F25C02DDFF3CF8A2F370F /* CodedInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9511285836406F12D3F3DF72DCEB29A4 /* CodedInputStream.swift */; };
-		B9B08B8D4ABE430FA9D9709C04FBD637 /* ogrlinestring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6ED925F846743C4490AA217D1C5E4907 /* ogrlinestring.cpp */; };
-		BBED44441D8CDD65E1E0815724667E69 /* cpl_csv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F11F9AC3B016624F0580E2363B74B7B6 /* cpl_csv.cpp */; };
-		BC4ED91375B78F96DF3E4251A0F6F8DA /* ogrgeometryfactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23AB83D5E5EA37517F3CA616C0292E19 /* ogrgeometryfactory.cpp */; };
+		772B66627663EA5E98062F7B4B8AD9C3 /* cpl_minixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA6FD4023E11DB9823E45714BC0CA309 /* cpl_minixml.cpp */; };
+		77D61A6073F71F7B59569F23081344D8 /* ogrsf_frmts.h in Headers */ = {isa = PBXBuildFile; fileRef = C6EE3562628217294EB804E0E344ECE6 /* ogrsf_frmts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A050756C98F9D513C9720394E6C3B2C /* Google.Protobuf.Empty.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F1D3D14FBA0B08BF4C2A4C89CCAC92 /* Google.Protobuf.Empty.proto.swift */; };
+		7B5FCCD8B59CA70166E4713F788D3F4F /* ogrpolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FD1F4FA42872A81AA2A2DEDBA4CFED7 /* ogrpolygon.cpp */; };
+		80D9364E7948245D1746F0EE4CBC7925 /* ogrs57layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 227DDCD916BAB646CAAA19014155292F /* ogrs57layer.cpp */; };
+		81CEB182E2755E8C6DB8EA7F92201774 /* Google.Protobuf.FieldMask.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433892774975B77D95B7C64622C504D /* Google.Protobuf.FieldMask.proto.swift */; };
+		853B5BC4383DB7E01959C588D3FEEA68 /* cpl_config.h in Headers */ = {isa = PBXBuildFile; fileRef = BCD1B4E40561B2411478C894F0D81DF8 /* cpl_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		888EF0358566D3CC11E576A5C5C10A87 /* Google.Protobuf.Struct.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6A2EE7BD8924BEAE60687B92DFCE0B /* Google.Protobuf.Struct.proto.swift */; };
+		8C17F11C2A026D9C3E2647E0CF3DE529 /* ogr_api.h in Headers */ = {isa = PBXBuildFile; fileRef = 29D14133B3B031CFFC85604DB708E931 /* ogr_api.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8FD9F0E25C54414CAE929AB37A594E62 /* ogrcurve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2D132E3CAD17544D8D2DC8C357084AEC /* ogrcurve.cpp */; };
+		8FF32510F62CECA57A5325DD3EBED098 /* ddffielddefn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7087F2B661FB48329ED4A3CB04EF99A0 /* ddffielddefn.cpp */; };
+		938746D67AE5B21D730BED8E3C96B215 /* WireFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA9F12192E939F7302D966091D1EBEF /* WireFormat.swift */; };
+		95AB08286375794DDD253C6B6104A120 /* ogrfielddefn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E322633306C6F18F38E48AB445454A5 /* ogrfielddefn.cpp */; };
+		98714F13834982ACC40742F6250F85BF /* cpl_multiproc.h in Headers */ = {isa = PBXBuildFile; fileRef = 68758C4249A83BB6CF835B01FB8498D8 /* cpl_multiproc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D3EFD69F8EB4825B2306A646727E8D6 /* ProtocolBuffers-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4314BE7D1D0BC097FFF89A611436F755 /* ProtocolBuffers-Swift-dummy.m */; };
+		A1AB63BF78A513409C8306A392AA0377 /* cpl_error.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C1B8D48B339B4905390945001F54647 /* cpl_error.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4EF9B7E6BCD3135CFEEBE056C439CD9 /* ogrmultipolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1D5BB4FC568AE0F3A7D0074298C6CAC /* ogrmultipolygon.cpp */; };
+		A701D7C33021811F00EA383D3AACC809 /* cpl_vsisimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 749434EB7E59C796685FB5C355D1D619 /* cpl_vsisimple.cpp */; };
+		A862DB2B4ECFFBB0BB71A90D91858F7D /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BFCD8E3D2CE657DE6ABF4C6D780BA0 /* RingBuffer.swift */; };
+		A9E7DB7F5C7D03D8A4800299811A278D /* Google.Protobuf.SourceContext.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAA2C656B48BF069FAC2D6D4C63873F /* Google.Protobuf.SourceContext.proto.swift */; };
+		B31A5EB6AD1F25C02DDFF3CF8A2F370F /* CodedInputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A051FDB6027E0BF424B0F453C3804B6 /* CodedInputStream.swift */; };
+		B522A2B29D0FDFED61BC725674C49D61 /* ogr_s57.h in Headers */ = {isa = PBXBuildFile; fileRef = C808C201AC891D5DC126404E2071975A /* ogr_s57.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8055EFDC886B6102277263A1432E86F /* ogrpoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AFA0D53702350FCAD79A96475DBBDFB8 /* ogrpoint.cpp */; };
 		BCC8656473754EA3F8CC5F37F7D2E3D3 /* Pods-SwiftVectorTiles-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FF3CA649E725D42EF9066658615FB53 /* Pods-SwiftVectorTiles-dummy.m */; };
-		C33A6271F38A1E26D904C2A972F8CFA2 /* cpl_vsisimple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9487F0215029C2A0B010A068138E3015 /* cpl_vsisimple.cpp */; };
-		C5A2B8426A73C23D9894CC3F0BBA78F1 /* cpl_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFF1438B95EA5F02909B057AA6A270B2 /* cpl_error.cpp */; };
-		CC04F5604BC0AC9A5894047B3809A476 /* cpl_csv.h in Headers */ = {isa = PBXBuildFile; fileRef = C494832D67CCC197661F8B8AF0C3D334 /* cpl_csv.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CE9AA0AEBA8C80E65ADEF05E105DA547 /* ogrmultipoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 642C52587682B7DD0F1C0C3888AF40AB /* ogrmultipoint.cpp */; };
+		C04154ECA0924352370E3BEB2C876BBD /* gdal_misc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3541EC857A0ED9A62A417405FCCBABA5 /* gdal_misc.cpp */; };
+		C2793F82A083F2DEBE30427FEB97D5FF /* ograssemblepolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D4A50F5CB0E0A3F23E106DBA8055040 /* ograssemblepolygon.cpp */; };
+		C291DF8FA421E5F14442AE085A218572 /* ogrgeometryfactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E7CBE72821FB43E40BA5D9910743E8A /* ogrgeometryfactory.cpp */; };
+		C29B2BD7F8DACE94689FFF3FFB1F5631 /* cpl_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 72CAEABB3C94173E4AEFB07087456021 /* cpl_string.cpp */; };
+		C66A6CA541AB9969ED2D5539FC4A5B0F /* ogr_feature.h in Headers */ = {isa = PBXBuildFile; fileRef = 617D04E31615255FF99C7589F9889A82 /* ogr_feature.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C6C858E31964B650B2B20227567D46E1 /* iso8211.h in Headers */ = {isa = PBXBuildFile; fileRef = B0574DEDD7FDB3CDB3F5F6ECD184F303 /* iso8211.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C790056B72033BA8BDD2A08A08C1F451 /* ogrmultipoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F950590D8E08BF873FE8157402BD243 /* ogrmultipoint.cpp */; };
+		CAF78DCCCB31DDAB55CA44BF0782C2C6 /* cplgetsymbol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C9C03A6125AB3352791CD9544B29CA0 /* cplgetsymbol.cpp */; };
 		CF67A0BC475CB458CF3F893E57D74A6F /* Pods-SwiftVectorTiles-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0947E9029CD5471DD5A5DC3957CF8671 /* Pods-SwiftVectorTiles-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CF6D914D06B5BD47155F7E22F41D2C03 /* cpl_path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 937A50BA78BBC24580DEA4390B864F9D /* cpl_path.cpp */; };
-		D0C5120E21FD36C0BA393083AFCC6F46 /* cpl_string.h in Headers */ = {isa = PBXBuildFile; fileRef = C723F8F8E4720EC3499CCB995D630844 /* cpl_string.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D21776E4677913D54B7F4FE4CBA297D0 /* Google.Protobuf.Timestamp.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C550E79307B1BA98BC4053623B37BE2D /* Google.Protobuf.Timestamp.proto.swift */; };
-		D30F31023B11E38E7244B2E81349B35B /* Google.Protobuf.SwiftDescriptor.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = A819BC7CCD4504F55E78F22262BFED9B /* Google.Protobuf.SwiftDescriptor.proto.swift */; };
-		D4C7376EFFEC44200CCAF0730EBF3C07 /* GeneratedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A75C78087F1A8B1AF4C12CEC1DED3C1 /* GeneratedMessage.swift */; };
-		D4FFF0E4D317568309DAAA2DB40778A8 /* cpl_conv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D24641471A590EDE9F75BF492854AD06 /* cpl_conv.cpp */; };
-		D57569523B9982BE89B4E95C7A8659C2 /* Google.Protobuf.Api.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670C0372BE41531DB3940C77D06894C8 /* Google.Protobuf.Api.proto.swift */; };
-		DBA51E7BE02015186E09A8BACDC42505 /* ogr_core.h in Headers */ = {isa = PBXBuildFile; fileRef = BBE596C42EA9803A3B7C3A87E17409A3 /* ogr_core.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E74A65BDEABDE36C67A6E2A965E6EDF8 /* ddfsubfielddefn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 627E2CDB022E4F229B5DDEB0F3AFB093 /* ddfsubfielddefn.cpp */; };
-		EDA814E4237E7CD9836840AF0A6F35DA /* Google.Protobuf.Descriptor.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC5C5131267EC87682287C0DC4AB67E /* Google.Protobuf.Descriptor.proto.swift */; };
-		EFED5AC77193E200352BD9C7C0D44193 /* UnknownFieldSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD23FD2EDDB215B34D2466B50C24B9E /* UnknownFieldSet.swift */; };
-		F194DAA5AF6A22469D42E50A0996D4E8 /* AbstractMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3372D89D22CA03DBB183126635C4FFDF /* AbstractMessage.swift */; };
-		F909CBF1641AEBACE4871439D17D970F /* s57classregistrar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11749CBC79F2DE5D5CD89DFC27C8052C /* s57classregistrar.cpp */; };
-		FA49AF021F87C400AC702A3E99809B35 /* ograssemblepolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 665F89035A368A16AC0FD287314D7A1F /* ograssemblepolygon.cpp */; };
-		FB617032020D7594EB906F36000A2CA3 /* gdal_frmts.h in Headers */ = {isa = PBXBuildFile; fileRef = 9752AC68DADDDA1A75D2153466D355CE /* gdal_frmts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D21776E4677913D54B7F4FE4CBA297D0 /* Google.Protobuf.Timestamp.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD6C7997888D13E2DE63EB7A5374CCA /* Google.Protobuf.Timestamp.proto.swift */; };
+		D30F31023B11E38E7244B2E81349B35B /* Google.Protobuf.SwiftDescriptor.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F0DA66A2E75CBC521DFC36E4855FBB /* Google.Protobuf.SwiftDescriptor.proto.swift */; };
+		D341D02065204CFC82F7B08FDB680E6E /* ogrfeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9BEBA9F0949809CC069906F5CF81D31D /* ogrfeature.cpp */; };
+		D41FCA59E88A3CBC2FC0580F790A1640 /* ogrutils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E63DC809C65FA0F67BD9C17920143F55 /* ogrutils.cpp */; };
+		D4C7376EFFEC44200CCAF0730EBF3C07 /* GeneratedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404CD8C59F2F1419D0F7AED92521EE89 /* GeneratedMessage.swift */; };
+		D57569523B9982BE89B4E95C7A8659C2 /* Google.Protobuf.Api.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7629C05A9DFFA2DD9B22D294B2A13EC /* Google.Protobuf.Api.proto.swift */; };
+		D666777BC28E50D2C95C8F67E44A5CE6 /* ogrgeometrycollection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40EE60F7805EC2B1607397D2FC511D0 /* ogrgeometrycollection.cpp */; };
+		DA55640DF1500C598C1843D29C956E68 /* s57reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B79A44F9D1CD7DB0A8D421585E4F979C /* s57reader.cpp */; };
+		E5327E9C369B2C5F7594DB49819CDE8D /* ogrlinearring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C0FB934A9F93CF58A18180DED79AE5D9 /* ogrlinearring.cpp */; };
+		E89FC5C791BB4A025FAC286665039B38 /* cpl_port.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A4387EF280D36FE3AC1E6CE5AF02BD7 /* cpl_port.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ECDD0CFD2E56F79B5F212AD18AEA53B2 /* ogr_core.h in Headers */ = {isa = PBXBuildFile; fileRef = CE6D01AE84853320234D3CB5C26B59C4 /* ogr_core.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDA814E4237E7CD9836840AF0A6F35DA /* Google.Protobuf.Descriptor.proto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA92A27C250F3CF0A2ED48153EB7637 /* Google.Protobuf.Descriptor.proto.swift */; };
+		EE3B25275BB392581A8B46EC5F33A7BF /* s57.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FBCEBF81D77D087E88DA6C5A2E7AC39 /* s57.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFED5AC77193E200352BD9C7C0D44193 /* UnknownFieldSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433EBC46EE0E2B6EB0ADF5EAAE3E7DE8 /* UnknownFieldSet.swift */; };
+		F033A11E17F2C20C00DDE23434085291 /* ogrlinestring.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1298C25931DC74B4FBB199BD312E6B3D /* ogrlinestring.cpp */; };
+		F13260EBAACEB36A06AE31F86284F486 /* gdal-mm-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A55960A206D3817A95910C87F4040759 /* gdal-mm-dummy.m */; };
+		F194DAA5AF6A22469D42E50A0996D4E8 /* AbstractMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B48C82677B030E0645E33A1F51A265 /* AbstractMessage.swift */; };
+		F40233599151B9995EBBE59942B56290 /* gdal_frmts.h in Headers */ = {isa = PBXBuildFile; fileRef = 81384B8994B4024FDC3965196AF1EE7F /* gdal_frmts.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F53DC6A3B44F1FA34596D50E4ED8D11A /* cpl_conv.h in Headers */ = {isa = PBXBuildFile; fileRef = 96966D88400FEE4B8B0ED283028201A0 /* cpl_conv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA9C82D2E7C7BC9E0305226967D6D40D /* ddfrecord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E27E953A0D894C64FC69FA62885B681B /* ddfrecord.cpp */; };
 		FC181A49BCC56EB24715E5C1B6B5DBED /* Pods-SwiftVectorTilesTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DF44E53E2408854723F6C3F6357C0A7 /* Pods-SwiftVectorTilesTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -141,131 +141,131 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02D11A3A1E7C13C0DB88994D996C2024 /* ogrpoint.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrpoint.cpp; path = mygdal/ogrpoint.cpp; sourceTree = "<group>"; };
-		08792F7BD1F637124459EA1014609E4C /* ogrfielddefn.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrfielddefn.cpp; path = mygdal/ogrfielddefn.cpp; sourceTree = "<group>"; };
 		0947E9029CD5471DD5A5DC3957CF8671 /* Pods-SwiftVectorTiles-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftVectorTiles-umbrella.h"; sourceTree = "<group>"; };
 		09F71FB8498A5425C839487E55A0EC83 /* Pods-SwiftVectorTilesTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftVectorTilesTests-frameworks.sh"; sourceTree = "<group>"; };
-		0ADE137840A6C77575BCB762E9F10F62 /* ddfmodule.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ddfmodule.cpp; path = myiso8211/ddfmodule.cpp; sourceTree = "<group>"; };
-		0D356D461C33AA0A59EB0A8523CA938E /* cpl_config.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_config.h; path = mygdal/cpl_config.h; sourceTree = "<group>"; };
-		11749CBC79F2DE5D5CD89DFC27C8052C /* s57classregistrar.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = s57classregistrar.cpp; path = mygdal/s57classregistrar.cpp; sourceTree = "<group>"; };
-		1296E45358733EA4161011E73603C591 /* gdal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = gdal.h; path = mygdal/gdal.h; sourceTree = "<group>"; };
-		16476DA6F3C5BCBA845E413778FA47E5 /* Google.Protobuf.FieldMask.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.FieldMask.proto.swift; path = Source/Google.Protobuf.FieldMask.proto.swift; sourceTree = "<group>"; };
-		16C647912A15524D7E091C1A7A52F095 /* ogrs57layer.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrs57layer.cpp; path = mygdal/ogrs57layer.cpp; sourceTree = "<group>"; };
+		1298C25931DC74B4FBB199BD312E6B3D /* ogrlinestring.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrlinestring.cpp; sourceTree = "<group>"; };
+		16809D17FB0D12EFB8035083DD4C12F4 /* cpl_path.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = cpl_path.cpp; sourceTree = "<group>"; };
+		1A1A8E89881B607AE8E39AACAA1AF46C /* ConcreateExtensionField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConcreateExtensionField.swift; path = Source/ConcreateExtensionField.swift; sourceTree = "<group>"; };
+		1C1B8D48B339B4905390945001F54647 /* cpl_error.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_error.h; sourceTree = "<group>"; };
+		1C8C447F8F703666184DCCC5A9E7CF3D /* ExtendableMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtendableMessage.swift; path = Source/ExtendableMessage.swift; sourceTree = "<group>"; };
 		1DF44E53E2408854723F6C3F6357C0A7 /* Pods-SwiftVectorTilesTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftVectorTilesTests-umbrella.h"; sourceTree = "<group>"; };
-		1E8D7A57EE912ECEE49E6B72CC41331E /* Google.Protobuf.Any.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Any.proto.swift; path = Source/Google.Protobuf.Any.proto.swift; sourceTree = "<group>"; };
+		1F81ADC9AE73D01B001A42D6AF6FA7E2 /* ProtocolBuffers-Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "ProtocolBuffers-Swift.modulemap"; sourceTree = "<group>"; };
+		1F9936EF5B673EDD40699F4B67F7687D /* ogr_geometry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ogr_geometry.h; sourceTree = "<group>"; };
 		1FF3CA649E725D42EF9066658615FB53 /* Pods-SwiftVectorTiles-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftVectorTiles-dummy.m"; sourceTree = "<group>"; };
-		2242DAD2AEB160A05D5C8576E837B200 /* iso8211.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = iso8211.h; path = mygdal/iso8211.h; sourceTree = "<group>"; };
-		2244D3239F9603C54FFDD268ABDC3C60 /* ogrfeature.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrfeature.cpp; path = mygdal/ogrfeature.cpp; sourceTree = "<group>"; };
-		23AB83D5E5EA37517F3CA616C0292E19 /* ogrgeometryfactory.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrgeometryfactory.cpp; path = mygdal/ogrgeometryfactory.cpp; sourceTree = "<group>"; };
+		21916BE56E7E1D11579A1885674794FF /* ExtensionRegistry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtensionRegistry.swift; path = Source/ExtensionRegistry.swift; sourceTree = "<group>"; };
+		227DDCD916BAB646CAAA19014155292F /* ogrs57layer.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrs57layer.cpp; sourceTree = "<group>"; };
 		2597356195AB9F9F87F497E493E2A4EC /* Pods-SwiftVectorTilesTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftVectorTilesTests-resources.sh"; sourceTree = "<group>"; };
-		26E1194A97117FDDD69AD03903C569A5 /* S57ClassRegistrar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = S57ClassRegistrar.h; path = include/S57ClassRegistrar.h; sourceTree = "<group>"; };
-		294FEA31759601FD16F936C122E66042 /* ogrgeometrycollection.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrgeometrycollection.cpp; path = mygdal/ogrgeometrycollection.cpp; sourceTree = "<group>"; };
-		2E053C8A23B077E8021E7FA57E029958 /* cpl_vsi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_vsi.h; path = mygdal/cpl_vsi.h; sourceTree = "<group>"; };
-		2F6A8C8BF9B9C333D5F9FA65FB55E8F3 /* s57featuredefns.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = s57featuredefns.cpp; path = mygdal/s57featuredefns.cpp; sourceTree = "<group>"; };
+		28934BE579ACE270E5AA79A330E513DD /* ddfutils.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ddfutils.cpp; sourceTree = "<group>"; };
+		29D14133B3B031CFFC85604DB708E931 /* ogr_api.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ogr_api.h; sourceTree = "<group>"; };
+		2D132E3CAD17544D8D2DC8C357084AEC /* ogrcurve.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrcurve.cpp; sourceTree = "<group>"; };
+		2E7CBE72821FB43E40BA5D9910743E8A /* ogrgeometryfactory.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrgeometryfactory.cpp; sourceTree = "<group>"; };
 		30D834EE6812F6EADAD3DE0F4F42F470 /* Pods_SwiftVectorTiles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SwiftVectorTiles.framework; path = "Pods-SwiftVectorTiles.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3372D89D22CA03DBB183126635C4FFDF /* AbstractMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AbstractMessage.swift; path = Source/AbstractMessage.swift; sourceTree = "<group>"; };
+		31C6996829B3EDFE7D62ECEE11937B7D /* cpl_vsi.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_vsi.h; sourceTree = "<group>"; };
 		33B82A36ECEA2FC68FABA7F12B97A735 /* Pods-SwiftVectorTiles-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftVectorTiles-acknowledgements.markdown"; sourceTree = "<group>"; };
-		34567D81F690D601F6225FB107B9FC30 /* Google.Protobuf.SourceContext.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.SourceContext.proto.swift; path = Source/Google.Protobuf.SourceContext.proto.swift; sourceTree = "<group>"; };
-		394B7E48C9934A6602DC8B0E03B42D8D /* Google.Protobuf.Type.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Type.proto.swift; path = Source/Google.Protobuf.Type.proto.swift; sourceTree = "<group>"; };
-		3ACDB58B278E4A075EB9EA69C74D6EBA /* Google.Protobuf.Wrappers.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Wrappers.proto.swift; path = Source/Google.Protobuf.Wrappers.proto.swift; sourceTree = "<group>"; };
-		43D3732EFF73585D92343A8A0F3534E0 /* s57.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = s57.h; path = mygdal/s57.h; sourceTree = "<group>"; };
-		460902AB0068CC38FB539979B17538F6 /* ProtocolBuffers-Swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ProtocolBuffers-Swift-prefix.pch"; sourceTree = "<group>"; };
-		46376F18C9D051E99CF3DB80B21B7D80 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4657A009F27235DF93B27A517CC2D755 /* ogr_api.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ogr_api.h; path = mygdal/ogr_api.h; sourceTree = "<group>"; };
-		483EC177E87B29B43D2AB161BE200D1B /* Google.Protobuf.Duration.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Duration.proto.swift; path = Source/Google.Protobuf.Duration.proto.swift; sourceTree = "<group>"; };
-		4B274B3C1A59298A443B2C48A88FAA99 /* cpl_error.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_error.h; path = mygdal/cpl_error.h; sourceTree = "<group>"; };
+		3541EC857A0ED9A62A417405FCCBABA5 /* gdal_misc.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = gdal_misc.cpp; sourceTree = "<group>"; };
+		39B48C82677B030E0645E33A1F51A265 /* AbstractMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AbstractMessage.swift; path = Source/AbstractMessage.swift; sourceTree = "<group>"; };
+		3A23A23DFF41753E85122CC68FBF2680 /* cpl_minixml.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_minixml.h; sourceTree = "<group>"; };
+		3A57EFE37A67EBA7A0E261719BA62918 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A87A95527F0F6A5D4D794572BFC9F34 /* ddfsubfielddefn.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ddfsubfielddefn.cpp; sourceTree = "<group>"; };
+		3AA92A27C250F3CF0A2ED48153EB7637 /* Google.Protobuf.Descriptor.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Descriptor.proto.swift; path = Source/Google.Protobuf.Descriptor.proto.swift; sourceTree = "<group>"; };
+		3FBCEBF81D77D087E88DA6C5A2E7AC39 /* s57.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = s57.h; sourceTree = "<group>"; };
+		404CD8C59F2F1419D0F7AED92521EE89 /* GeneratedMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GeneratedMessage.swift; path = Source/GeneratedMessage.swift; sourceTree = "<group>"; };
+		40B522BD31FB336BB2BC6AA62F2253BA /* Google.Protobuf.Duration.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Duration.proto.swift; path = Source/Google.Protobuf.Duration.proto.swift; sourceTree = "<group>"; };
+		4314BE7D1D0BC097FFF89A611436F755 /* ProtocolBuffers-Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ProtocolBuffers-Swift-dummy.m"; sourceTree = "<group>"; };
+		433EBC46EE0E2B6EB0ADF5EAAE3E7DE8 /* UnknownFieldSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnknownFieldSet.swift; path = Source/UnknownFieldSet.swift; sourceTree = "<group>"; };
+		43F086D0BB0D5C7986E11193AEA9E42B /* Field.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Field.swift; path = Source/Field.swift; sourceTree = "<group>"; };
+		46DB35F45BD975B71096770E3CEFE1FE /* gdal-mm.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "gdal-mm.modulemap"; sourceTree = "<group>"; };
+		4AAA2C656B48BF069FAC2D6D4C63873F /* Google.Protobuf.SourceContext.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.SourceContext.proto.swift; path = Source/Google.Protobuf.SourceContext.proto.swift; sourceTree = "<group>"; };
 		4BF44211A862232907A4CE40B9D41CF1 /* Pods-SwiftVectorTilesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftVectorTilesTests.release.xcconfig"; sourceTree = "<group>"; };
-		4E51ABD22F4DDC6862B87AA00D7F43BF /* cpl_string.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = cpl_string.cpp; path = mygdal/cpl_string.cpp; sourceTree = "<group>"; };
 		4E91000F759667FA9639DC32C4640E7F /* Pods-SwiftVectorTiles-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SwiftVectorTiles-resources.sh"; sourceTree = "<group>"; };
-		504E66E6F976B7E01B0302D03604CAAD /* ddfrecordindex.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ddfrecordindex.cpp; path = mygdal/ddfrecordindex.cpp; sourceTree = "<group>"; };
-		51EB245B751B5B68691B5D63AF21FE30 /* cpl_conv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_conv.h; path = mygdal/cpl_conv.h; sourceTree = "<group>"; };
-		537D0F0DBDB798442B4EB68E0FE88868 /* ProtocolBuffers-Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ProtocolBuffers-Swift-dummy.m"; sourceTree = "<group>"; };
-		565A8811B4A8AA2F788C29DF996D9460 /* cpl_port.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_port.h; path = mygdal/cpl_port.h; sourceTree = "<group>"; };
-		57B7CB6E27AC8A6CA4E40B02078AF8E6 /* ProtocolBuffers-Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ProtocolBuffers-Swift.xcconfig"; sourceTree = "<group>"; };
-		5C7EDC1B1B334D43A5DAA3E129EC9ECF /* gdal-mm.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "gdal-mm.xcconfig"; sourceTree = "<group>"; };
-		5D07F0C6E2111AD907E350BF6283DE32 /* ogrcurve.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrcurve.cpp; path = mygdal/ogrcurve.cpp; sourceTree = "<group>"; };
+		54C633B4F6B788FD1654D47E45A86F69 /* s57featuredefns.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = s57featuredefns.cpp; sourceTree = "<group>"; };
+		57F20059DF31AA5D614C5BF30F6D1B7F /* ogr_attrind.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ogr_attrind.h; sourceTree = "<group>"; };
 		5D1DA68DB01A0DDCF570EF4DD4469C67 /* Pods-SwiftVectorTilesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftVectorTilesTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5E322633306C6F18F38E48AB445454A5 /* ogrfielddefn.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrfielddefn.cpp; sourceTree = "<group>"; };
 		5ED3390A6B02B19118CF9EBCF9350E91 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F2D29642FCD9EBCB3B6A5791A62FEFA /* Pods-SwiftVectorTiles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftVectorTiles.debug.xcconfig"; sourceTree = "<group>"; };
-		5FFAA3D30AE254F1143CCC00B073C389 /* cpl_minixml.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_minixml.h; path = mygdal/cpl_minixml.h; sourceTree = "<group>"; };
+		5FD1F4FA42872A81AA2A2DEDBA4CFED7 /* ogrpolygon.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrpolygon.cpp; sourceTree = "<group>"; };
 		60AAF6160BBE7639AFAD2A9BD53AF579 /* Pods_SwiftVectorTilesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SwiftVectorTilesTests.framework; path = "Pods-SwiftVectorTilesTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		617D04E31615255FF99C7589F9889A82 /* ogr_feature.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ogr_feature.h; sourceTree = "<group>"; };
 		6274C2BA03BDFB1F83F39B54B8EA5EC0 /* Pods-SwiftVectorTilesTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftVectorTilesTests-dummy.m"; sourceTree = "<group>"; };
-		627E2CDB022E4F229B5DDEB0F3AFB093 /* ddfsubfielddefn.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ddfsubfielddefn.cpp; path = myiso8211/ddfsubfielddefn.cpp; sourceTree = "<group>"; };
-		642C52587682B7DD0F1C0C3888AF40AB /* ogrmultipoint.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrmultipoint.cpp; path = mygdal/ogrmultipoint.cpp; sourceTree = "<group>"; };
-		665F89035A368A16AC0FD287314D7A1F /* ograssemblepolygon.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ograssemblepolygon.cpp; path = mygdal/ograssemblepolygon.cpp; sourceTree = "<group>"; };
-		670C0372BE41531DB3940C77D06894C8 /* Google.Protobuf.Api.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Api.proto.swift; path = Source/Google.Protobuf.Api.proto.swift; sourceTree = "<group>"; };
-		69439E067970E65889DE1A17CEA4A1B6 /* ogrfeaturedefn.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrfeaturedefn.cpp; path = mygdal/ogrfeaturedefn.cpp; sourceTree = "<group>"; };
-		6A74CA71B5BD7C720AA4C6E3B0494FA3 /* Google.Protobuf.Empty.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Empty.proto.swift; path = Source/Google.Protobuf.Empty.proto.swift; sourceTree = "<group>"; };
-		6CC094BA2F7E9C72BF82B6D4E1C6A0D8 /* ogrutils.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrutils.cpp; path = mygdal/ogrutils.cpp; sourceTree = "<group>"; };
-		6E0C0856BC708D92B7F171D92C4CAF16 /* RingBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RingBuffer.swift; path = Source/RingBuffer.swift; sourceTree = "<group>"; };
-		6ED925F846743C4490AA217D1C5E4907 /* ogrlinestring.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrlinestring.cpp; path = mygdal/ogrlinestring.cpp; sourceTree = "<group>"; };
-		6F1EFE57F9E79DABC7E5B6834473666C /* cpl_list.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_list.h; path = mygdal/cpl_list.h; sourceTree = "<group>"; };
-		75A27950339119B3A50AA967F807CFCA /* ExtensionRegistry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtensionRegistry.swift; path = Source/ExtensionRegistry.swift; sourceTree = "<group>"; };
-		77C3237FF60B7A00232114130F9AA4A5 /* ogrpolygon.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrpolygon.cpp; path = mygdal/ogrpolygon.cpp; sourceTree = "<group>"; };
-		78EB8A39C32F73CFEC3DC873CF914948 /* ProtocolBuffers-Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "ProtocolBuffers-Swift.modulemap"; sourceTree = "<group>"; };
+		62D7868B0D14142053C254905D0116AF /* ddfrecordindex.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ddfrecordindex.cpp; sourceTree = "<group>"; };
+		63298A189536F8EFA75BECEFF91FC575 /* ogr_spatialref.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ogr_spatialref.h; sourceTree = "<group>"; };
+		64BFCD8E3D2CE657DE6ABF4C6D780BA0 /* RingBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RingBuffer.swift; path = Source/RingBuffer.swift; sourceTree = "<group>"; };
+		66F1D3D14FBA0B08BF4C2A4C89CCAC92 /* Google.Protobuf.Empty.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Empty.proto.swift; path = Source/Google.Protobuf.Empty.proto.swift; sourceTree = "<group>"; };
+		67F37BE0737820FD42053E7258CA352A /* Google.Protobuf.Any.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Any.proto.swift; path = Source/Google.Protobuf.Any.proto.swift; sourceTree = "<group>"; };
+		68758C4249A83BB6CF835B01FB8498D8 /* cpl_multiproc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_multiproc.h; sourceTree = "<group>"; };
+		7087F2B661FB48329ED4A3CB04EF99A0 /* ddffielddefn.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ddffielddefn.cpp; sourceTree = "<group>"; };
+		71785D59B2ADEA9B8A42261615C83D4D /* s57classregistrar.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = s57classregistrar.cpp; sourceTree = "<group>"; };
+		72CAEABB3C94173E4AEFB07087456021 /* cpl_string.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = cpl_string.cpp; sourceTree = "<group>"; };
+		749434EB7E59C796685FB5C355D1D619 /* cpl_vsisimple.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = cpl_vsisimple.cpp; sourceTree = "<group>"; };
+		767928468D06C0B54B663DD65CEAF4BB /* cpl_conv.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = cpl_conv.cpp; sourceTree = "<group>"; };
+		7687BE4A5496F701D71F64BEF4DC2FB9 /* cpl_odbc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_odbc.h; sourceTree = "<group>"; };
+		76F07B405201A669B39A6D18794A667D /* gdal-mm.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "gdal-mm.xcconfig"; sourceTree = "<group>"; };
+		7A4387EF280D36FE3AC1E6CE5AF02BD7 /* cpl_port.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_port.h; sourceTree = "<group>"; };
 		7A6E0D24B5375C79EF46429276F2343D /* Pods-SwiftVectorTilesTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwiftVectorTilesTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		7A75C78087F1A8B1AF4C12CEC1DED3C1 /* GeneratedMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GeneratedMessage.swift; path = Source/GeneratedMessage.swift; sourceTree = "<group>"; };
-		7B04E67D267F326513EB126A63557AED /* ogr_s57.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ogr_s57.h; path = mygdal/ogr_s57.h; sourceTree = "<group>"; };
-		7DC5C5131267EC87682287C0DC4AB67E /* Google.Protobuf.Descriptor.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Descriptor.proto.swift; path = Source/Google.Protobuf.Descriptor.proto.swift; sourceTree = "<group>"; };
-		7F7BDB59DC98F8D0E73EED78932FE19F /* ogrlinearring.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrlinearring.cpp; path = mygdal/ogrlinearring.cpp; sourceTree = "<group>"; };
-		813D064769CEFB7F41964198C0146E1A /* ProtocolBuffers-Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ProtocolBuffers-Swift-umbrella.h"; sourceTree = "<group>"; };
-		815A5482152EDCED3E82C4D0514B9BEC /* ogr_p.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ogr_p.h; path = mygdal/ogr_p.h; sourceTree = "<group>"; };
-		85355579E9F16B68CD8CE7A6CBD4C522 /* Google.Protobuf.Struct.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Struct.proto.swift; path = Source/Google.Protobuf.Struct.proto.swift; sourceTree = "<group>"; };
-		86D07B71F6A52CC588FCEA33795C4FC9 /* ogr_geometry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ogr_geometry.h; path = mygdal/ogr_geometry.h; sourceTree = "<group>"; };
-		86F0168B8C1FEB37A550E1AF60FC407B /* ddffielddefn.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ddffielddefn.cpp; path = myiso8211/ddffielddefn.cpp; sourceTree = "<group>"; };
-		8748C4D879C1244A099AACE117B1AD92 /* ddfutils.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ddfutils.cpp; path = myiso8211/ddfutils.cpp; sourceTree = "<group>"; };
-		8BF9626B55A6C68AA3B62066C56C923A /* WireFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WireFormat.swift; path = Source/WireFormat.swift; sourceTree = "<group>"; };
-		8D06E5B1B8854B8DD93A632CD4B1A230 /* gdal_misc.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = gdal_misc.cpp; path = mygdal/gdal_misc.cpp; sourceTree = "<group>"; };
-		902E88F3921E948993DB60CD6E807C1A /* CodedOutputStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodedOutputStream.swift; path = Source/CodedOutputStream.swift; sourceTree = "<group>"; };
-		90C4D7BF0463B27D1116AC6313A077EA /* Field.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Field.swift; path = Source/Field.swift; sourceTree = "<group>"; };
-		937A50BA78BBC24580DEA4390B864F9D /* cpl_path.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = cpl_path.cpp; path = mygdal/cpl_path.cpp; sourceTree = "<group>"; };
+		7BCAB369001B13131F5FB25DAD566C25 /* cpl_findfile.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = cpl_findfile.cpp; sourceTree = "<group>"; };
+		7DC23521DE35D6D8B5FFB4C9589A4B88 /* ogrmultilinestring.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrmultilinestring.cpp; sourceTree = "<group>"; };
+		7EA49CFB75488BBA3ABA1F7157816A33 /* ddfmodule.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ddfmodule.cpp; sourceTree = "<group>"; };
+		81384B8994B4024FDC3965196AF1EE7F /* gdal_frmts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = gdal_frmts.h; sourceTree = "<group>"; };
+		81A6B9AB30C247921E0AB9B0682807F9 /* gdal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = gdal.h; sourceTree = "<group>"; };
+		834F0A2A956609AD010D4D0457491FCA /* cpl_csv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_csv.h; sourceTree = "<group>"; };
+		8433892774975B77D95B7C64622C504D /* Google.Protobuf.FieldMask.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.FieldMask.proto.swift; path = Source/Google.Protobuf.FieldMask.proto.swift; sourceTree = "<group>"; };
+		8487D86E86111B8A714A296148BAA934 /* gdal-mm-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "gdal-mm-umbrella.h"; sourceTree = "<group>"; };
+		85767FA36589C348A55ADD44F22737E2 /* cpl_list.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_list.h; sourceTree = "<group>"; };
+		8AD6C7997888D13E2DE63EB7A5374CCA /* Google.Protobuf.Timestamp.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Timestamp.proto.swift; path = Source/Google.Protobuf.Timestamp.proto.swift; sourceTree = "<group>"; };
+		8C9C03A6125AB3352791CD9544B29CA0 /* cplgetsymbol.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = cplgetsymbol.cpp; sourceTree = "<group>"; };
+		8F950590D8E08BF873FE8157402BD243 /* ogrmultipoint.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrmultipoint.cpp; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9487F0215029C2A0B010A068138E3015 /* cpl_vsisimple.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = cpl_vsisimple.cpp; path = mygdal/cpl_vsisimple.cpp; sourceTree = "<group>"; };
-		9511285836406F12D3F3DF72DCEB29A4 /* CodedInputStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodedInputStream.swift; path = Source/CodedInputStream.swift; sourceTree = "<group>"; };
-		9752AC68DADDDA1A75D2153466D355CE /* gdal_frmts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = gdal_frmts.h; path = mygdal/gdal_frmts.h; sourceTree = "<group>"; };
+		96966D88400FEE4B8B0ED283028201A0 /* cpl_conv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_conv.h; sourceTree = "<group>"; };
+		98E3BF6A010CEA4D718498DA207E22CF /* ProtocolBuffers-Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ProtocolBuffers-Swift-umbrella.h"; sourceTree = "<group>"; };
+		98F0DA66A2E75CBC521DFC36E4855FBB /* Google.Protobuf.SwiftDescriptor.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.SwiftDescriptor.proto.swift; path = Source/Google.Protobuf.SwiftDescriptor.proto.swift; sourceTree = "<group>"; };
+		9998F4F8D03CD1FD03F98DDF784B950C /* cpl_string.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_string.h; sourceTree = "<group>"; };
+		9A051FDB6027E0BF424B0F453C3804B6 /* CodedInputStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodedInputStream.swift; path = Source/CodedInputStream.swift; sourceTree = "<group>"; };
 		9B608E15512A906924A6A4E9FEFFCA56 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ProtocolBuffers.framework; path = "ProtocolBuffers-Swift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B7E0680CA646A406E99652AE34B2717 /* ConcreateExtensionField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConcreateExtensionField.swift; path = Source/ConcreateExtensionField.swift; sourceTree = "<group>"; };
-		9C0744E2ACF649A9ED2309258AF8702C /* ExtendableMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtendableMessage.swift; path = Source/ExtendableMessage.swift; sourceTree = "<group>"; };
-		9EA2214813C75B661948216A34A89224 /* gdal-mm-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "gdal-mm-dummy.m"; sourceTree = "<group>"; };
-		A41F514EB30EA10BC23BED155F88BDEF /* s57reader.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = s57reader.cpp; path = mygdal/s57reader.cpp; sourceTree = "<group>"; };
-		A819BC7CCD4504F55E78F22262BFED9B /* Google.Protobuf.SwiftDescriptor.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.SwiftDescriptor.proto.swift; path = Source/Google.Protobuf.SwiftDescriptor.proto.swift; sourceTree = "<group>"; };
-		A8B1009D9E6D2F00C6B4EE5B2DC0F852 /* cpl_findfile.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = cpl_findfile.cpp; path = mygdal/cpl_findfile.cpp; sourceTree = "<group>"; };
+		9BEBA9F0949809CC069906F5CF81D31D /* ogrfeature.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrfeature.cpp; sourceTree = "<group>"; };
+		9D1DB4148E83032F63E2AD7D62A75EB3 /* Google.Protobuf.Wrappers.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Wrappers.proto.swift; path = Source/Google.Protobuf.Wrappers.proto.swift; sourceTree = "<group>"; };
+		9D4A50F5CB0E0A3F23E106DBA8055040 /* ograssemblepolygon.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ograssemblepolygon.cpp; sourceTree = "<group>"; };
+		A40EE60F7805EC2B1607397D2FC511D0 /* ogrgeometrycollection.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrgeometrycollection.cpp; sourceTree = "<group>"; };
+		A55960A206D3817A95910C87F4040759 /* gdal-mm-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "gdal-mm-dummy.m"; sourceTree = "<group>"; };
+		A6999781FF541C00D53D6E453C2A956E /* ogr_p.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ogr_p.h; sourceTree = "<group>"; };
 		AAE6086EBA7695520B12B606CF2BE2A8 /* Pods-SwiftVectorTiles-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SwiftVectorTiles-acknowledgements.plist"; sourceTree = "<group>"; };
 		AB173153994B4172644369B232B4164F /* Pods-SwiftVectorTilesTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SwiftVectorTilesTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		AD08B53DA592D3119B5321B004A58B55 /* cpl_minixml.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = cpl_minixml.cpp; path = mygdal/cpl_minixml.cpp; sourceTree = "<group>"; };
-		B0F5FC6C80A5D2322B5CEF8FE368CC1E /* ogrsf_frmts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ogrsf_frmts.h; path = mygdal/ogrsf_frmts.h; sourceTree = "<group>"; };
-		B3D9B3C0093BD43DC58EAF14A6B9046D /* ddfrecord.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ddfrecord.cpp; path = myiso8211/ddfrecord.cpp; sourceTree = "<group>"; };
-		B78D76521711EF36F2BA505CC7B42A36 /* ogrmultipolygon.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrmultipolygon.cpp; path = mygdal/ogrmultipolygon.cpp; sourceTree = "<group>"; };
-		B7A7CD8CB78EC93BF34895B687223033 /* gdal_priv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = gdal_priv.h; path = mygdal/gdal_priv.h; sourceTree = "<group>"; };
-		B8126588C32D7829253D6890EE3231C1 /* gdal-mm.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "gdal-mm.modulemap"; sourceTree = "<group>"; };
-		B87FC9A8E919138CAB7048323FC3B905 /* ogrmultilinestring.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrmultilinestring.cpp; path = mygdal/ogrmultilinestring.cpp; sourceTree = "<group>"; };
-		BBE596C42EA9803A3B7C3A87E17409A3 /* ogr_core.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ogr_core.h; path = mygdal/ogr_core.h; sourceTree = "<group>"; };
-		BF83CF6D190037ABB6A7D5466E82FCDC /* cplgetsymbol.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = cplgetsymbol.cpp; path = mygdal/cplgetsymbol.cpp; sourceTree = "<group>"; };
-		C0B421B9DB2C2AD6CD938C661B492509 /* ddffield.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ddffield.cpp; path = myiso8211/ddffield.cpp; sourceTree = "<group>"; };
-		C494832D67CCC197661F8B8AF0C3D334 /* cpl_csv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_csv.h; path = mygdal/cpl_csv.h; sourceTree = "<group>"; };
-		C550E79307B1BA98BC4053623B37BE2D /* Google.Protobuf.Timestamp.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Timestamp.proto.swift; path = Source/Google.Protobuf.Timestamp.proto.swift; sourceTree = "<group>"; };
+		AFA0D53702350FCAD79A96475DBBDFB8 /* ogrpoint.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrpoint.cpp; sourceTree = "<group>"; };
+		B0574DEDD7FDB3CDB3F5F6ECD184F303 /* iso8211.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = iso8211.h; sourceTree = "<group>"; };
+		B7629C05A9DFFA2DD9B22D294B2A13EC /* Google.Protobuf.Api.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Api.proto.swift; path = Source/Google.Protobuf.Api.proto.swift; sourceTree = "<group>"; };
+		B79A44F9D1CD7DB0A8D421585E4F979C /* s57reader.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = s57reader.cpp; sourceTree = "<group>"; };
+		B876B9A20BCCF9101357727773A2ADA5 /* S57ClassRegistrar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = S57ClassRegistrar.h; sourceTree = "<group>"; };
+		BCD1B4E40561B2411478C894F0D81DF8 /* cpl_config.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = cpl_config.h; sourceTree = "<group>"; };
+		BDE492B88F78D37E6746A5ABA2F260CC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0FB934A9F93CF58A18180DED79AE5D9 /* ogrlinearring.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrlinearring.cpp; sourceTree = "<group>"; };
 		C5CEF3A7EF13D23F023BC802F269BC36 /* Pods-SwiftVectorTiles.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SwiftVectorTiles.release.xcconfig"; sourceTree = "<group>"; };
-		C723F8F8E4720EC3499CCB995D630844 /* cpl_string.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_string.h; path = mygdal/cpl_string.h; sourceTree = "<group>"; };
+		C6EE3562628217294EB804E0E344ECE6 /* ogrsf_frmts.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ogrsf_frmts.h; sourceTree = "<group>"; };
+		C808C201AC891D5DC126404E2071975A /* ogr_s57.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ogr_s57.h; sourceTree = "<group>"; };
 		C88339ED5AE77F0D2780E3F8CCEA4E16 /* Pods-SwiftVectorTiles.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SwiftVectorTiles.modulemap"; sourceTree = "<group>"; };
-		CADC460A919107B344A9D17F8AFFF952 /* gdal-mm-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "gdal-mm-umbrella.h"; sourceTree = "<group>"; };
+		C888A38005C94DB6DE6CB22697BA2FC9 /* ogrfeaturedefn.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrfeaturedefn.cpp; sourceTree = "<group>"; };
+		C97B850171DAAAF3869C754757F6C160 /* cpl_error.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = cpl_error.cpp; sourceTree = "<group>"; };
+		C985AFFBADBB970D96E242AA468AB508 /* ProtocolBuffers-Swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ProtocolBuffers-Swift-prefix.pch"; sourceTree = "<group>"; };
+		C9EC86A17BE6C9082BF85DDEEC5B0671 /* ogrgeometry.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrgeometry.cpp; sourceTree = "<group>"; };
+		CA6A2EE7BD8924BEAE60687B92DFCE0B /* Google.Protobuf.Struct.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Struct.proto.swift; path = Source/Google.Protobuf.Struct.proto.swift; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CDA9F12192E939F7302D966091D1EBEF /* WireFormat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WireFormat.swift; path = Source/WireFormat.swift; sourceTree = "<group>"; };
+		CE6D01AE84853320234D3CB5C26B59C4 /* ogr_core.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ogr_core.h; sourceTree = "<group>"; };
 		CF730371EA20242317377ECEAAD60D2C /* gdal_mm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = gdal_mm.framework; path = "gdal-mm.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D138771521C69233A2A363D5A26FB173 /* ogr_spatialref.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ogr_spatialref.h; path = mygdal/ogr_spatialref.h; sourceTree = "<group>"; };
-		D24641471A590EDE9F75BF492854AD06 /* cpl_conv.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = cpl_conv.cpp; path = mygdal/cpl_conv.cpp; sourceTree = "<group>"; };
+		D1D5BB4FC568AE0F3A7D0074298C6CAC /* ogrmultipolygon.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrmultipolygon.cpp; sourceTree = "<group>"; };
 		D368CBD846F102CC9002F0C61AF6FBFB /* Pods-SwiftVectorTilesTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SwiftVectorTilesTests.modulemap"; sourceTree = "<group>"; };
-		DAF9C15FAF80DADEEAD49EF495170055 /* ogrlayer.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrlayer.cpp; path = mygdal/ogrlayer.cpp; sourceTree = "<group>"; };
-		DC272BE711C658478D9E1691A465017E /* ogr_attrind.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ogr_attrind.h; path = mygdal/ogr_attrind.h; sourceTree = "<group>"; };
-		DE60A699F6E2D50AD75058AA370F7A0F /* cpl_multiproc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_multiproc.h; path = mygdal/cpl_multiproc.h; sourceTree = "<group>"; };
-		DEEC6C825C902938E74E3F70BACEEEC7 /* cpl_odbc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = cpl_odbc.h; path = mygdal/cpl_odbc.h; sourceTree = "<group>"; };
-		E2A1BA3D940660DFED23BA7A6C59CC26 /* ogrs57datasource.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrs57datasource.cpp; path = mygdal/ogrs57datasource.cpp; sourceTree = "<group>"; };
+		D50914BA79E612BDC8D57E8B4893E40A /* CodedOutputStream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CodedOutputStream.swift; path = Source/CodedOutputStream.swift; sourceTree = "<group>"; };
+		E109F705B63FD42FA6185CCC14E19D41 /* gdal-mm-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "gdal-mm-prefix.pch"; sourceTree = "<group>"; };
+		E13EF0B6D35AB7BEF280E7555545953B /* ProtocolBuffers-Swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ProtocolBuffers-Swift.xcconfig"; sourceTree = "<group>"; };
+		E27E953A0D894C64FC69FA62885B681B /* ddfrecord.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ddfrecord.cpp; sourceTree = "<group>"; };
+		E63DC809C65FA0F67BD9C17920143F55 /* ogrutils.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrutils.cpp; sourceTree = "<group>"; };
+		E75F68DE68EB18680D255F54BD00C7FF /* ogrlayer.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrlayer.cpp; sourceTree = "<group>"; };
 		E9F01BCA2D6AA551793DC4872B3EB8E1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EAD23FD2EDDB215B34D2466B50C24B9E /* UnknownFieldSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnknownFieldSet.swift; path = Source/UnknownFieldSet.swift; sourceTree = "<group>"; };
-		EE0D213D013A53A7A5EF94CC515DB3AB /* gdal-mm-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "gdal-mm-prefix.pch"; sourceTree = "<group>"; };
-		F11F9AC3B016624F0580E2363B74B7B6 /* cpl_csv.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = cpl_csv.cpp; path = mygdal/cpl_csv.cpp; sourceTree = "<group>"; };
-		F1B81B95A55F6FC18919711A3B012A00 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F8A8813723F400E4A78FE2343088AC2B /* ogr_feature.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ogr_feature.h; path = mygdal/ogr_feature.h; sourceTree = "<group>"; };
-		FFC29176D1C07B8811A823EC57EE7FDE /* ogrgeometry.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ogrgeometry.cpp; path = mygdal/ogrgeometry.cpp; sourceTree = "<group>"; };
-		FFF1438B95EA5F02909B057AA6A270B2 /* cpl_error.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = cpl_error.cpp; path = mygdal/cpl_error.cpp; sourceTree = "<group>"; };
+		EF06DA07E37D2043D9EF5775AD8FB098 /* gdal_priv.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = gdal_priv.h; sourceTree = "<group>"; };
+		F23DB290B0CB8F8A635E52ABB816E9E3 /* ddffield.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ddffield.cpp; sourceTree = "<group>"; };
+		F43E59699AEBC5B16983EDB217B35912 /* Google.Protobuf.Type.proto.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Google.Protobuf.Type.proto.swift; path = Source/Google.Protobuf.Type.proto.swift; sourceTree = "<group>"; };
+		F9E8DFE730B2EB6197C52FB1EBF1B003 /* cpl_csv.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = cpl_csv.cpp; sourceTree = "<group>"; };
+		FA6FD4023E11DB9823E45714BC0CA309 /* cpl_minixml.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = cpl_minixml.cpp; sourceTree = "<group>"; };
+		FF5BE36EE1B2C7FEA03C319581EE2E32 /* ogrs57datasource.cpp */ = {isa = PBXFileReference; includeInIndex = 1; path = ogrs57datasource.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +304,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C0B0E9E05139AB4A050520422F48329 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				324F4728D9DC4598B859D7BE4BD9539C /* gdal-mm */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		324F4728D9DC4598B859D7BE4BD9539C /* gdal-mm */ = {
+			isa = PBXGroup;
+			children = (
+				85B1BF684BF3B079EB6B9AE5D20739B5 /* include */,
+				6FB601209AE1B80B6F71B3C28A7FEAA1 /* mygdal */,
+				F8F438471311B1F9A8AE9855EE39185D /* myiso8211 */,
+				CB840876089498F81B3689C026615DA6 /* Support Files */,
+			);
+			name = "gdal-mm";
+			path = "../../gdal-mm";
+			sourceTree = "<group>";
+		};
+		5E785F9148507B359F4C9E14B54BA6DD /* ProtocolBuffers-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				39B48C82677B030E0645E33A1F51A265 /* AbstractMessage.swift */,
+				9A051FDB6027E0BF424B0F453C3804B6 /* CodedInputStream.swift */,
+				D50914BA79E612BDC8D57E8B4893E40A /* CodedOutputStream.swift */,
+				1A1A8E89881B607AE8E39AACAA1AF46C /* ConcreateExtensionField.swift */,
+				1C8C447F8F703666184DCCC5A9E7CF3D /* ExtendableMessage.swift */,
+				21916BE56E7E1D11579A1885674794FF /* ExtensionRegistry.swift */,
+				43F086D0BB0D5C7986E11193AEA9E42B /* Field.swift */,
+				404CD8C59F2F1419D0F7AED92521EE89 /* GeneratedMessage.swift */,
+				67F37BE0737820FD42053E7258CA352A /* Google.Protobuf.Any.proto.swift */,
+				B7629C05A9DFFA2DD9B22D294B2A13EC /* Google.Protobuf.Api.proto.swift */,
+				3AA92A27C250F3CF0A2ED48153EB7637 /* Google.Protobuf.Descriptor.proto.swift */,
+				40B522BD31FB336BB2BC6AA62F2253BA /* Google.Protobuf.Duration.proto.swift */,
+				66F1D3D14FBA0B08BF4C2A4C89CCAC92 /* Google.Protobuf.Empty.proto.swift */,
+				8433892774975B77D95B7C64622C504D /* Google.Protobuf.FieldMask.proto.swift */,
+				4AAA2C656B48BF069FAC2D6D4C63873F /* Google.Protobuf.SourceContext.proto.swift */,
+				CA6A2EE7BD8924BEAE60687B92DFCE0B /* Google.Protobuf.Struct.proto.swift */,
+				98F0DA66A2E75CBC521DFC36E4855FBB /* Google.Protobuf.SwiftDescriptor.proto.swift */,
+				8AD6C7997888D13E2DE63EB7A5374CCA /* Google.Protobuf.Timestamp.proto.swift */,
+				F43E59699AEBC5B16983EDB217B35912 /* Google.Protobuf.Type.proto.swift */,
+				9D1DB4148E83032F63E2AD7D62A75EB3 /* Google.Protobuf.Wrappers.proto.swift */,
+				64BFCD8E3D2CE657DE6ABF4C6D780BA0 /* RingBuffer.swift */,
+				433EBC46EE0E2B6EB0ADF5EAAE3E7DE8 /* UnknownFieldSet.swift */,
+				CDA9F12192E939F7302D966091D1EBEF /* WireFormat.swift */,
+				AE6853848A8C182E59A9E5018ED66368 /* Support Files */,
+			);
+			name = "ProtocolBuffers-Swift";
+			path = "ProtocolBuffers-Swift";
+			sourceTree = "<group>";
+		};
 		5F3E0EF5CF65173727CF3AF4E0CA71F4 /* Pods-SwiftVectorTiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +373,80 @@
 			path = "Target Support Files/Pods-SwiftVectorTiles";
 			sourceTree = "<group>";
 		};
+		66102FC0768B9A614106BD26B0E8CC9B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E785F9148507B359F4C9E14B54BA6DD /* ProtocolBuffers-Swift */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6FB601209AE1B80B6F71B3C28A7FEAA1 /* mygdal */ = {
+			isa = PBXGroup;
+			children = (
+				BCD1B4E40561B2411478C894F0D81DF8 /* cpl_config.h */,
+				767928468D06C0B54B663DD65CEAF4BB /* cpl_conv.cpp */,
+				96966D88400FEE4B8B0ED283028201A0 /* cpl_conv.h */,
+				F9E8DFE730B2EB6197C52FB1EBF1B003 /* cpl_csv.cpp */,
+				834F0A2A956609AD010D4D0457491FCA /* cpl_csv.h */,
+				C97B850171DAAAF3869C754757F6C160 /* cpl_error.cpp */,
+				1C1B8D48B339B4905390945001F54647 /* cpl_error.h */,
+				7BCAB369001B13131F5FB25DAD566C25 /* cpl_findfile.cpp */,
+				85767FA36589C348A55ADD44F22737E2 /* cpl_list.h */,
+				FA6FD4023E11DB9823E45714BC0CA309 /* cpl_minixml.cpp */,
+				3A23A23DFF41753E85122CC68FBF2680 /* cpl_minixml.h */,
+				68758C4249A83BB6CF835B01FB8498D8 /* cpl_multiproc.h */,
+				7687BE4A5496F701D71F64BEF4DC2FB9 /* cpl_odbc.h */,
+				16809D17FB0D12EFB8035083DD4C12F4 /* cpl_path.cpp */,
+				7A4387EF280D36FE3AC1E6CE5AF02BD7 /* cpl_port.h */,
+				72CAEABB3C94173E4AEFB07087456021 /* cpl_string.cpp */,
+				9998F4F8D03CD1FD03F98DDF784B950C /* cpl_string.h */,
+				31C6996829B3EDFE7D62ECEE11937B7D /* cpl_vsi.h */,
+				749434EB7E59C796685FB5C355D1D619 /* cpl_vsisimple.cpp */,
+				8C9C03A6125AB3352791CD9544B29CA0 /* cplgetsymbol.cpp */,
+				62D7868B0D14142053C254905D0116AF /* ddfrecordindex.cpp */,
+				81A6B9AB30C247921E0AB9B0682807F9 /* gdal.h */,
+				81384B8994B4024FDC3965196AF1EE7F /* gdal_frmts.h */,
+				3541EC857A0ED9A62A417405FCCBABA5 /* gdal_misc.cpp */,
+				EF06DA07E37D2043D9EF5775AD8FB098 /* gdal_priv.h */,
+				B0574DEDD7FDB3CDB3F5F6ECD184F303 /* iso8211.h */,
+				29D14133B3B031CFFC85604DB708E931 /* ogr_api.h */,
+				57F20059DF31AA5D614C5BF30F6D1B7F /* ogr_attrind.h */,
+				CE6D01AE84853320234D3CB5C26B59C4 /* ogr_core.h */,
+				617D04E31615255FF99C7589F9889A82 /* ogr_feature.h */,
+				1F9936EF5B673EDD40699F4B67F7687D /* ogr_geometry.h */,
+				A6999781FF541C00D53D6E453C2A956E /* ogr_p.h */,
+				C808C201AC891D5DC126404E2071975A /* ogr_s57.h */,
+				63298A189536F8EFA75BECEFF91FC575 /* ogr_spatialref.h */,
+				9D4A50F5CB0E0A3F23E106DBA8055040 /* ograssemblepolygon.cpp */,
+				2D132E3CAD17544D8D2DC8C357084AEC /* ogrcurve.cpp */,
+				9BEBA9F0949809CC069906F5CF81D31D /* ogrfeature.cpp */,
+				C888A38005C94DB6DE6CB22697BA2FC9 /* ogrfeaturedefn.cpp */,
+				5E322633306C6F18F38E48AB445454A5 /* ogrfielddefn.cpp */,
+				C9EC86A17BE6C9082BF85DDEEC5B0671 /* ogrgeometry.cpp */,
+				A40EE60F7805EC2B1607397D2FC511D0 /* ogrgeometrycollection.cpp */,
+				2E7CBE72821FB43E40BA5D9910743E8A /* ogrgeometryfactory.cpp */,
+				E75F68DE68EB18680D255F54BD00C7FF /* ogrlayer.cpp */,
+				C0FB934A9F93CF58A18180DED79AE5D9 /* ogrlinearring.cpp */,
+				1298C25931DC74B4FBB199BD312E6B3D /* ogrlinestring.cpp */,
+				7DC23521DE35D6D8B5FFB4C9589A4B88 /* ogrmultilinestring.cpp */,
+				8F950590D8E08BF873FE8157402BD243 /* ogrmultipoint.cpp */,
+				D1D5BB4FC568AE0F3A7D0074298C6CAC /* ogrmultipolygon.cpp */,
+				AFA0D53702350FCAD79A96475DBBDFB8 /* ogrpoint.cpp */,
+				5FD1F4FA42872A81AA2A2DEDBA4CFED7 /* ogrpolygon.cpp */,
+				FF5BE36EE1B2C7FEA03C319581EE2E32 /* ogrs57datasource.cpp */,
+				227DDCD916BAB646CAAA19014155292F /* ogrs57layer.cpp */,
+				C6EE3562628217294EB804E0E344ECE6 /* ogrsf_frmts.h */,
+				E63DC809C65FA0F67BD9C17920143F55 /* ogrutils.cpp */,
+				3FBCEBF81D77D087E88DA6C5A2E7AC39 /* s57.h */,
+				71785D59B2ADEA9B8A42261615C83D4D /* s57classregistrar.cpp */,
+				54C633B4F6B788FD1654D47E45A86F69 /* s57featuredefns.cpp */,
+				B79A44F9D1CD7DB0A8D421585E4F979C /* s57reader.cpp */,
+			);
+			name = mygdal;
+			path = mygdal;
+			sourceTree = "<group>";
+		};
 		7531C8F8DE19F1AA3C8A7AC97A91DC29 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,8 +459,9 @@
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				2C0B0E9E05139AB4A050520422F48329 /* Development Pods */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				AE25FAB3A98422DF101E7F068E8A66F3 /* Pods */,
+				66102FC0768B9A614106BD26B0E8CC9B /* Pods */,
 				CAA3C9B1DAFA1DA367FF49DF053A72B8 /* Products */,
 				8D0290320DD3BE05B5464FF94729753D /* Targets Support Files */,
 			);
@@ -358,6 +485,15 @@
 			path = "Target Support Files/Pods-SwiftVectorTilesTests";
 			sourceTree = "<group>";
 		};
+		85B1BF684BF3B079EB6B9AE5D20739B5 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B876B9A20BCCF9101357727773A2ADA5 /* S57ClassRegistrar.h */,
+			);
+			name = include;
+			path = include;
+			sourceTree = "<group>";
+		};
 		8D0290320DD3BE05B5464FF94729753D /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,98 +503,15 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		9122C4B8DB34FBE394265B6C345880B5 /* gdal-mm */ = {
+		AE6853848A8C182E59A9E5018ED66368 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				0D356D461C33AA0A59EB0A8523CA938E /* cpl_config.h */,
-				D24641471A590EDE9F75BF492854AD06 /* cpl_conv.cpp */,
-				51EB245B751B5B68691B5D63AF21FE30 /* cpl_conv.h */,
-				F11F9AC3B016624F0580E2363B74B7B6 /* cpl_csv.cpp */,
-				C494832D67CCC197661F8B8AF0C3D334 /* cpl_csv.h */,
-				FFF1438B95EA5F02909B057AA6A270B2 /* cpl_error.cpp */,
-				4B274B3C1A59298A443B2C48A88FAA99 /* cpl_error.h */,
-				A8B1009D9E6D2F00C6B4EE5B2DC0F852 /* cpl_findfile.cpp */,
-				6F1EFE57F9E79DABC7E5B6834473666C /* cpl_list.h */,
-				AD08B53DA592D3119B5321B004A58B55 /* cpl_minixml.cpp */,
-				5FFAA3D30AE254F1143CCC00B073C389 /* cpl_minixml.h */,
-				DE60A699F6E2D50AD75058AA370F7A0F /* cpl_multiproc.h */,
-				DEEC6C825C902938E74E3F70BACEEEC7 /* cpl_odbc.h */,
-				937A50BA78BBC24580DEA4390B864F9D /* cpl_path.cpp */,
-				565A8811B4A8AA2F788C29DF996D9460 /* cpl_port.h */,
-				4E51ABD22F4DDC6862B87AA00D7F43BF /* cpl_string.cpp */,
-				C723F8F8E4720EC3499CCB995D630844 /* cpl_string.h */,
-				2E053C8A23B077E8021E7FA57E029958 /* cpl_vsi.h */,
-				9487F0215029C2A0B010A068138E3015 /* cpl_vsisimple.cpp */,
-				BF83CF6D190037ABB6A7D5466E82FCDC /* cplgetsymbol.cpp */,
-				C0B421B9DB2C2AD6CD938C661B492509 /* ddffield.cpp */,
-				86F0168B8C1FEB37A550E1AF60FC407B /* ddffielddefn.cpp */,
-				0ADE137840A6C77575BCB762E9F10F62 /* ddfmodule.cpp */,
-				B3D9B3C0093BD43DC58EAF14A6B9046D /* ddfrecord.cpp */,
-				504E66E6F976B7E01B0302D03604CAAD /* ddfrecordindex.cpp */,
-				627E2CDB022E4F229B5DDEB0F3AFB093 /* ddfsubfielddefn.cpp */,
-				8748C4D879C1244A099AACE117B1AD92 /* ddfutils.cpp */,
-				1296E45358733EA4161011E73603C591 /* gdal.h */,
-				9752AC68DADDDA1A75D2153466D355CE /* gdal_frmts.h */,
-				8D06E5B1B8854B8DD93A632CD4B1A230 /* gdal_misc.cpp */,
-				B7A7CD8CB78EC93BF34895B687223033 /* gdal_priv.h */,
-				2242DAD2AEB160A05D5C8576E837B200 /* iso8211.h */,
-				4657A009F27235DF93B27A517CC2D755 /* ogr_api.h */,
-				DC272BE711C658478D9E1691A465017E /* ogr_attrind.h */,
-				BBE596C42EA9803A3B7C3A87E17409A3 /* ogr_core.h */,
-				F8A8813723F400E4A78FE2343088AC2B /* ogr_feature.h */,
-				86D07B71F6A52CC588FCEA33795C4FC9 /* ogr_geometry.h */,
-				815A5482152EDCED3E82C4D0514B9BEC /* ogr_p.h */,
-				7B04E67D267F326513EB126A63557AED /* ogr_s57.h */,
-				D138771521C69233A2A363D5A26FB173 /* ogr_spatialref.h */,
-				665F89035A368A16AC0FD287314D7A1F /* ograssemblepolygon.cpp */,
-				5D07F0C6E2111AD907E350BF6283DE32 /* ogrcurve.cpp */,
-				2244D3239F9603C54FFDD268ABDC3C60 /* ogrfeature.cpp */,
-				69439E067970E65889DE1A17CEA4A1B6 /* ogrfeaturedefn.cpp */,
-				08792F7BD1F637124459EA1014609E4C /* ogrfielddefn.cpp */,
-				FFC29176D1C07B8811A823EC57EE7FDE /* ogrgeometry.cpp */,
-				294FEA31759601FD16F936C122E66042 /* ogrgeometrycollection.cpp */,
-				23AB83D5E5EA37517F3CA616C0292E19 /* ogrgeometryfactory.cpp */,
-				DAF9C15FAF80DADEEAD49EF495170055 /* ogrlayer.cpp */,
-				7F7BDB59DC98F8D0E73EED78932FE19F /* ogrlinearring.cpp */,
-				6ED925F846743C4490AA217D1C5E4907 /* ogrlinestring.cpp */,
-				B87FC9A8E919138CAB7048323FC3B905 /* ogrmultilinestring.cpp */,
-				642C52587682B7DD0F1C0C3888AF40AB /* ogrmultipoint.cpp */,
-				B78D76521711EF36F2BA505CC7B42A36 /* ogrmultipolygon.cpp */,
-				02D11A3A1E7C13C0DB88994D996C2024 /* ogrpoint.cpp */,
-				77C3237FF60B7A00232114130F9AA4A5 /* ogrpolygon.cpp */,
-				E2A1BA3D940660DFED23BA7A6C59CC26 /* ogrs57datasource.cpp */,
-				16C647912A15524D7E091C1A7A52F095 /* ogrs57layer.cpp */,
-				B0F5FC6C80A5D2322B5CEF8FE368CC1E /* ogrsf_frmts.h */,
-				6CC094BA2F7E9C72BF82B6D4E1C6A0D8 /* ogrutils.cpp */,
-				43D3732EFF73585D92343A8A0F3534E0 /* s57.h */,
-				11749CBC79F2DE5D5CD89DFC27C8052C /* s57classregistrar.cpp */,
-				26E1194A97117FDDD69AD03903C569A5 /* S57ClassRegistrar.h */,
-				2F6A8C8BF9B9C333D5F9FA65FB55E8F3 /* s57featuredefns.cpp */,
-				A41F514EB30EA10BC23BED155F88BDEF /* s57reader.cpp */,
-				F56895E2BCC87B95FDA07618FF20524A /* Support Files */,
-			);
-			name = "gdal-mm";
-			path = "gdal-mm";
-			sourceTree = "<group>";
-		};
-		AE25FAB3A98422DF101E7F068E8A66F3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9122C4B8DB34FBE394265B6C345880B5 /* gdal-mm */,
-				D87985438758DBFD0EE4527B66220274 /* ProtocolBuffers-Swift */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		B6A84C004837F6945956A1B9DF706382 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				46376F18C9D051E99CF3DB80B21B7D80 /* Info.plist */,
-				78EB8A39C32F73CFEC3DC873CF914948 /* ProtocolBuffers-Swift.modulemap */,
-				57B7CB6E27AC8A6CA4E40B02078AF8E6 /* ProtocolBuffers-Swift.xcconfig */,
-				537D0F0DBDB798442B4EB68E0FE88868 /* ProtocolBuffers-Swift-dummy.m */,
-				460902AB0068CC38FB539979B17538F6 /* ProtocolBuffers-Swift-prefix.pch */,
-				813D064769CEFB7F41964198C0146E1A /* ProtocolBuffers-Swift-umbrella.h */,
+				3A57EFE37A67EBA7A0E261719BA62918 /* Info.plist */,
+				1F81ADC9AE73D01B001A42D6AF6FA7E2 /* ProtocolBuffers-Swift.modulemap */,
+				E13EF0B6D35AB7BEF280E7555545953B /* ProtocolBuffers-Swift.xcconfig */,
+				4314BE7D1D0BC097FFF89A611436F755 /* ProtocolBuffers-Swift-dummy.m */,
+				C985AFFBADBB970D96E242AA468AB508 /* ProtocolBuffers-Swift-prefix.pch */,
+				98E3BF6A010CEA4D718498DA207E22CF /* ProtocolBuffers-Swift-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/ProtocolBuffers-Swift";
@@ -483,50 +536,32 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D87985438758DBFD0EE4527B66220274 /* ProtocolBuffers-Swift */ = {
+		CB840876089498F81B3689C026615DA6 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3372D89D22CA03DBB183126635C4FFDF /* AbstractMessage.swift */,
-				9511285836406F12D3F3DF72DCEB29A4 /* CodedInputStream.swift */,
-				902E88F3921E948993DB60CD6E807C1A /* CodedOutputStream.swift */,
-				9B7E0680CA646A406E99652AE34B2717 /* ConcreateExtensionField.swift */,
-				9C0744E2ACF649A9ED2309258AF8702C /* ExtendableMessage.swift */,
-				75A27950339119B3A50AA967F807CFCA /* ExtensionRegistry.swift */,
-				90C4D7BF0463B27D1116AC6313A077EA /* Field.swift */,
-				7A75C78087F1A8B1AF4C12CEC1DED3C1 /* GeneratedMessage.swift */,
-				1E8D7A57EE912ECEE49E6B72CC41331E /* Google.Protobuf.Any.proto.swift */,
-				670C0372BE41531DB3940C77D06894C8 /* Google.Protobuf.Api.proto.swift */,
-				7DC5C5131267EC87682287C0DC4AB67E /* Google.Protobuf.Descriptor.proto.swift */,
-				483EC177E87B29B43D2AB161BE200D1B /* Google.Protobuf.Duration.proto.swift */,
-				6A74CA71B5BD7C720AA4C6E3B0494FA3 /* Google.Protobuf.Empty.proto.swift */,
-				16476DA6F3C5BCBA845E413778FA47E5 /* Google.Protobuf.FieldMask.proto.swift */,
-				34567D81F690D601F6225FB107B9FC30 /* Google.Protobuf.SourceContext.proto.swift */,
-				85355579E9F16B68CD8CE7A6CBD4C522 /* Google.Protobuf.Struct.proto.swift */,
-				A819BC7CCD4504F55E78F22262BFED9B /* Google.Protobuf.SwiftDescriptor.proto.swift */,
-				C550E79307B1BA98BC4053623B37BE2D /* Google.Protobuf.Timestamp.proto.swift */,
-				394B7E48C9934A6602DC8B0E03B42D8D /* Google.Protobuf.Type.proto.swift */,
-				3ACDB58B278E4A075EB9EA69C74D6EBA /* Google.Protobuf.Wrappers.proto.swift */,
-				6E0C0856BC708D92B7F171D92C4CAF16 /* RingBuffer.swift */,
-				EAD23FD2EDDB215B34D2466B50C24B9E /* UnknownFieldSet.swift */,
-				8BF9626B55A6C68AA3B62066C56C923A /* WireFormat.swift */,
-				B6A84C004837F6945956A1B9DF706382 /* Support Files */,
-			);
-			name = "ProtocolBuffers-Swift";
-			path = "ProtocolBuffers-Swift";
-			sourceTree = "<group>";
-		};
-		F56895E2BCC87B95FDA07618FF20524A /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B8126588C32D7829253D6890EE3231C1 /* gdal-mm.modulemap */,
-				5C7EDC1B1B334D43A5DAA3E129EC9ECF /* gdal-mm.xcconfig */,
-				9EA2214813C75B661948216A34A89224 /* gdal-mm-dummy.m */,
-				EE0D213D013A53A7A5EF94CC515DB3AB /* gdal-mm-prefix.pch */,
-				CADC460A919107B344A9D17F8AFFF952 /* gdal-mm-umbrella.h */,
-				F1B81B95A55F6FC18919711A3B012A00 /* Info.plist */,
+				46DB35F45BD975B71096770E3CEFE1FE /* gdal-mm.modulemap */,
+				76F07B405201A669B39A6D18794A667D /* gdal-mm.xcconfig */,
+				A55960A206D3817A95910C87F4040759 /* gdal-mm-dummy.m */,
+				E109F705B63FD42FA6185CCC14E19D41 /* gdal-mm-prefix.pch */,
+				8487D86E86111B8A714A296148BAA934 /* gdal-mm-umbrella.h */,
+				BDE492B88F78D37E6746A5ABA2F260CC /* Info.plist */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/gdal-mm";
+			path = "../SwiftVectorTiles/Pods/Target Support Files/gdal-mm";
+			sourceTree = "<group>";
+		};
+		F8F438471311B1F9A8AE9855EE39185D /* myiso8211 */ = {
+			isa = PBXGroup;
+			children = (
+				F23DB290B0CB8F8A635E52ABB816E9E3 /* ddffield.cpp */,
+				7087F2B661FB48329ED4A3CB04EF99A0 /* ddffielddefn.cpp */,
+				7EA49CFB75488BBA3ABA1F7157816A33 /* ddfmodule.cpp */,
+				E27E953A0D894C64FC69FA62885B681B /* ddfrecord.cpp */,
+				3A87A95527F0F6A5D4D794572BFC9F34 /* ddfsubfielddefn.cpp */,
+				28934BE579ACE270E5AA79A330E513DD /* ddfutils.cpp */,
+			);
+			name = myiso8211;
+			path = myiso8211;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -548,45 +583,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		31A5D630D66EB2941A5DE38325606185 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				853B5BC4383DB7E01959C588D3FEEA68 /* cpl_config.h in Headers */,
+				F53DC6A3B44F1FA34596D50E4ED8D11A /* cpl_conv.h in Headers */,
+				636855C3F4C657F23A5147C0B0704186 /* cpl_csv.h in Headers */,
+				A1AB63BF78A513409C8306A392AA0377 /* cpl_error.h in Headers */,
+				5C620AF0BAD56166FC7DF393654EC18A /* cpl_list.h in Headers */,
+				169F94387E129B6A7D560ED5A960E347 /* cpl_minixml.h in Headers */,
+				98714F13834982ACC40742F6250F85BF /* cpl_multiproc.h in Headers */,
+				248971CD169AD610688473E056318189 /* cpl_odbc.h in Headers */,
+				E89FC5C791BB4A025FAC286665039B38 /* cpl_port.h in Headers */,
+				71A3C0322304261C8562654A5D196D3D /* cpl_string.h in Headers */,
+				0B42EB8EC376A595CF8F8E00B407474A /* cpl_vsi.h in Headers */,
+				2064AD806E44334DC6EEAC8E76BF3BD1 /* gdal-mm-umbrella.h in Headers */,
+				1EA68394111B971C7A2CE524291746AD /* gdal.h in Headers */,
+				F40233599151B9995EBBE59942B56290 /* gdal_frmts.h in Headers */,
+				082220026D729D2B6CB74EE68BE20F13 /* gdal_priv.h in Headers */,
+				C6C858E31964B650B2B20227567D46E1 /* iso8211.h in Headers */,
+				8C17F11C2A026D9C3E2647E0CF3DE529 /* ogr_api.h in Headers */,
+				612DD230AD40EA03DDE81390C0DFE681 /* ogr_attrind.h in Headers */,
+				ECDD0CFD2E56F79B5F212AD18AEA53B2 /* ogr_core.h in Headers */,
+				C66A6CA541AB9969ED2D5539FC4A5B0F /* ogr_feature.h in Headers */,
+				13AF7D4AC740952E39E8942C0C9A9990 /* ogr_geometry.h in Headers */,
+				54F41D9C00F92C0A5D3E63FD144C31CB /* ogr_p.h in Headers */,
+				B522A2B29D0FDFED61BC725674C49D61 /* ogr_s57.h in Headers */,
+				285920ABD98C1EB079E9C59221C19A8D /* ogr_spatialref.h in Headers */,
+				77D61A6073F71F7B59569F23081344D8 /* ogrsf_frmts.h in Headers */,
+				EE3B25275BB392581A8B46EC5F33A7BF /* s57.h in Headers */,
+				67AF2C86571C6F294E84088B1F48732B /* S57ClassRegistrar.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		573B78392807BD73C1F72320A5504C13 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				753F56C967B35A65036E6F8566F80F06 /* ProtocolBuffers-Swift-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2B5C48F97B65ED00E07E976AB0F218D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				63F4140288F4848F982CA6AC751B0879 /* cpl_config.h in Headers */,
-				A39DE8470D6CB2C94A6E6D447BFB83C3 /* cpl_conv.h in Headers */,
-				CC04F5604BC0AC9A5894047B3809A476 /* cpl_csv.h in Headers */,
-				A17F6C969DB06D20C0F0EB354B38A113 /* cpl_error.h in Headers */,
-				1E46F5121018B9E09E8E4A71692B1B93 /* cpl_list.h in Headers */,
-				7C552DB7469BCF9C8E28BB9E8DE5D141 /* cpl_minixml.h in Headers */,
-				7D9D7FD5896E8260A100030C9E92218B /* cpl_multiproc.h in Headers */,
-				7B06E37B5A62E8A279F48A733F285E4A /* cpl_odbc.h in Headers */,
-				62E2BBB0937B44FB41DF13CDC346D1AA /* cpl_port.h in Headers */,
-				D0C5120E21FD36C0BA393083AFCC6F46 /* cpl_string.h in Headers */,
-				3AA0D5A14B4C0CF29C700031F091EE17 /* cpl_vsi.h in Headers */,
-				16D11FB2646179385BC9440886EDDAA6 /* gdal-mm-umbrella.h in Headers */,
-				645807496C0E3C2614B87E89EEED5441 /* gdal.h in Headers */,
-				FB617032020D7594EB906F36000A2CA3 /* gdal_frmts.h in Headers */,
-				71DA0F5CC7EC2151B5A8B0858349B18E /* gdal_priv.h in Headers */,
-				7D23FE47B684E325C0FEDF9EE460A35C /* iso8211.h in Headers */,
-				28C6F71D78672583E3B5306E470563FD /* ogr_api.h in Headers */,
-				36851B6B5E357F0F8BD0A4B2B3F388BD /* ogr_attrind.h in Headers */,
-				DBA51E7BE02015186E09A8BACDC42505 /* ogr_core.h in Headers */,
-				0C09B6CD3D41F910FCCC0640D169690F /* ogr_feature.h in Headers */,
-				86C0C5BC1CB15EFF86FA22DE8530ADE8 /* ogr_geometry.h in Headers */,
-				876CC11035C764FE8CF76CB928134C9B /* ogr_p.h in Headers */,
-				1B185527021600B8B68A5CCA3FE69DC3 /* ogr_s57.h in Headers */,
-				245E5DD5F77949394112313FE6E0A3DB /* ogr_spatialref.h in Headers */,
-				3D03E4906911F101E34A7E798D4614BE /* ogrsf_frmts.h in Headers */,
-				9308C34593AD92C08503F5936FA906DE /* s57.h in Headers */,
-				6A4054AC7E85BE624CAD7AFFBF550DF0 /* S57ClassRegistrar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,9 +632,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D62D13BED0DF4CA5D679509B7AC285FF /* Build configuration list for PBXNativeTarget "gdal-mm" */;
 			buildPhases = (
-				5363729D3E4431AF24C72107FB53D235 /* Sources */,
+				93C14B6B3D6FCCC44CC2F738506574F3 /* Sources */,
 				05EB6D30FF1AFF732D1ABA0B76450ACA /* Frameworks */,
-				E2B5C48F97B65ED00E07E976AB0F218D /* Headers */,
+				31A5D630D66EB2941A5DE38325606185 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -695,53 +730,6 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5363729D3E4431AF24C72107FB53D235 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4FFF0E4D317568309DAAA2DB40778A8 /* cpl_conv.cpp in Sources */,
-				BBED44441D8CDD65E1E0815724667E69 /* cpl_csv.cpp in Sources */,
-				C5A2B8426A73C23D9894CC3F0BBA78F1 /* cpl_error.cpp in Sources */,
-				5524F6D0A7FB3ECC297425C47C93569B /* cpl_findfile.cpp in Sources */,
-				A56603B80A8F8D47AA42C71B51D4B785 /* cpl_minixml.cpp in Sources */,
-				CF6D914D06B5BD47155F7E22F41D2C03 /* cpl_path.cpp in Sources */,
-				4C506F1867967280C1BFFF10C911D81B /* cpl_string.cpp in Sources */,
-				C33A6271F38A1E26D904C2A972F8CFA2 /* cpl_vsisimple.cpp in Sources */,
-				3FA6F15901D67C3A3624FDDB41D3DC84 /* cplgetsymbol.cpp in Sources */,
-				9B76FCDC41BA6A5A306B6E0547CDD101 /* ddffield.cpp in Sources */,
-				A28C1ADB9E178218ED12DE005D049153 /* ddffielddefn.cpp in Sources */,
-				0D667DC29DA938A11333FFD13AAB3B89 /* ddfmodule.cpp in Sources */,
-				90583FED3F025F6B00F6D7916AD0593A /* ddfrecord.cpp in Sources */,
-				B0FE7368C722DB661F1590D2A62DA909 /* ddfrecordindex.cpp in Sources */,
-				E74A65BDEABDE36C67A6E2A965E6EDF8 /* ddfsubfielddefn.cpp in Sources */,
-				70FF833799FB7FFFABD47AAE0BB8B26F /* ddfutils.cpp in Sources */,
-				12627374F20CA25D9849A43F496FFCE4 /* gdal-mm-dummy.m in Sources */,
-				74DE1EA85F6B2061E455F527E21E6BF0 /* gdal_misc.cpp in Sources */,
-				FA49AF021F87C400AC702A3E99809B35 /* ograssemblepolygon.cpp in Sources */,
-				736E07B5EDF2491E36476CEE883A4209 /* ogrcurve.cpp in Sources */,
-				7BC2BD1BD1E9D7591C4CE1CE9B53BA64 /* ogrfeature.cpp in Sources */,
-				827B6BF44A8110538838400F05F0A2CF /* ogrfeaturedefn.cpp in Sources */,
-				1857590DA220F28B8AD4B0C68CC57389 /* ogrfielddefn.cpp in Sources */,
-				7E817F7DA021A8ABCE278416DBD14F27 /* ogrgeometry.cpp in Sources */,
-				1033446D6F687AB7D15B1B9232496516 /* ogrgeometrycollection.cpp in Sources */,
-				BC4ED91375B78F96DF3E4251A0F6F8DA /* ogrgeometryfactory.cpp in Sources */,
-				2F9D47F57AF71F38A50E926F8B323954 /* ogrlayer.cpp in Sources */,
-				7908426354BD71A986C81D1A55F916E1 /* ogrlinearring.cpp in Sources */,
-				B9B08B8D4ABE430FA9D9709C04FBD637 /* ogrlinestring.cpp in Sources */,
-				7215E530B4EB5C567A6BE9282E27857A /* ogrmultilinestring.cpp in Sources */,
-				CE9AA0AEBA8C80E65ADEF05E105DA547 /* ogrmultipoint.cpp in Sources */,
-				214A5523BAD48DB975D42AF47A26F859 /* ogrmultipolygon.cpp in Sources */,
-				997BAFA8F3BB9C1A3B5F7E59FDD4F427 /* ogrpoint.cpp in Sources */,
-				00C761801B8B3A5E9893BC687C007D5E /* ogrpolygon.cpp in Sources */,
-				22793495F2D3DA3DCE1184632CB8112A /* ogrs57datasource.cpp in Sources */,
-				5170A15628133DA95F7CC39CB775880D /* ogrs57layer.cpp in Sources */,
-				8C73E5521EA6DA7513AEC79A0A629478 /* ogrutils.cpp in Sources */,
-				F909CBF1641AEBACE4871439D17D970F /* s57classregistrar.cpp in Sources */,
-				31E9BCCBBB631BA35E4F9C1FE3E98BDF /* s57featuredefns.cpp in Sources */,
-				29DA601FA4D63DE5BF54235C00C3A133 /* s57reader.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		56D005F6BAC6FFF4C313FF156D4A9FC1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -778,6 +766,53 @@
 			buildActionMask = 2147483647;
 			files = (
 				1540F6EB97164DDFB19B854248E69AED /* Pods-SwiftVectorTilesTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93C14B6B3D6FCCC44CC2F738506574F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				27562CE7353B16E28908044E3485DACF /* cpl_conv.cpp in Sources */,
+				5841BD48333D9E8A0D798653186B5F9C /* cpl_csv.cpp in Sources */,
+				285326E01C155BCBCCE567633007B57A /* cpl_error.cpp in Sources */,
+				4E756AA2EE5B9013E0298080FC72ED60 /* cpl_findfile.cpp in Sources */,
+				772B66627663EA5E98062F7B4B8AD9C3 /* cpl_minixml.cpp in Sources */,
+				47F44C03D774F38F49313DEA5226CEE4 /* cpl_path.cpp in Sources */,
+				C29B2BD7F8DACE94689FFF3FFB1F5631 /* cpl_string.cpp in Sources */,
+				A701D7C33021811F00EA383D3AACC809 /* cpl_vsisimple.cpp in Sources */,
+				CAF78DCCCB31DDAB55CA44BF0782C2C6 /* cplgetsymbol.cpp in Sources */,
+				2112C7A0A07DE0FF925A188631528D09 /* ddffield.cpp in Sources */,
+				8FF32510F62CECA57A5325DD3EBED098 /* ddffielddefn.cpp in Sources */,
+				2241F736875877C5FBCC631D9ABD7B4C /* ddfmodule.cpp in Sources */,
+				FA9C82D2E7C7BC9E0305226967D6D40D /* ddfrecord.cpp in Sources */,
+				64263363CA5498DAA154046DF87950C4 /* ddfrecordindex.cpp in Sources */,
+				1DBFBB8D2C03CE783F617C969E91A640 /* ddfsubfielddefn.cpp in Sources */,
+				2DF7BD124C9D83FCD80DE53079782F3A /* ddfutils.cpp in Sources */,
+				F13260EBAACEB36A06AE31F86284F486 /* gdal-mm-dummy.m in Sources */,
+				C04154ECA0924352370E3BEB2C876BBD /* gdal_misc.cpp in Sources */,
+				C2793F82A083F2DEBE30427FEB97D5FF /* ograssemblepolygon.cpp in Sources */,
+				8FD9F0E25C54414CAE929AB37A594E62 /* ogrcurve.cpp in Sources */,
+				D341D02065204CFC82F7B08FDB680E6E /* ogrfeature.cpp in Sources */,
+				6E6216D3A4DDA10BFBD957E8E0872AC8 /* ogrfeaturedefn.cpp in Sources */,
+				95AB08286375794DDD253C6B6104A120 /* ogrfielddefn.cpp in Sources */,
+				03B4F5BA1BEC9C436E97AFCD331CD2C4 /* ogrgeometry.cpp in Sources */,
+				D666777BC28E50D2C95C8F67E44A5CE6 /* ogrgeometrycollection.cpp in Sources */,
+				C291DF8FA421E5F14442AE085A218572 /* ogrgeometryfactory.cpp in Sources */,
+				52EF980D0C3769E78CA36B631B3A243E /* ogrlayer.cpp in Sources */,
+				E5327E9C369B2C5F7594DB49819CDE8D /* ogrlinearring.cpp in Sources */,
+				F033A11E17F2C20C00DDE23434085291 /* ogrlinestring.cpp in Sources */,
+				73298029850AF89A1399338B18E8CFA1 /* ogrmultilinestring.cpp in Sources */,
+				C790056B72033BA8BDD2A08A08C1F451 /* ogrmultipoint.cpp in Sources */,
+				A4EF9B7E6BCD3135CFEEBE056C439CD9 /* ogrmultipolygon.cpp in Sources */,
+				B8055EFDC886B6102277263A1432E86F /* ogrpoint.cpp in Sources */,
+				7B5FCCD8B59CA70166E4713F788D3F4F /* ogrpolygon.cpp in Sources */,
+				621E2F95DA6046E0C1694DE2D2FAA4B4 /* ogrs57datasource.cpp in Sources */,
+				80D9364E7948245D1746F0EE4CBC7925 /* ogrs57layer.cpp in Sources */,
+				D41FCA59E88A3CBC2FC0580F790A1640 /* ogrutils.cpp in Sources */,
+				3C6CA3537E6C2DE66DEE40361E7E87BA /* s57classregistrar.cpp in Sources */,
+				5048F5E2221A16F89755AD876E25C848 /* s57featuredefns.cpp in Sources */,
+				DA55640DF1500C598C1843D29C956E68 /* s57reader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,7 +856,7 @@
 /* Begin XCBuildConfiguration section */
 		6187729ABDE565C0BC68EE3E4FE5F7D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C7EDC1B1B334D43A5DAA3E129EC9ECF /* gdal-mm.xcconfig */;
+			baseConfigurationReference = 76F07B405201A669B39A6D18794A667D /* gdal-mm.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -963,7 +998,7 @@
 		};
 		8DB5591A9C93A40BDB7FE5E8B471DA68 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57B7CB6E27AC8A6CA4E40B02078AF8E6 /* ProtocolBuffers-Swift.xcconfig */;
+			baseConfigurationReference = E13EF0B6D35AB7BEF280E7555545953B /* ProtocolBuffers-Swift.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1032,7 +1067,7 @@
 		};
 		C380C732E53114B949612467E05650C0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C7EDC1B1B334D43A5DAA3E129EC9ECF /* gdal-mm.xcconfig */;
+			baseConfigurationReference = 76F07B405201A669B39A6D18794A667D /* gdal-mm.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1100,7 +1135,7 @@
 		};
 		DB2DBBE1EAEEF71D9C8A4044D3D91D04 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57B7CB6E27AC8A6CA4E40B02078AF8E6 /* ProtocolBuffers-Swift.xcconfig */;
+			baseConfigurationReference = E13EF0B6D35AB7BEF280E7555545953B /* ProtocolBuffers-Swift.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

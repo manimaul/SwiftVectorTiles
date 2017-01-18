@@ -15,5 +15,6 @@
 -(double)area;
 -(MADLinearRing *)getExteriorRing;
 -(NSArray<MADLinearRing*>*)getInteriorRings;
+-(MADPolygon*)intersection:(MADGeometry*)other;
 
 @end

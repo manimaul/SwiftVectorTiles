@@ -57,11 +57,11 @@ private class Layer {
     }
 }
 
-private func createTileEnvelope(buffer b: Int, size s: Int) -> MADGeometry? {
+private func createTileEnvelope(buffer b: Int, size s: Int) -> MADPolygon {
     let start = (Double) (0 - b)
     let end = (Double) (s + b)
     let wkt = "POLYGON (( \(start) \(end), \(end) \(end), \(end) \(start), \(start) \(start), \(start) \(end) ))"
-    return MADGeometry.create(wkt)
+    return MADGeometryFactory.geometry(withWellKnownText: wkt) as! MADPolygon
 }
 
 private func toIntArray(intArray arr: [Int]) -> [UInt32] {
@@ -106,7 +106,7 @@ public class VectorTileEncoder {
     private var _layerKeysOrdered = [String]()
 
     let _extent: Int
-    let _clipGeometry: MADGeometry
+    let _clipGeometry: MADPolygon
     let _autoScale: Bool
     var _x = 0
     var _y = 0
@@ -139,7 +139,7 @@ public class VectorTileEncoder {
         _extent = e
         _autoScale = auto
         let size = auto ? 256 : e
-        _clipGeometry = createTileEnvelope(buffer: buffer, size: size)!
+        _clipGeometry = createTileEnvelope(buffer: buffer, size: size)
     }
 
     /// - returns: 'Data' with the vector tile
@@ -208,9 +208,9 @@ public class VectorTileEncoder {
             fatalError("could not build tile")
         }
     }
-
+    
     public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry wkb: Data) {
-        guard let geo = MADGeometry.create(from: wkb) else {
+        guard let geo = MADGeometryFactory.geometry(withWellKnownBinary: wkb) else {
             NSLog("could not create geometry")
             return
         }
@@ -218,7 +218,7 @@ public class VectorTileEncoder {
     }
 
     public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry wkt: String) {
-        guard let geo = MADGeometry.create(wkt) else {
+        guard let geo = MADGeometryFactory.geometry(withWellKnownText: wkt) else {
             NSLog("could not create geometry")
             return
         }
@@ -425,10 +425,10 @@ public class VectorTileEncoder {
 
         let intersect = _clipGeometry.intersection(geo)
         if (intersect?.empty())! && geo.intersects(_clipGeometry) {
-            guard let wkt = geo.wkt else {
+            guard let wkt = geo.getWellKnownText() else {
                 return nil
             }
-            if let originalViaWkt = MADGeometry.create(wkt) {
+            if let originalViaWkt = MADGeometryFactory.geometry(withWellKnownText: wkt) {
                 return _clipGeometry.intersection(originalViaWkt)
             } else {
                 return nil

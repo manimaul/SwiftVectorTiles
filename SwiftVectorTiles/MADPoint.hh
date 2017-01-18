@@ -11,6 +11,4 @@
 
 @interface MADPoint : MADGeometry
 
--(id) initWithWellKnownText;
-
 @end
