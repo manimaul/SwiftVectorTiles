@@ -18,5 +18,6 @@
 -(NSArray<MADCoordinate*>*)coordinates;
 -(MADGeometryType)getGeometryType;
 -(NSString*)getWellKnownText;
+-(MADGeometry*)transform:(MADCoordinateTransform)transform;
 
 @end

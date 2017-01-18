@@ -10,4 +10,13 @@
 
 @implementation MADCoordinate
 
+-(instancetype)initWithX:(double)x andY:(double)y {
+    if (self = [super init]) {
+        _x = x;
+        _y = y;
+        return self;
+    }
+    return nil;
+}
+
 @end

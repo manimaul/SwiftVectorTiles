@@ -10,6 +10,10 @@
 
 @interface MADCoordinate : NSObject
 
+typedef MADCoordinate* (^MADCoordinateTransform)(MADCoordinate*);
+
+-(instancetype)initWithX:(double)x andY:(double)y;
+
 @property double x;
 @property double y;
 
