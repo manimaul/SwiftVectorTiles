@@ -1,25 +1,15 @@
 PODS:
-  - gdal-mm (0.1.0)
+  - geos (3.5.0)
   - ProtocolBuffers-Swift (3.0.6)
 
 DEPENDENCIES:
-  - gdal-mm (from `https://github.com/manimaul/gdal-mm.git`, commit `d6c71d9888c6122e42e5af7b2e1149863bcbb64a`)
+  - geos
   - ProtocolBuffers-Swift
 
-EXTERNAL SOURCES:
-  gdal-mm:
-    :commit: d6c71d9888c6122e42e5af7b2e1149863bcbb64a
-    :git: https://github.com/manimaul/gdal-mm.git
-
-CHECKOUT OPTIONS:
-  gdal-mm:
-    :commit: d6c71d9888c6122e42e5af7b2e1149863bcbb64a
-    :git: https://github.com/manimaul/gdal-mm.git
-
 SPEC CHECKSUMS:
-  gdal-mm: 682831a8771bab6c8bc77033c7641f959b48adf0
+  geos: e96c6ca3f3ce02d20feaa8d90d4af383e11e7198
   ProtocolBuffers-Swift: ee072e78456f2332a0b0f759f718b9c59443bbc8
 
-PODFILE CHECKSUM: 58191eabd7157ffa42636d7db49efc143ce017d6
+PODFILE CHECKSUM: 66063e5ebbcb1ada495aa6e310e0dc4e983f70c4
 
 COCOAPODS: 1.1.1
