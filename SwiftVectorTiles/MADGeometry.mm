@@ -6,10 +6,7 @@
 //  Copyright © 2017 William Kamp. All rights reserved.
 //
 
-
-#include "ogr_core.h"
-#include "cpl_conv.h"
-#include <memory>
+#include "geos_c.h"
 
 #import <Foundation/Foundation.h>
 #import "MADGeometry.hh"
@@ -18,13 +15,14 @@
 
 using namespace std;
 
+
 @implementation MADGeometry
 
--(OGRwkbGeometryType) getwkbGemotryType {
-    return static_cast<OGRwkbGeometryType>([self getGeometryType]);
+-(GEOSGeomTypes) getwkbGemotryType {
+    return static_cast<GEOSGeomTypes>([self getGeometryType]);
 }
 
--(instancetype) initWithGeometry:(OGRGeometry*)geometry {
+-(instancetype) initWithGeometry:(GEOSGeometry*)geometry {
     if (self = [super init]) {
         _geometry = geometry;
         return self;
@@ -32,64 +30,48 @@ using namespace std;
     return nil;
 }
 
--(instancetype) initWithWellKnownText:(NSString *)text {
-    if (self = [super init]) {
-        _wkt = text;
-        auto wkt = strdup([text UTF8String]);
-        auto geometry = OGRGeometryFactory::createGeometry([self getwkbGemotryType]);
-        auto result = geometry->importFromWkt(&wkt);
-        if (OGRERR_NONE == result) {
-            [self setGeometry:geometry];
-            return self;
-        }
-    };
-    return nil;
-}
-
--(instancetype) initWithWellKnownBinary:(NSData *)data; {
-    if (self = [super init]) {
-        const void *wkb = [data bytes];
-        unsigned char wkbBytes[data.length];
-        memcpy(wkbBytes, wkb, [data length]);
-        auto geometry = OGRGeometryFactory::createGeometry([self getwkbGemotryType]);
-        auto result = geometry->importFromWkb(wkbBytes);
-        if (OGRERR_NONE == result) {
-            [self setGeometry:geometry];
-            return self;
-        }
-    };
-    return nil;
-}
-
 -(void) dealloc {
-    if (nullptr != _geometry) {
-        delete _geometry;
+    if (_geometry != NULL) {
+        GEOSGeom_destroy_r(GeosContext, _geometry);
     }
 }
 
 -(BOOL) covers:(MADGeometry*)other {
-    return NO;
+    return GEOSCovers_r(GeosContext, self.geometry, other.geometry) == '1';
 }
 
 -(BOOL) intersects:(MADGeometry*)other {
-    return _geometry->Intersect(other.geometry);
+    return GEOSIntersects_r(GeosContext, self.geometry, other.geometry) == '1';
 }
 -(BOOL) empty {
-    return _geometry->IsEmpty();
+    return GEOSisEmpty_r(GeosContext, self.geometry) == '1';
 }
 
 -(NSString*)getWellKnownText {
     if (_wkt == NULL) {
-        char *wktPtr = NULL;
-        self.geometry->exportToWkt(&wktPtr);
-        _wkt = [[NSString alloc] initWithUTF8String:wktPtr];
-        CPLFree(wktPtr);
+        auto wktWriter = GEOSWKTWriter_create_r(GeosContext);
+        char* wkt = GEOSWKTWriter_write_r(GeosContext, wktWriter, self.geometry);
+        _wkt = [[NSString alloc] initWithUTF8String:wkt];
+        GEOSFree_r(GeosContext, wkt);
+        GEOSWKTWriter_destroy_r(GeosContext, wktWriter);
     }
     return _wkt;
 }
 
+-(MADGeometry*)intersection:(MADGeometry*)other {
+    return nil;
+}
+
 -(MADGeometryType)getGeometryType {
     return MADwkbUnknown;
+}
+
+-(MADGeometry*)transform:(MADCoordinateTransform)transform {
+    return nil;
+}
+
+-(NSArray<MADCoordinate*>*)coordinates {
+    return nil;
 }
 
 @end

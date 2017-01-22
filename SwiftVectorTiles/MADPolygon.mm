@@ -25,29 +25,26 @@
 
 -(MADLinearRing *)getExteriorRing {
     if (_exteriorRing == NULL) {
-        auto polygon = dynamic_cast<OGRPolygon*>(self.geometry);
-        auto exteriorRing = polygon->getExteriorRing();
-        _exteriorRing = [[MADLinearRing alloc] initWithGeometry:exteriorRing];
+        const GEOSGeometry* er = GEOSGetExteriorRing_r(GeosContext, self.geometry);
+        GEOSGeometry* erc = GEOSGeom_clone_r(GeosContext, er);
+        _exteriorRing = [[MADLinearRing alloc] initWithGeometry:erc];
     }
     return _exteriorRing;
 }
 
 -(NSArray<MADLinearRing*>*)getInteriorRings {
     if (_interiorRings == NULL) {
-        auto polygon = dynamic_cast<OGRPolygon*>(self.geometry);
-        auto count = polygon->getNumInteriorRings();
+        auto count = GEOSGetNumInteriorRings_r(GeosContext, self.geometry);
         NSMutableArray *array = [NSMutableArray arrayWithCapacity:count];
         for (int i=0; i<count; i++) {
-            MADLinearRing *interiorRing = [[MADLinearRing alloc] initWithGeometry:polygon->getInteriorRing(i)];
+            const GEOSGeometry* ir = GEOSGetInteriorRingN_r(GeosContext, self.geometry, i);
+            GEOSGeometry* irc = GEOSGeom_clone_r(GeosContext, ir);
+            MADLinearRing *interiorRing = [[MADLinearRing alloc] initWithGeometry:irc];
             [array setObject:interiorRing atIndexedSubscript:i];
         }
         _interiorRings = [NSArray arrayWithArray:array];
     }
     return _interiorRings;
-}
-
--(MADPolygon*)intersection:(MADGeometry*)other {
-    return nil;
 }
 
 @end

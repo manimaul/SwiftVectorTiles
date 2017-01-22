@@ -19,5 +19,6 @@
 -(MADGeometryType)getGeometryType;
 -(NSString*)getWellKnownText;
 -(MADGeometry*)transform:(MADCoordinateTransform)transform;
+-(MADGeometry*)intersection:(MADGeometry*)other;
 
 @end

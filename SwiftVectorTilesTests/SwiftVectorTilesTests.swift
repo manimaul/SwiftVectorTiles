@@ -21,6 +21,13 @@ class SwiftVectorTilesTests: XCTestCase {
         super.tearDown()
     }
     
+    func testCoordSequence() {
+        let cs = MADCoordinateSequence()
+        for c in cs {
+            XCTAssertEqual(0, c.x)
+        }
+    }
+    
     func testEncodePolygon() {
         let encoder = VectorTileEncoder()
         let wkt = "POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))"

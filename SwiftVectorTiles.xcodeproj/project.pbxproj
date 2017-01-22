@@ -38,6 +38,9 @@
 		D06164EA1E2EE4E000265ACE /* MADGeometryType.h in Headers */ = {isa = PBXBuildFile; fileRef = D06164E91E2EE4E000265ACE /* MADGeometryType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06164ED1E2FBAE000265ACE /* MADGeometryFactory.hh in Headers */ = {isa = PBXBuildFile; fileRef = D06164EB1E2FBAE000265ACE /* MADGeometryFactory.hh */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06164EE1E2FBAE000265ACE /* MADGeometryFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = D06164EC1E2FBAE000265ACE /* MADGeometryFactory.mm */; };
+		D0E2B09A1E33B62B00E01CB0 /* MADCoordinateSequence.hh in Headers */ = {isa = PBXBuildFile; fileRef = D0E2B0981E33B62B00E01CB0 /* MADCoordinateSequence.hh */; settings = {ATTRIBUTES = (Public, ); }; };
+		D0E2B09B1E33B62B00E01CB0 /* MADCoordinateSequence.mm in Sources */ = {isa = PBXBuildFile; fileRef = D0E2B0991E33B62B00E01CB0 /* MADCoordinateSequence.mm */; };
+		D0E2B09D1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2B09C1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift */; };
 		EFDE0EC22DA9E5483D7EEB63 /* Pods_SwiftVectorTilesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4359B53C1EC439531FFFAD2 /* Pods_SwiftVectorTilesTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +92,9 @@
 		D06164E91E2EE4E000265ACE /* MADGeometryType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADGeometryType.h; sourceTree = "<group>"; };
 		D06164EB1E2FBAE000265ACE /* MADGeometryFactory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADGeometryFactory.hh; sourceTree = "<group>"; };
 		D06164EC1E2FBAE000265ACE /* MADGeometryFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADGeometryFactory.mm; sourceTree = "<group>"; };
+		D0E2B0981E33B62B00E01CB0 /* MADCoordinateSequence.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADCoordinateSequence.hh; sourceTree = "<group>"; };
+		D0E2B0991E33B62B00E01CB0 /* MADCoordinateSequence.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADCoordinateSequence.mm; sourceTree = "<group>"; };
+		D0E2B09C1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MADCoordinateSequence+Sequence.swift"; sourceTree = "<group>"; };
 		E4359B53C1EC439531FFFAD2 /* Pods_SwiftVectorTilesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftVectorTilesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E476AEF0C8A6422954277502 /* Pods-SwiftVectorTilesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftVectorTilesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftVectorTilesTests/Pods-SwiftVectorTilesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -166,6 +172,9 @@
 				D05D582E1E2E8A2500A99CFC /* MADCollections.h */,
 				D05D58301E2E8CE400A99CFC /* MADCoordinate.hh */,
 				D05D58311E2E8CE400A99CFC /* MADCoordinate.mm */,
+				D0E2B0981E33B62B00E01CB0 /* MADCoordinateSequence.hh */,
+				D0E2B0991E33B62B00E01CB0 /* MADCoordinateSequence.mm */,
+				D0E2B09C1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift */,
 			);
 			path = SwiftVectorTiles;
 			sourceTree = "<group>";
@@ -217,6 +226,7 @@
 				D05D58321E2E8CE400A99CFC /* MADCoordinate.hh in Headers */,
 				D05D582F1E2E8A2500A99CFC /* MADCollections.h in Headers */,
 				2672C60AB7F571227BB9CD6D /* MADMultiPolygon.hh in Headers */,
+				D0E2B09A1E33B62B00E01CB0 /* MADCoordinateSequence.hh in Headers */,
 				D06164EA1E2EE4E000265ACE /* MADGeometryType.h in Headers */,
 				D06164ED1E2FBAE000265ACE /* MADGeometryFactory.hh in Headers */,
 				D05D58351E2EDD4800A99CFC /* MADGeometry+Private.hh in Headers */,
@@ -412,7 +422,9 @@
 				D036DA251E2E7B660049137A /* MADPolygon.mm in Sources */,
 				D036DA1C1E2E778B0049137A /* VectorTile.swift in Sources */,
 				D036DA191E2E75F00049137A /* Command.swift in Sources */,
+				D0E2B09B1E33B62B00E01CB0 /* MADCoordinateSequence.mm in Sources */,
 				D036DA1D1E2E778B0049137A /* VectorTileEncoder.swift in Sources */,
+				D0E2B09D1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift in Sources */,
 				D036DA1F1E2E7B1B0049137A /* MADGeometry.mm in Sources */,
 				2672C19C634A6FB549406214 /* MADPoint.mm in Sources */,
 				2672C1ED281A95495A471D24 /* MADMultiPoint.mm in Sources */,

@@ -6,18 +6,20 @@
 //  Copyright © 2017 William Kamp. All rights reserved.
 //
 
-#include "ogr_geometry.h"
+#include "geos_c.h"
 
 #import <Foundation/Foundation.h>
 #import "MADGeometry.hh"
 
+static GEOSContextHandle_t GeosContext = GEOS_init_r();
+
 @interface MADGeometry()
 
--(instancetype) initWithGeometry:(OGRGeometry*)geometry;
--(instancetype) initWithWellKnownText:(NSString *)text;
--(instancetype) initWithWellKnownBinary:(NSData *)data;
+-(instancetype) initWithGeometry:(GEOSGeometry *)geometry;
+-(GEOSGeometry*) geometry;
 
-@property OGRGeometry* geometry;
+@property GEOSGeometry* geometry;
 @property NSString* wkt;
+
 
 @end

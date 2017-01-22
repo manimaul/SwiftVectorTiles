@@ -9,17 +9,30 @@
 #ifndef MADGeometryType_h
 #define MADGeometryType_h
 
-typedef enum
-{
-    MADwkbUnknown = 0,             /* non-standard */
-    MADwkbPoint = 1,               /* rest are standard WKB type codes */
-    MADwkbLineString = 2,
-    MADwkbPolygon = 3,
-    MADwkbMultiPoint = 4,
-    MADwkbMultiLineString = 5,
-    MADwkbMultiPolygon = 6,
-    MADwkbGeometryCollection = 7,
-    MADwkbLinearRing = 101
+typedef enum {
+    MADwkbUnknown = -1,
+    MADwkbPoint,
+    MADwkbLineString,
+    MADwkbLinearRing,
+    MADwkbPolygon,
+    MADwkbMultiPoint,
+    MADwkbMultiLineString,
+    MADwkbMultiPolygon,
+    MADwkbGeometryCollection,
+    
 } MADGeometryType;
+
+/*
+ enum GEOSGeomTypes {
+ GEOS_POINT,
+ GEOS_LINESTRING,
+ GEOS_LINEARRING,
+ GEOS_POLYGON,
+ GEOS_MULTIPOINT,
+ GEOS_MULTILINESTRING,
+ GEOS_MULTIPOLYGON,
+ GEOS_GEOMETRYCOLLECTION
+ };
+ */
 
 #endif /* MADGeometryType_h */

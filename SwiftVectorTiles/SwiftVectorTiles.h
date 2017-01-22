@@ -27,3 +27,4 @@ FOUNDATION_EXPORT const unsigned char SwiftVectorTilesVersionString[];
 #import <SwiftVectorTiles/MADPoint.hh>
 #import <SwiftVectorTiles/MADPolygon.hh>
 #import <SwiftVectorTiles/MADGeometryFactory.hh>
+#import <SwiftVectorTiles/MADCoordinateSequence.hh>
