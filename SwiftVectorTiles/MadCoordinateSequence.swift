@@ -14,7 +14,7 @@ public class MadCoordinateSequence: Sequence, Equatable {
     let sequencePtr: OpaquePointer
     public let count: Int
 
-    init(_ coordinates: MadCoordinate...) {
+    init(_ coordinates: [MadCoordinate]) {
         count = coordinates.count
         sequencePtr = GEOSCoordSeq_create_r(GeosContext, UInt32(count), 2)
         for (i, coord) in coordinates.enumerated() {
@@ -22,6 +22,10 @@ public class MadCoordinateSequence: Sequence, Equatable {
             GEOSCoordSeq_setX_r(GeosContext, sequencePtr, index, coord.x)
             GEOSCoordSeq_setY_r(GeosContext, sequencePtr, index, coord.y)
         }
+    }
+
+    convenience init(_ coordinates: MadCoordinate...) {
+        self.init(coordinates)
     }
 
     init(_ coordinates: [(Double, Double)]) {

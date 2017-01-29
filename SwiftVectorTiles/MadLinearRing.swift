@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class MadLinearRing: MadGeometry {
+public class MadLinearRing: MadLineString {
 
     public func isCCW() -> Bool {
         guard let seq = coordinateSequence() else {
@@ -18,8 +18,8 @@ public class MadLinearRing: MadGeometry {
         return seq.isCCW()
     }
 
-    public func reverse() -> MadLinearRing? {
-        return nil
+    override public func reverse() -> MadLinearRing? {
+        return super.reverse() as? MadLinearRing
     }
 
     override public func transform(_ t: MadCoordinateTransform) -> MadLinearRing? {

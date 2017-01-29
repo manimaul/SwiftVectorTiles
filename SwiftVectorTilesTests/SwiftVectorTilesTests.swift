@@ -37,11 +37,7 @@ class SwiftVectorTilesTests: XCTestCase {
     }
 
     func testTransformPolygon() {
-        let wkt = "POLYGON ((0.0000000000000000 0.0000000000000000, " +
-                "4096.0000000000000000 0.0000000000000000, " +
-                "4096.0000000000000000 4096.0000000000000000, " +
-                "0.0000000000000000 4096.0000000000000000, " +
-                "0.0000000000000000 0.0000000000000000))"
+        let wkt = "POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))"
         let g = MadGeometryFactory.geometryFromWellKnownText(wkt) as! MadPolygon
         let tg = g.transform { c in
             return MadCoordinate(x: c.x * 2, y: c.y * 2)
@@ -56,8 +52,14 @@ class SwiftVectorTilesTests: XCTestCase {
     }
     
     func testTransformGeometryCollection() {
-        let multiGeom = MadGeometryFactory.geometryFromWellKnownText("MULTIPOLYGON ( ((0 0, 4096 0, 4096 4096, 0 4096, 0 0)) , (((0 0, 2048 0, 2048 2048, 0 2048, 0 0)) )")!
-        XCTAssertNotNil(multiGeom)
+        guard let multiGeom = MadGeometryFactory.geometryFromWellKnownText("MULTIPOLYGON ( " +
+                "((0 0, 4096 0, 4096 4096, 0 4096, 0 0)) " +
+                ", (" +
+                "((0 0, 2048 0, 2048 2048, 0 2048, 0 0)) " +
+                ")") as? MadMultiPolygon else {
+            XCTFail("")
+            return
+        }
         guard let gct = multiGeom.transform({ coord in
             MadCoordinate(x: coord.x * 2, y: coord.y * 2)
         }) as? MadMultiGeometry else {
@@ -72,17 +74,22 @@ class SwiftVectorTilesTests: XCTestCase {
         XCTAssertEqual("POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))", gt2.wellKnownText())
     }
     
-//    func testEncodeMultiPolygon() {
-//        let p1 = MadGeometryFactory.geometry(withWellKnownText: "POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))") as! Polygon
-//        let p2 = MadGeometryFactory.geometry(withWellKnownText: "POLYGON ((0 0, 2048 0, 2048 2048, 0 2048, 0 0))") as! Polygon
-//        let mp = MultiPolygon(geometries: [p1, p2])!
-//        
-//        let encoder = VectorTileEncoder()
-//        encoder.addFeature(layerName: "land", attributes: nil, geometry: mp)
-//        let data = encoder.encode()
-//        
-//        XCTAssertNotNil(data)
-//    }
+    func testEncodeMultiPolygon() {
+        guard let multiGeom = MadGeometryFactory.geometryFromWellKnownText("MULTIPOLYGON ( " +
+                "((0 0, 4096 0, 4096 4096, 0 4096, 0 0)) " +
+                ", (" +
+                "((0 0, 2048 0, 2048 2048, 0 2048, 0 0)) " +
+                ")") as? MadMultiPolygon else {
+            XCTFail("")
+            return
+        }
+
+        let encoder = VectorTileEncoder()
+        encoder.addFeature(layerName: "land", attributes: nil, geometry: multiGeom)
+        let data = encoder.encode()
+
+        XCTAssertNotNil(data)
+    }
 
     func testWKTPolygon() {
         // initialize an encoder
