@@ -18,15 +18,21 @@ internal struct GeosGeometryPointer {
 }
 
 public class MadGeometryFactory {
+
+    fileprivate static func typeFromPtr(ptr: OpaquePointer?) -> MadGeometryType {
+        if let ptr = ptr {
+            let geometryType = GEOSGeomTypeId_r(GeosContext, ptr)
+            if let type = MadGeometryType(rawValue: Int(geometryType)) {
+                return type
+            }
+        }
+        return .unknown
+    }
     
     fileprivate static func madGeometry(geometryPtr: OpaquePointer?) -> MadGeometry? {
-        let geometryType = GEOSGeomTypeId_r(GeosContext, geometryPtr)
-        guard let possibleType = MadGeometryType(rawValue: Int(geometryType)) else {
-            return nil
-        }
         if let geometryPtr = geometryPtr {
             let ggp = GeosGeometryPointer(ptr: geometryPtr, owner: nil)
-            switch possibleType {
+            switch typeFromPtr(ptr: geometryPtr) {
             case .point:
                 return MadPoint(ggp)
             case .lineString:
@@ -125,16 +131,13 @@ public class MadGeometry {
     }
     
     public func geometryType() -> MadGeometryType {
-        return .unknown
+        return MadGeometryFactory.typeFromPtr(ptr: geometryPtr.ptr)
     }
     
     public func coordinateSequence() -> MadCoordinateSequence? {
         guard let seq = GEOSGeom_getCoordSeq_r(GeosContext, geometryPtr.ptr) else {
             return nil
         }
-//        guard let seqClone = GEOSCoordSeq_clone_r(GeosContext, seq) else {
-//            return nil
-//        }
         return MadCoordinateSequence(seq)
     }
 
@@ -146,7 +149,7 @@ public class MadGeometry {
         return [MadCoordinate](seq)
     }
     
-    public func transform(_ t: MadCoordinateTransform) -> MadGeometry? {
+    public func transform(_ t: MadCoordinateTransform) -> Self? {
         fatalError("abstract")
     }
     

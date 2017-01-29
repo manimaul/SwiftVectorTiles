@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2672C0AC49721D84B6CCD050 /* MadMultiGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C0BA08C4FB9EB70F99A7 /* MadMultiGeometry.swift */; };
+		2672C69489F5EB9931C12470 /* MadGeometryTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C282A752B4E792DECC72 /* MadGeometryTypeTests.swift */; };
 		2672C6CCD843D30358F63091 /* MadMultiLineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672CAAFBC50883CDDE8D83B /* MadMultiLineString.swift */; };
 		2672CBEF0CAB4F8EBFDF3F37 /* MadLineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C51262B05C72BC7A5366 /* MadLineString.swift */; };
 		2672CC2D5AFD33C1D33CFAB0 /* MadMultiPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C987E5E29DD9A7140641 /* MadMultiPolygon.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		26244477B99D2FADEAF7697B /* Pods-SwiftVectorTiles.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftVectorTiles.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftVectorTiles/Pods-SwiftVectorTiles.release.xcconfig"; sourceTree = "<group>"; };
 		2672C0BA08C4FB9EB70F99A7 /* MadMultiGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadMultiGeometry.swift; sourceTree = "<group>"; };
+		2672C282A752B4E792DECC72 /* MadGeometryTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadGeometryTypeTests.swift; sourceTree = "<group>"; };
 		2672C51262B05C72BC7A5366 /* MadLineString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadLineString.swift; sourceTree = "<group>"; };
 		2672C987E5E29DD9A7140641 /* MadMultiPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadMultiPolygon.swift; sourceTree = "<group>"; };
 		2672CA96A50E2CD7BFD803DC /* MadLinearRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadLinearRing.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				D036DA0A1E2E74EE0049137A /* SwiftVectorTilesTests.swift */,
 				D03E92A01E37111E002771B9 /* MadGeometryTests.swift */,
 				D036DA0C1E2E74EE0049137A /* Info.plist */,
+				2672C282A752B4E792DECC72 /* MadGeometryTypeTests.swift */,
 			);
 			path = SwiftVectorTilesTests;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 			files = (
 				D03E92A11E37111E002771B9 /* MadGeometryTests.swift in Sources */,
 				D036DA0B1E2E74EE0049137A /* SwiftVectorTilesTests.swift in Sources */,
+				2672C69489F5EB9931C12470 /* MadGeometryTypeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
