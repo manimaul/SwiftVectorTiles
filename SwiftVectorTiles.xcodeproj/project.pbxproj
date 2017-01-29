@@ -7,18 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2672C114EDD53452FFEFEDBA /* MADMultiPolygon.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672C11573CEF467FB6BF346 /* MADMultiPolygon.mm */; };
-		2672C19C634A6FB549406214 /* MADPoint.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672C88D8AF7399A891F2958 /* MADPoint.mm */; };
-		2672C1ED281A95495A471D24 /* MADMultiPoint.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672CF13AC30548DE41257CC /* MADMultiPoint.mm */; };
-		2672C2E0071ABE543AF2F466 /* MADLinearRing.hh in Headers */ = {isa = PBXBuildFile; fileRef = 2672CA2F05A3878ED5414130 /* MADLinearRing.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		2672C3F2BB61754259428665 /* MADMultiLineString.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672CEEE7E4B51D126293734 /* MADMultiLineString.mm */; };
-		2672C60AB7F571227BB9CD6D /* MADMultiPolygon.hh in Headers */ = {isa = PBXBuildFile; fileRef = 2672CA324F8EB0BB75E0F470 /* MADMultiPolygon.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		2672C7BDE5594F20D1A27822 /* MADLineString.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672CAA8094F0DAFABC8ABA5 /* MADLineString.mm */; };
-		2672CD950114BB3E5A01EA5D /* MADPoint.hh in Headers */ = {isa = PBXBuildFile; fileRef = 2672CE27DE1D50D2EA3B9658 /* MADPoint.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		2672CE1CFD23E76642AF44D6 /* MADMultiLineString.hh in Headers */ = {isa = PBXBuildFile; fileRef = 2672CCF46612B484BE53104A /* MADMultiLineString.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		2672CE373B451D99FABE0F2C /* MADLinearRing.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2672C779880F36D8066CECC7 /* MADLinearRing.mm */; };
-		2672CEA8531FD611D3234C90 /* MADMultiPoint.hh in Headers */ = {isa = PBXBuildFile; fileRef = 2672C4530387B8485B65B5E2 /* MADMultiPoint.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		2672CF63B6D8729DB48B022E /* MADLineString.hh in Headers */ = {isa = PBXBuildFile; fileRef = 2672C5B13EB9811EE787EB7E /* MADLineString.hh */; settings = {ATTRIBUTES = (Public, ); }; };
+		2672C0AC49721D84B6CCD050 /* MadMultiGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C0BA08C4FB9EB70F99A7 /* MadMultiGeometry.swift */; };
+		2672C6CCD843D30358F63091 /* MadMultiLineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672CAAFBC50883CDDE8D83B /* MadMultiLineString.swift */; };
+		2672CBEF0CAB4F8EBFDF3F37 /* MadLineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C51262B05C72BC7A5366 /* MadLineString.swift */; };
+		2672CC2D5AFD33C1D33CFAB0 /* MadMultiPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C987E5E29DD9A7140641 /* MadMultiPolygon.swift */; };
+		2672CFB28C0E0CB4871C3CE3 /* MadLinearRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672CA96A50E2CD7BFD803DC /* MadLinearRing.swift */; };
 		893C02B408652E42F6F579AF /* Pods_SwiftVectorTiles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89AA4BF2E5A4FFAE2FF08D56 /* Pods_SwiftVectorTiles.framework */; };
 		D036DA061E2E74EE0049137A /* SwiftVectorTiles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D036D9FC1E2E74EE0049137A /* SwiftVectorTiles.framework */; };
 		D036DA0B1E2E74EE0049137A /* SwiftVectorTilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D036DA0A1E2E74EE0049137A /* SwiftVectorTilesTests.swift */; };
@@ -27,20 +20,14 @@
 		D036DA191E2E75F00049137A /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = D036DA171E2E75F00049137A /* Command.swift */; };
 		D036DA1C1E2E778B0049137A /* VectorTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D036DA1A1E2E778B0049137A /* VectorTile.swift */; };
 		D036DA1D1E2E778B0049137A /* VectorTileEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D036DA1B1E2E778B0049137A /* VectorTileEncoder.swift */; };
-		D036DA1F1E2E7B1B0049137A /* MADGeometry.mm in Sources */ = {isa = PBXBuildFile; fileRef = D036DA1E1E2E7B1B0049137A /* MADGeometry.mm */; };
-		D036DA211E2E7B370049137A /* MADGeometry.hh in Headers */ = {isa = PBXBuildFile; fileRef = D036DA201E2E7B370049137A /* MADGeometry.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		D036DA241E2E7B660049137A /* MADPolygon.hh in Headers */ = {isa = PBXBuildFile; fileRef = D036DA221E2E7B660049137A /* MADPolygon.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		D036DA251E2E7B660049137A /* MADPolygon.mm in Sources */ = {isa = PBXBuildFile; fileRef = D036DA231E2E7B660049137A /* MADPolygon.mm */; };
-		D05D582F1E2E8A2500A99CFC /* MADCollections.h in Headers */ = {isa = PBXBuildFile; fileRef = D05D582E1E2E8A2500A99CFC /* MADCollections.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D05D58321E2E8CE400A99CFC /* MADCoordinate.hh in Headers */ = {isa = PBXBuildFile; fileRef = D05D58301E2E8CE400A99CFC /* MADCoordinate.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		D05D58331E2E8CE400A99CFC /* MADCoordinate.mm in Sources */ = {isa = PBXBuildFile; fileRef = D05D58311E2E8CE400A99CFC /* MADCoordinate.mm */; };
-		D05D58351E2EDD4800A99CFC /* MADGeometry+Private.hh in Headers */ = {isa = PBXBuildFile; fileRef = D05D58341E2EDD4800A99CFC /* MADGeometry+Private.hh */; };
-		D06164EA1E2EE4E000265ACE /* MADGeometryType.h in Headers */ = {isa = PBXBuildFile; fileRef = D06164E91E2EE4E000265ACE /* MADGeometryType.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D06164ED1E2FBAE000265ACE /* MADGeometryFactory.hh in Headers */ = {isa = PBXBuildFile; fileRef = D06164EB1E2FBAE000265ACE /* MADGeometryFactory.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		D06164EE1E2FBAE000265ACE /* MADGeometryFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = D06164EC1E2FBAE000265ACE /* MADGeometryFactory.mm */; };
-		D0E2B09A1E33B62B00E01CB0 /* MADCoordinateSequence.hh in Headers */ = {isa = PBXBuildFile; fileRef = D0E2B0981E33B62B00E01CB0 /* MADCoordinateSequence.hh */; settings = {ATTRIBUTES = (Public, ); }; };
-		D0E2B09B1E33B62B00E01CB0 /* MADCoordinateSequence.mm in Sources */ = {isa = PBXBuildFile; fileRef = D0E2B0991E33B62B00E01CB0 /* MADCoordinateSequence.mm */; };
-		D0E2B09D1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2B09C1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift */; };
+		D03E929F1E36F4AB002771B9 /* MadPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E929E1E36F4AB002771B9 /* MadPolygon.swift */; };
+		D03E92A11E37111E002771B9 /* MadGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E92A01E37111E002771B9 /* MadGeometryTests.swift */; };
+		D03E92A31E37A399002771B9 /* MadCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E92A21E37A399002771B9 /* MadCoordinate.swift */; };
+		D03E92A51E37A7EF002771B9 /* MadCoordinateSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E92A41E37A7EF002771B9 /* MadCoordinateSequence.swift */; };
+		D03E92A71E383FF0002771B9 /* MadPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E92A61E383FF0002771B9 /* MadPoint.swift */; };
+		D03E92A91E38FAAC002771B9 /* MadMultiPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E92A81E38FAAC002771B9 /* MadMultiPoint.swift */; };
+		D0E2B09F1E350C3600E01CB0 /* MadGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2B09E1E350C3600E01CB0 /* MadGeometry.swift */; };
+		D0E2B0A31E35306200E01CB0 /* MadGeometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E2B0A21E35306200E01CB0 /* MadGeometryType.swift */; };
 		EFDE0EC22DA9E5483D7EEB63 /* Pods_SwiftVectorTilesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4359B53C1EC439531FFFAD2 /* Pods_SwiftVectorTilesTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,18 +43,11 @@
 
 /* Begin PBXFileReference section */
 		26244477B99D2FADEAF7697B /* Pods-SwiftVectorTiles.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftVectorTiles.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftVectorTiles/Pods-SwiftVectorTiles.release.xcconfig"; sourceTree = "<group>"; };
-		2672C11573CEF467FB6BF346 /* MADMultiPolygon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADMultiPolygon.mm; sourceTree = "<group>"; };
-		2672C4530387B8485B65B5E2 /* MADMultiPoint.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADMultiPoint.hh; sourceTree = "<group>"; };
-		2672C5B13EB9811EE787EB7E /* MADLineString.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADLineString.hh; sourceTree = "<group>"; };
-		2672C779880F36D8066CECC7 /* MADLinearRing.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADLinearRing.mm; sourceTree = "<group>"; };
-		2672C88D8AF7399A891F2958 /* MADPoint.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADPoint.mm; sourceTree = "<group>"; };
-		2672CA2F05A3878ED5414130 /* MADLinearRing.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADLinearRing.hh; sourceTree = "<group>"; };
-		2672CA324F8EB0BB75E0F470 /* MADMultiPolygon.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADMultiPolygon.hh; sourceTree = "<group>"; };
-		2672CAA8094F0DAFABC8ABA5 /* MADLineString.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADLineString.mm; sourceTree = "<group>"; };
-		2672CCF46612B484BE53104A /* MADMultiLineString.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADMultiLineString.hh; sourceTree = "<group>"; };
-		2672CE27DE1D50D2EA3B9658 /* MADPoint.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADPoint.hh; sourceTree = "<group>"; };
-		2672CEEE7E4B51D126293734 /* MADMultiLineString.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADMultiLineString.mm; sourceTree = "<group>"; };
-		2672CF13AC30548DE41257CC /* MADMultiPoint.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADMultiPoint.mm; sourceTree = "<group>"; };
+		2672C0BA08C4FB9EB70F99A7 /* MadMultiGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadMultiGeometry.swift; sourceTree = "<group>"; };
+		2672C51262B05C72BC7A5366 /* MadLineString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadLineString.swift; sourceTree = "<group>"; };
+		2672C987E5E29DD9A7140641 /* MadMultiPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadMultiPolygon.swift; sourceTree = "<group>"; };
+		2672CA96A50E2CD7BFD803DC /* MadLinearRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadLinearRing.swift; sourceTree = "<group>"; };
+		2672CAAFBC50883CDDE8D83B /* MadMultiLineString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadMultiLineString.swift; sourceTree = "<group>"; };
 		4560D9939ECEEB09B647EDC7 /* Pods-SwiftVectorTiles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftVectorTiles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftVectorTiles/Pods-SwiftVectorTiles.debug.xcconfig"; sourceTree = "<group>"; };
 		5C68D2958B4C3DA142177BF9 /* Pods-SwiftVectorTilesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftVectorTilesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftVectorTilesTests/Pods-SwiftVectorTilesTests.release.xcconfig"; sourceTree = "<group>"; };
 		89AA4BF2E5A4FFAE2FF08D56 /* Pods_SwiftVectorTiles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftVectorTiles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,20 +61,14 @@
 		D036DA171E2E75F00049137A /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		D036DA1A1E2E778B0049137A /* VectorTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTile.swift; sourceTree = "<group>"; };
 		D036DA1B1E2E778B0049137A /* VectorTileEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTileEncoder.swift; sourceTree = "<group>"; };
-		D036DA1E1E2E7B1B0049137A /* MADGeometry.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADGeometry.mm; sourceTree = "<group>"; };
-		D036DA201E2E7B370049137A /* MADGeometry.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADGeometry.hh; sourceTree = "<group>"; };
-		D036DA221E2E7B660049137A /* MADPolygon.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADPolygon.hh; sourceTree = "<group>"; };
-		D036DA231E2E7B660049137A /* MADPolygon.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADPolygon.mm; sourceTree = "<group>"; };
-		D05D582E1E2E8A2500A99CFC /* MADCollections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADCollections.h; sourceTree = "<group>"; };
-		D05D58301E2E8CE400A99CFC /* MADCoordinate.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADCoordinate.hh; sourceTree = "<group>"; };
-		D05D58311E2E8CE400A99CFC /* MADCoordinate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADCoordinate.mm; sourceTree = "<group>"; };
-		D05D58341E2EDD4800A99CFC /* MADGeometry+Private.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = "MADGeometry+Private.hh"; sourceTree = "<group>"; };
-		D06164E91E2EE4E000265ACE /* MADGeometryType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADGeometryType.h; sourceTree = "<group>"; };
-		D06164EB1E2FBAE000265ACE /* MADGeometryFactory.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADGeometryFactory.hh; sourceTree = "<group>"; };
-		D06164EC1E2FBAE000265ACE /* MADGeometryFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADGeometryFactory.mm; sourceTree = "<group>"; };
-		D0E2B0981E33B62B00E01CB0 /* MADCoordinateSequence.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MADCoordinateSequence.hh; sourceTree = "<group>"; };
-		D0E2B0991E33B62B00E01CB0 /* MADCoordinateSequence.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MADCoordinateSequence.mm; sourceTree = "<group>"; };
-		D0E2B09C1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MADCoordinateSequence+Sequence.swift"; sourceTree = "<group>"; };
+		D03E929E1E36F4AB002771B9 /* MadPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadPolygon.swift; sourceTree = "<group>"; };
+		D03E92A01E37111E002771B9 /* MadGeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadGeometryTests.swift; sourceTree = "<group>"; };
+		D03E92A21E37A399002771B9 /* MadCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadCoordinate.swift; sourceTree = "<group>"; };
+		D03E92A41E37A7EF002771B9 /* MadCoordinateSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadCoordinateSequence.swift; sourceTree = "<group>"; };
+		D03E92A61E383FF0002771B9 /* MadPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadPoint.swift; sourceTree = "<group>"; };
+		D03E92A81E38FAAC002771B9 /* MadMultiPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadMultiPoint.swift; sourceTree = "<group>"; };
+		D0E2B09E1E350C3600E01CB0 /* MadGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadGeometry.swift; sourceTree = "<group>"; };
+		D0E2B0A21E35306200E01CB0 /* MadGeometryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadGeometryType.swift; sourceTree = "<group>"; };
 		E4359B53C1EC439531FFFAD2 /* Pods_SwiftVectorTilesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftVectorTilesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E476AEF0C8A6422954277502 /* Pods-SwiftVectorTilesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftVectorTilesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftVectorTilesTests/Pods-SwiftVectorTilesTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,38 +117,14 @@
 		D036D9FE1E2E74EE0049137A /* SwiftVectorTiles */ = {
 			isa = PBXGroup;
 			children = (
+				D0E2B0A11E350D1B00E01CB0 /* geometry_cpp */,
+				D0E2B0A01E350D0200E01CB0 /* geometry */,
 				D036DA1A1E2E778B0049137A /* VectorTile.swift */,
 				D036DA1B1E2E778B0049137A /* VectorTileEncoder.swift */,
 				D036DA161E2E75F00049137A /* Attribute.swift */,
 				D036DA171E2E75F00049137A /* Command.swift */,
 				D036D9FF1E2E74EE0049137A /* SwiftVectorTiles.h */,
 				D036DA001E2E74EE0049137A /* Info.plist */,
-				D06164E91E2EE4E000265ACE /* MADGeometryType.h */,
-				D06164EB1E2FBAE000265ACE /* MADGeometryFactory.hh */,
-				D06164EC1E2FBAE000265ACE /* MADGeometryFactory.mm */,
-				D036DA1E1E2E7B1B0049137A /* MADGeometry.mm */,
-				D036DA201E2E7B370049137A /* MADGeometry.hh */,
-				D05D58341E2EDD4800A99CFC /* MADGeometry+Private.hh */,
-				2672CE27DE1D50D2EA3B9658 /* MADPoint.hh */,
-				2672C88D8AF7399A891F2958 /* MADPoint.mm */,
-				2672C4530387B8485B65B5E2 /* MADMultiPoint.hh */,
-				2672CF13AC30548DE41257CC /* MADMultiPoint.mm */,
-				2672C5B13EB9811EE787EB7E /* MADLineString.hh */,
-				2672CAA8094F0DAFABC8ABA5 /* MADLineString.mm */,
-				2672CCF46612B484BE53104A /* MADMultiLineString.hh */,
-				2672CEEE7E4B51D126293734 /* MADMultiLineString.mm */,
-				2672CA2F05A3878ED5414130 /* MADLinearRing.hh */,
-				2672C779880F36D8066CECC7 /* MADLinearRing.mm */,
-				D036DA221E2E7B660049137A /* MADPolygon.hh */,
-				D036DA231E2E7B660049137A /* MADPolygon.mm */,
-				2672CA324F8EB0BB75E0F470 /* MADMultiPolygon.hh */,
-				2672C11573CEF467FB6BF346 /* MADMultiPolygon.mm */,
-				D05D582E1E2E8A2500A99CFC /* MADCollections.h */,
-				D05D58301E2E8CE400A99CFC /* MADCoordinate.hh */,
-				D05D58311E2E8CE400A99CFC /* MADCoordinate.mm */,
-				D0E2B0981E33B62B00E01CB0 /* MADCoordinateSequence.hh */,
-				D0E2B0991E33B62B00E01CB0 /* MADCoordinateSequence.mm */,
-				D0E2B09C1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift */,
 			);
 			path = SwiftVectorTiles;
 			sourceTree = "<group>";
@@ -183,9 +133,36 @@
 			isa = PBXGroup;
 			children = (
 				D036DA0A1E2E74EE0049137A /* SwiftVectorTilesTests.swift */,
+				D03E92A01E37111E002771B9 /* MadGeometryTests.swift */,
 				D036DA0C1E2E74EE0049137A /* Info.plist */,
 			);
 			path = SwiftVectorTilesTests;
+			sourceTree = "<group>";
+		};
+		D0E2B0A01E350D0200E01CB0 /* geometry */ = {
+			isa = PBXGroup;
+			children = (
+				D0E2B09E1E350C3600E01CB0 /* MadGeometry.swift */,
+				D0E2B0A21E35306200E01CB0 /* MadGeometryType.swift */,
+				D03E929E1E36F4AB002771B9 /* MadPolygon.swift */,
+				D03E92A21E37A399002771B9 /* MadCoordinate.swift */,
+				D03E92A41E37A7EF002771B9 /* MadCoordinateSequence.swift */,
+				D03E92A61E383FF0002771B9 /* MadPoint.swift */,
+				D03E92A81E38FAAC002771B9 /* MadMultiPoint.swift */,
+				2672CA96A50E2CD7BFD803DC /* MadLinearRing.swift */,
+				2672CAAFBC50883CDDE8D83B /* MadMultiLineString.swift */,
+				2672C51262B05C72BC7A5366 /* MadLineString.swift */,
+				2672C987E5E29DD9A7140641 /* MadMultiPolygon.swift */,
+				2672C0BA08C4FB9EB70F99A7 /* MadMultiGeometry.swift */,
+			);
+			name = geometry;
+			sourceTree = "<group>";
+		};
+		D0E2B0A11E350D1B00E01CB0 /* geometry_cpp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = geometry_cpp;
 			sourceTree = "<group>";
 		};
 		D83D56851BCC745FDADAC40F /* Frameworks */ = {
@@ -215,21 +192,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D036DA241E2E7B660049137A /* MADPolygon.hh in Headers */,
-				D036DA211E2E7B370049137A /* MADGeometry.hh in Headers */,
 				D036DA0D1E2E74EE0049137A /* SwiftVectorTiles.h in Headers */,
-				2672CD950114BB3E5A01EA5D /* MADPoint.hh in Headers */,
-				2672CEA8531FD611D3234C90 /* MADMultiPoint.hh in Headers */,
-				2672CF63B6D8729DB48B022E /* MADLineString.hh in Headers */,
-				2672CE1CFD23E76642AF44D6 /* MADMultiLineString.hh in Headers */,
-				2672C2E0071ABE543AF2F466 /* MADLinearRing.hh in Headers */,
-				D05D58321E2E8CE400A99CFC /* MADCoordinate.hh in Headers */,
-				D05D582F1E2E8A2500A99CFC /* MADCollections.h in Headers */,
-				2672C60AB7F571227BB9CD6D /* MADMultiPolygon.hh in Headers */,
-				D0E2B09A1E33B62B00E01CB0 /* MADCoordinateSequence.hh in Headers */,
-				D06164EA1E2EE4E000265ACE /* MADGeometryType.h in Headers */,
-				D06164ED1E2FBAE000265ACE /* MADGeometryFactory.hh in Headers */,
-				D05D58351E2EDD4800A99CFC /* MADGeometry+Private.hh in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,21 +382,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				D036DA181E2E75F00049137A /* Attribute.swift in Sources */,
-				D036DA251E2E7B660049137A /* MADPolygon.mm in Sources */,
 				D036DA1C1E2E778B0049137A /* VectorTile.swift in Sources */,
+				D03E92A71E383FF0002771B9 /* MadPoint.swift in Sources */,
 				D036DA191E2E75F00049137A /* Command.swift in Sources */,
-				D0E2B09B1E33B62B00E01CB0 /* MADCoordinateSequence.mm in Sources */,
+				D03E92A91E38FAAC002771B9 /* MadMultiPoint.swift in Sources */,
+				D0E2B09F1E350C3600E01CB0 /* MadGeometry.swift in Sources */,
 				D036DA1D1E2E778B0049137A /* VectorTileEncoder.swift in Sources */,
-				D0E2B09D1E346A6B00E01CB0 /* MADCoordinateSequence+Sequence.swift in Sources */,
-				D036DA1F1E2E7B1B0049137A /* MADGeometry.mm in Sources */,
-				2672C19C634A6FB549406214 /* MADPoint.mm in Sources */,
-				2672C1ED281A95495A471D24 /* MADMultiPoint.mm in Sources */,
-				D05D58331E2E8CE400A99CFC /* MADCoordinate.mm in Sources */,
-				D06164EE1E2FBAE000265ACE /* MADGeometryFactory.mm in Sources */,
-				2672C7BDE5594F20D1A27822 /* MADLineString.mm in Sources */,
-				2672C3F2BB61754259428665 /* MADMultiLineString.mm in Sources */,
-				2672CE373B451D99FABE0F2C /* MADLinearRing.mm in Sources */,
-				2672C114EDD53452FFEFEDBA /* MADMultiPolygon.mm in Sources */,
+				D03E92A31E37A399002771B9 /* MadCoordinate.swift in Sources */,
+				D03E92A51E37A7EF002771B9 /* MadCoordinateSequence.swift in Sources */,
+				D0E2B0A31E35306200E01CB0 /* MadGeometryType.swift in Sources */,
+				D03E929F1E36F4AB002771B9 /* MadPolygon.swift in Sources */,
+				2672CFB28C0E0CB4871C3CE3 /* MadLinearRing.swift in Sources */,
+				2672C6CCD843D30358F63091 /* MadMultiLineString.swift in Sources */,
+				2672CBEF0CAB4F8EBFDF3F37 /* MadLineString.swift in Sources */,
+				2672CC2D5AFD33C1D33CFAB0 /* MadMultiPolygon.swift in Sources */,
+				2672C0AC49721D84B6CCD050 /* MadMultiGeometry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03E92A11E37111E002771B9 /* MadGeometryTests.swift in Sources */,
 				D036DA0B1E2E74EE0049137A /* SwiftVectorTilesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

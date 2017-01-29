@@ -9,10 +9,10 @@
 import Foundation
 
 private class Feature {
-    let _geometry: MADGeometry
+    let _geometry: MadGeometry
     let _tags: [Int]
     
-    init(geometry: MADGeometry, tags: [Int]) {
+    init(geometry: MadGeometry, tags: [Int]) {
         self._geometry = geometry
         self._tags = tags
     }
@@ -57,11 +57,12 @@ private class Layer {
     }
 }
 
-private func createTileEnvelope(buffer b: Int, size s: Int) -> MADPolygon {
+private func createTileEnvelope(buffer b: Int, size s: Int) -> MadPolygon {
     let start = (Double) (0 - b)
     let end = (Double) (s + b)
     let wkt = "POLYGON (( \(start) \(end), \(end) \(end), \(end) \(start), \(start) \(start), \(start) \(end) ))"
-    return MADGeometryFactory.geometry(withWellKnownText: wkt) as! MADPolygon
+    let geometry = MadGeometryFactory.geometryFromWellKnownText(wkt)
+    return geometry as! MadPolygon
 }
 
 private func toIntArray(intArray arr: [Int]) -> [UInt32] {
@@ -72,16 +73,16 @@ private func toIntArray(intArray arr: [Int]) -> [UInt32] {
     return ints
 }
 
-private func toGeomType(geometry g: MADGeometry) -> VectorTile.Tile.GeomType {
-    if (g is MADPoint) || (g is MADMultiPoint) {
+private func toGeomType(geometry g: MadGeometry) -> VectorTile.Tile.GeomType {
+    if (g is MadPoint) || (g is MadMultiPoint) {
         return .point
     }
 
-    if (g is MADLineString) || (g is MADMultiLineString) || (g is MADLinearRing) {
+    if (g is MadLineString) || (g is MadMultiLineString) || (g is MadLinearRing) {
         return .linestring
     }
 
-    if (g is MADPolygon) || (g is MADMultiPolygon) {
+    if (g is MadPolygon) || (g is MadMultiPolygon) {
         return .polygon
     }
 
@@ -106,7 +107,7 @@ public class VectorTileEncoder {
     private var _layerKeysOrdered = [String]()
 
     let _extent: Int
-    let _clipGeometry: MADPolygon
+    let _clipGeometry: MadPolygon
     let _autoScale: Bool
     var _x = 0
     var _y = 0
@@ -210,7 +211,7 @@ public class VectorTileEncoder {
     }
     
     public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry wkb: Data) {
-        guard let geo = MADGeometryFactory.geometry(withWellKnownBinary: wkb) else {
+        guard let geo = MadGeometryFactory.geometryFromWellKnownBinary(wkb) else {
             NSLog("could not create geometry")
             return
         }
@@ -218,7 +219,7 @@ public class VectorTileEncoder {
     }
 
     public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry wkt: String) {
-        guard let geo = MADGeometryFactory.geometry(withWellKnownText: wkt) else {
+        guard let geo = MadGeometryFactory.geometryFromWellKnownText(wkt) else {
             NSLog("could not create geometry")
             return
         }
@@ -234,31 +235,31 @@ public class VectorTileEncoder {
     /// - parameter layerName:
     /// - parameter attributes:
     /// - parameter geometry:
-    public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry geom: MADGeometry?) {
+    public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry geom: MadGeometry?) {
         guard let geo = geom else {
             return
         }
 
-        if let mg = geo as? MADMultiGeometry {
+        if let mg = geo as? MadMultiGeometry {
             splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mg)
             return
         }
 
         // skip small Polygon/LineString.
-        if let polygon = geo as? MADPolygon {
+        if let polygon = geo as? MadPolygon {
             if (polygon.area() < 1.0) {
                 return
             }
         }
 
-        if let line = geo as? MADLineString {
+        if let line = geo as? MadLineString {
             if (line.length() < 1.0) {
                 return
             }
         }
 
         // clip geometry
-        if let point = geo as? MADPoint {
+        if let point = geo as? MadPoint {
             if !(clipCovers(geometry: point)) {
                 return
             }
@@ -266,7 +267,7 @@ public class VectorTileEncoder {
             if let clippedGeo = createdClippedGeometry(geometry: geo) {
 
                 // if clipping result in MultiPolygon, then split once more
-                if let collection = clippedGeo as? MADMultiGeometry {
+                if let collection = clippedGeo as? MadMultiGeometry {
                     splitAndAddFeatures(layerName: name, attributes: attrs, geometry: collection)
                     return
                 }
@@ -298,7 +299,7 @@ public class VectorTileEncoder {
 
     }
 
-    private func commands(coordinates cs: [MADCoordinate], closePathAtEnd closedEnd: Bool, isMultiPoint mp: Bool) -> [UInt32] {
+    private func commands(coordinates cs: [MadCoordinate], closePathAtEnd closedEnd: Bool, isMultiPoint mp: Bool) -> [UInt32] {
         let count = Int(cs.count)
 
         if count == 0 {
@@ -366,23 +367,23 @@ public class VectorTileEncoder {
         return toIntArray(intArray: r)
     }
 
-    private func commands(coordinates cs: [MADCoordinate], closePathAtEnd closedEnd: Bool) -> [UInt32] {
+    private func commands(coordinates cs: [MadCoordinate], closePathAtEnd closedEnd: Bool) -> [UInt32] {
         return commands(coordinates: cs, closePathAtEnd: closedEnd, isMultiPoint: false)
     }
 
-    private func commands(geometry geo: MADGeometry) -> [UInt32] {
+    private func commands(geometry geo: MadGeometry) -> [UInt32] {
 
         _x = 0
         _y = 0
 
-        if let polygon = geo as? MADPolygon {
+        if let polygon = geo as? MadPolygon {
             var result = [UInt32]()
 
             // According to the vector tile specification, the exterior ring of a polygon
             // must be in clockwise order, while the interior ring in counter-clockwise order.
             // In the tile coordinate system, Y axis is positive down.
             //
-            // However, in geMADaphic coordinate system, Y axis is positive up.
+            // However, in geMadaphic coordinate system, Y axis is positive up.
             // Therefore, we must reverse the coordinates.
             // So, the code below will make sure that exterior ring is in counter-clockwise order
             // and interior ring in clockwise order.
@@ -393,7 +394,7 @@ public class VectorTileEncoder {
             result.append(contentsOf: commands(coordinates: exteriorRing.coordinates(), closePathAtEnd: true))
 
             for interiorRing in polygon.getInteriorRings() {
-                var ir :MADLinearRing? = interiorRing
+                var ir :MadLinearRing? = interiorRing
                 if !(interiorRing.isCCW()) {
                     ir = interiorRing.reverse()
                 }
@@ -403,33 +404,33 @@ public class VectorTileEncoder {
             return result
         }
 
-        if let mls = geo as? MADMultiLineString {
+        if let mls = geo as? MadMultiLineString {
             var result = [UInt32]()
-            for iGeo in mls.geometries() {
+            for iGeo in mls {
                 result.append(contentsOf: commands(coordinates: iGeo.coordinates(), closePathAtEnd: false))
             }
             return result
         }
-        let isMp = geo is MADMultiPoint
+        let isMp = geo is MadMultiPoint
         return commands(coordinates: geo.coordinates(), closePathAtEnd: shouldClosePath(geometry: geo), isMultiPoint: isMp)
     }
 
-    private func shouldClosePath(geometry: MADGeometry) -> Bool {
-        return (geometry is MADPolygon) || (geometry is MADLinearRing)
+    private func shouldClosePath(geometry: MadGeometry) -> Bool {
+        return (geometry is MadPolygon) || (geometry is MadLinearRing)
     }
 
-    private func createdClippedGeometry(geometry g: MADGeometry?) -> MADGeometry? {
+    private func createdClippedGeometry(geometry g: MadGeometry?) -> MadGeometry? {
         guard let geo = g else {
             return nil
         }
 
-        let intersect = _clipGeometry.intersection(geo)
-        if (intersect?.empty())! && geo.intersects(_clipGeometry) {
-            guard let wkt = geo.getWellKnownText() else {
+        let intersect = _clipGeometry.intersection(other: geo)
+        if (intersect?.empty())! && geo.intersects(other: _clipGeometry) {
+            guard let wkt = geo.wellKnownText() else {
                 return nil
             }
-            if let originalViaWkt = MADGeometryFactory.geometry(withWellKnownText: wkt) {
-                return _clipGeometry.intersection(originalViaWkt)
+            if let originalViaWkt = MadGeometryFactory.geometryFromWellKnownText(wkt) {
+                return _clipGeometry.intersection(other: originalViaWkt)
             } else {
                 return nil
             }
@@ -442,14 +443,14 @@ public class VectorTileEncoder {
     /// can be overridden to change clipping behavior. See also 'clipGeometry(Geometry)'.
     ///
     /// see https://github.com/ElectronicChartCentre/java-vector-tile/issues/13
-    private func clipCovers(geometry geo: MADGeometry) -> Bool {
-        return _clipGeometry.covers(geo);
+    private func clipCovers(geometry geo: MadGeometry) -> Bool {
+        return _clipGeometry.covers(other: geo);
     }
 
 
-    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: MADMultiGeometry) {
+    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: MadMultiGeometry) {
 
-        for each in geo.geometries() {
+        for each in geo {
             addFeature(layerName: name, attributes: attrs, geometry: each)
         }
     }
