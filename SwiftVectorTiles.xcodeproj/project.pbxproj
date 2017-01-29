@@ -22,7 +22,6 @@
 		D036DA1C1E2E778B0049137A /* VectorTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D036DA1A1E2E778B0049137A /* VectorTile.swift */; };
 		D036DA1D1E2E778B0049137A /* VectorTileEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D036DA1B1E2E778B0049137A /* VectorTileEncoder.swift */; };
 		D03E929F1E36F4AB002771B9 /* MadPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E929E1E36F4AB002771B9 /* MadPolygon.swift */; };
-		D03E92A11E37111E002771B9 /* MadGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E92A01E37111E002771B9 /* MadGeometryTests.swift */; };
 		D03E92A31E37A399002771B9 /* MadCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E92A21E37A399002771B9 /* MadCoordinate.swift */; };
 		D03E92A51E37A7EF002771B9 /* MadCoordinateSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E92A41E37A7EF002771B9 /* MadCoordinateSequence.swift */; };
 		D03E92A71E383FF0002771B9 /* MadPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03E92A61E383FF0002771B9 /* MadPoint.swift */; };
@@ -64,7 +63,6 @@
 		D036DA1A1E2E778B0049137A /* VectorTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTile.swift; sourceTree = "<group>"; };
 		D036DA1B1E2E778B0049137A /* VectorTileEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VectorTileEncoder.swift; sourceTree = "<group>"; };
 		D03E929E1E36F4AB002771B9 /* MadPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadPolygon.swift; sourceTree = "<group>"; };
-		D03E92A01E37111E002771B9 /* MadGeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadGeometryTests.swift; sourceTree = "<group>"; };
 		D03E92A21E37A399002771B9 /* MadCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadCoordinate.swift; sourceTree = "<group>"; };
 		D03E92A41E37A7EF002771B9 /* MadCoordinateSequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadCoordinateSequence.swift; sourceTree = "<group>"; };
 		D03E92A61E383FF0002771B9 /* MadPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadPoint.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				D036DA0A1E2E74EE0049137A /* SwiftVectorTilesTests.swift */,
-				D03E92A01E37111E002771B9 /* MadGeometryTests.swift */,
 				D036DA0C1E2E74EE0049137A /* Info.plist */,
 				2672C282A752B4E792DECC72 /* MadGeometryTypeTests.swift */,
 			);
@@ -407,7 +404,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D03E92A11E37111E002771B9 /* MadGeometryTests.swift in Sources */,
 				D036DA0B1E2E74EE0049137A /* SwiftVectorTilesTests.swift in Sources */,
 				2672C69489F5EB9931C12470 /* MadGeometryTypeTests.swift in Sources */,
 			);

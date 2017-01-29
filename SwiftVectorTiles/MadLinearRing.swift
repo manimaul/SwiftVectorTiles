@@ -19,7 +19,12 @@ public class MadLinearRing: MadLineString {
     }
 
     override public func reverse() -> MadLinearRing? {
-        return super.reverse() as? MadLinearRing
+        guard let coordinateSequence = coordinateSequence() else {
+            return nil
+        }
+        var coords = [MadCoordinate](coordinateSequence)
+        coords.reverse()
+        return MadLinearRing(coords)
     }
 
     override public func transform(_ t: MadCoordinateTransform) -> MadLinearRing? {

@@ -11,16 +11,6 @@ import XCTest
 
 class SwiftVectorTilesTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
     func testEncodePolygon() {
         let encoder = VectorTileEncoder()
         let wkt = "POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))"
@@ -50,7 +40,7 @@ class SwiftVectorTilesTests: XCTestCase {
                 "0.0000000000000000 0.0000000000000000))"
         XCTAssertEqual(expected, tg?.wellKnownText())
     }
-    
+
     func testTransformGeometryCollection() {
         guard let multiGeom = MadGeometryFactory.geometryFromWellKnownText("MULTIPOLYGON ( " +
                 "((0 0, 4096 0, 4096 4096, 0 4096, 0 0)) " +

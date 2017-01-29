@@ -63,7 +63,9 @@ public class MadPolygon: MadGeometry {
     }
     
     public func area() -> Double {
-        return 0
+        var a :Double = 0
+        GEOSArea_r(GeosContext, self.geometryPtr.ptr, &a)
+        return a
     }
     
 }
