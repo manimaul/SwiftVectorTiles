@@ -10,14 +10,32 @@ import Foundation
 
 typealias MadCoordinateTransform = (MadCoordinate) -> MadCoordinate
 
-public class MadCoordinateSequence: Sequence {
+public class MadCoordinateSequence: Sequence, Equatable {
     let sequencePtr: OpaquePointer
     public let count: Int
 
     init(_ coordinates: MadCoordinate...) {
         count = coordinates.count
         sequencePtr = GEOSCoordSeq_create_r(GeosContext, UInt32(count), 2)
-        //todo:
+        for (i, coord) in coordinates.enumerated() {
+            let index = UInt32(i)
+            GEOSCoordSeq_setX_r(GeosContext, sequencePtr, index, coord.x)
+            GEOSCoordSeq_setY_r(GeosContext, sequencePtr, index, coord.y)
+        }
+    }
+
+    init(_ coordinates: [(Double, Double)]) {
+        count = coordinates.count
+        sequencePtr = GEOSCoordSeq_create_r(GeosContext, UInt32(count), 2)
+        for (i, coord) in coordinates.enumerated() {
+            let index = UInt32(i)
+            GEOSCoordSeq_setX_r(GeosContext, sequencePtr, index, coord.0)
+            GEOSCoordSeq_setY_r(GeosContext, sequencePtr, index, coord.1)
+        }
+    }
+
+    convenience init(_ coordinates: (Double, Double)...) {
+        self.init(coordinates)
     }
 
     init(_ sequence: OpaquePointer) {
@@ -155,6 +173,18 @@ public class MadCoordinateSequence: Sequence {
             index += 1
             return item
         }
+    }
+
+    public static func ==(lhs: MadCoordinateSequence, rhs: MadCoordinateSequence) -> Bool {
+        if lhs.count == rhs.count {
+            for (lhsCoord, rhsCoord) in zip(lhs, rhs) {
+                if lhsCoord.x != rhsCoord.x && lhsCoord.y != rhsCoord.y {
+                    return false
+                }
+            }
+            return true
+        }
+        return false
     }
 
 }
