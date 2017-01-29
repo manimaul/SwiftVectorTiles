@@ -25,8 +25,6 @@ public class MadMultiGeometry: MadGeometry, Sequence {
         }
     }
 
-    // pragma: Sequence
-
     public subscript(index: Int) -> MadGeometry {
         assert(geometries.count > index, "Index out of bounds")
         assert(index >= 0, "index less than zero")
@@ -45,12 +43,4 @@ public class MadMultiGeometry: MadGeometry, Sequence {
         }
     }
 
-//    public init(_ geometries: MadGeometry...) {
-//        _geometries.append(contentsOf: geometries)
-//        let type = geometries.first!.geometryType().rawValue
-//        let ptr = GEOSGeom_createEmptyCollection_r(GeosContext, Int32(type))!
-//        let ggs = GeosGeometryPointer(ptr: ptr, owner: nil)
-//        super.init(ggs)
-//    }
-    
 }
