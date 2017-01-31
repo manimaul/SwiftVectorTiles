@@ -11,11 +11,11 @@ import Foundation
 
 public class MadLinearRing: MadLineString {
 
-    public func isCCW() -> Bool {
-        guard let seq = coordinateSequence() else {
-            fatalError("a linear ring should have a coordinate sequence")
+    convenience init(_ coordinateSequence: MadCoordinateSequence) {
+        guard let ptr = GEOSGeom_createLinearRing_r(GeosContext, coordinateSequence.sequencePtr) else {
+            fatalError("coordinates did not form a ring")
         }
-        return seq.isCCW()
+        self.init(GeosGeometryPointer(ptr: ptr, owner: nil))
     }
 
     override public func reverse() -> MadLinearRing? {
@@ -28,13 +28,10 @@ public class MadLinearRing: MadLineString {
     }
 
     override public func transform(_ t: MadCoordinateTransform) -> MadLinearRing? {
-        guard let tSeq = coordinateSequence()?.transform(t: t) else {
-            return nil
+        guard let tCoords = coordinateSequence()?.transform(t: t) else {
+            fatalError()
         }
-        guard let ptr = GEOSGeom_createLinearRing_r(GeosContext, tSeq.sequencePtr) else {
-            return nil
-        }
-        return MadLinearRing(GeosGeometryPointer(ptr: ptr, owner: nil))
+        return MadLinearRing(tCoords)
     }
     
 }

@@ -117,7 +117,6 @@
 		D036D9FE1E2E74EE0049137A /* SwiftVectorTiles */ = {
 			isa = PBXGroup;
 			children = (
-				D0E2B0A11E350D1B00E01CB0 /* geometry_cpp */,
 				D0E2B0A01E350D0200E01CB0 /* geometry */,
 				D036DA1A1E2E778B0049137A /* VectorTile.swift */,
 				D036DA1B1E2E778B0049137A /* VectorTileEncoder.swift */,
@@ -156,13 +155,6 @@
 				2672C0BA08C4FB9EB70F99A7 /* MadMultiGeometry.swift */,
 			);
 			name = geometry;
-			sourceTree = "<group>";
-		};
-		D0E2B0A11E350D1B00E01CB0 /* geometry_cpp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = geometry_cpp;
 			sourceTree = "<group>";
 		};
 		D83D56851BCC745FDADAC40F /* Frameworks */ = {
@@ -530,6 +522,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = TH39V46468;
 				DYLIB_COMPATIBILITY_VERSION = 1;

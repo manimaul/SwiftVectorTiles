@@ -12,7 +12,7 @@ import Foundation
 public class MadLineString: MadGeometry {
 
     convenience init(_ coordinateSequence: MadCoordinateSequence) {
-        guard let ptr = GEOSGeom_createLinearRing_r(GeosContext, coordinateSequence.sequencePtr) else {
+        guard let ptr = GEOSGeom_createLineString_r(GeosContext, coordinateSequence.sequencePtr) else {
             fatalError("coordinates did not form a ring")
         }
         self.init(GeosGeometryPointer(ptr: ptr, owner: nil))
@@ -28,6 +28,13 @@ public class MadLineString: MadGeometry {
         self.init(coordinateSequence)
     }
 
+    public func isCCW() -> Bool {
+        guard let seq = coordinateSequence() else {
+            fatalError("a linear ring should have a coordinate sequence")
+        }
+        return seq.isCCW()
+    }
+
     public func reverse() -> MadLineString? {
         guard let coordinateSequence = coordinateSequence() else {
             return nil
@@ -41,5 +48,12 @@ public class MadLineString: MadGeometry {
         var value: Double = 0
         _ = GEOSGeomGetLength_r(GeosContext, geometryPtr.ptr, &value)
         return value
+    }
+
+    override public func transform(_ t: MadCoordinateTransform) -> MadLineString? {
+        guard let tCoords = coordinateSequence()?.transform(t: t) else {
+            fatalError()
+        }
+        return MadLineString(tCoords)
     }
 }
