@@ -3,12 +3,14 @@
 
 use_frameworks!
 
-target 'GeosSwiftVectorTiles' do
+target 'SwiftVectorTiles' do
+  # pod 'gdal-mm', :git => 'https://github.com/manimaul/gdal-mm.git', :commit => 'd6c71d9888c6122e42e5af7b2e1149863bcbb64a'
   pod 'geos'
   pod 'ProtocolBuffers-Swift'
 end
 
-target 'GeosSwiftVectorTilesTests' do
+target 'SwiftVectorTilesTests' do
+  #  pod 'gdal-mm', :git => 'https://github.com/manimaul/gdal-mm.git', :commit => 'd6c71d9888c6122e42e5af7b2e1149863bcbb64a'
   pod 'geos'
   pod 'ProtocolBuffers-Swift'
 end

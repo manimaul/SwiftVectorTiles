@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:GeosSwiftVectorTiles.xcodeproj">
+      location = "self:SwiftVectorTiles.xcodeproj">
    </FileRef>
 </Workspace>

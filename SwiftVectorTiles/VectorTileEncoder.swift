@@ -9,10 +9,10 @@
 import Foundation
 
 private class Feature {
-    let _geometry: Geometry
+    let _geometry: MadGeometry
     let _tags: [Int]
     
-    init(geometry: Geometry, tags: [Int]) {
+    init(geometry: MadGeometry, tags: [Int]) {
         self._geometry = geometry
         self._tags = tags
     }
@@ -57,11 +57,12 @@ private class Layer {
     }
 }
 
-private func createTileEnvelope(buffer b: Int, size s: Int) -> Geometry? {
+private func createTileEnvelope(buffer b: Int, size s: Int) -> MadPolygon {
     let start = (Double) (0 - b)
     let end = (Double) (s + b)
     let wkt = "POLYGON (( \(start) \(end), \(end) \(end), \(end) \(start), \(start) \(start), \(start) \(end) ))"
-    return Geometry.create(wkt)
+    let geometry = MadGeometryFactory.geometryFromWellKnownText(wkt)
+    return geometry as! MadPolygon
 }
 
 private func toIntArray(intArray arr: [Int]) -> [UInt32] {
@@ -72,19 +73,19 @@ private func toIntArray(intArray arr: [Int]) -> [UInt32] {
     return ints
 }
 
-private func toGeomType(geometry g: Geometry) -> VectorTile.Tile.GeomType {
-    if (g is Waypoint) || (g is MultiPoint) {
+private func toGeomType(geometry g: MadGeometry) -> VectorTile.Tile.GeomType {
+    if (g is MadPoint) || (g is MadMultiPoint) {
         return .point
     }
-    
-    if (g is LineString) || (g is MultiLineString) || (g is LinearRing) {
+
+    if (g is MadLineString) || (g is MadMultiLineString) || (g is MadLinearRing) {
         return .linestring
     }
-    
-    if (g is Polygon) || (g is MultiPolygon) {
+
+    if (g is MadPolygon) || (g is MadMultiPolygon) {
         return .polygon
     }
-    
+
     return .unknown
 }
 
@@ -104,9 +105,9 @@ private func commandAndLength(command c: Command, repeated r: Int) -> Int {
 public class VectorTileEncoder {
     private var _layers = [String: Layer]()
     private var _layerKeysOrdered = [String]()
-    
+
     let _extent: Int
-    let _clipGeometry: Geometry
+    let _clipGeometry: MadPolygon
     let _autoScale: Bool
     var _x = 0
     var _y = 0
@@ -139,7 +140,7 @@ public class VectorTileEncoder {
         _extent = e
         _autoScale = auto
         let size = auto ? 256 : e
-        _clipGeometry = createTileEnvelope(buffer: buffer, size: size)!
+        _clipGeometry = createTileEnvelope(buffer: buffer, size: size)
     }
 
     /// - returns: 'Data' with the vector tile
@@ -148,12 +149,12 @@ public class VectorTileEncoder {
         var tileLayers = Array<VectorTile.Tile.Layer>()
         for layerName in _layerKeysOrdered {
             let layer = _layers[layerName]!
-            
+
             let tileLayerBuilder = VectorTile.Tile.Layer.Builder()
             tileLayerBuilder.version = 2
             tileLayerBuilder.name = layerName
             tileLayerBuilder.keys = layer.keys()
-            
+
             var values = Array<VectorTile.Tile.Value>()
             for attributeValue in layer.values() {
                 let tileValueBuilder = VectorTile.Tile.Value.Builder()
@@ -176,7 +177,7 @@ public class VectorTileEncoder {
             }
             tileLayerBuilder.values = values
             tileLayerBuilder.setExtent(UInt32(_extent))
-            
+
             var features = Array<VectorTile.Tile.Feature>()
             for feature in layer._features {
                 let geo = feature._geometry
@@ -191,15 +192,15 @@ public class VectorTileEncoder {
                     NSLog("could not build feature")
                 }
             }
-            
+
             tileLayerBuilder.setFeatures(features)
             do {
                 let tl = try tileLayerBuilder.build()
                 tileLayers.append(tl)
             } catch {}
-            
+
         }
-        
+
         tileBuilder.setLayers(tileLayers)
         do {
             let t = try tileBuilder.build()
@@ -210,7 +211,7 @@ public class VectorTileEncoder {
     }
     
     public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry wkb: Data) {
-        guard let geo = Geometry.createFromData(wkb) else {
+        guard let geo = MadGeometryFactory.geometryFromWellKnownBinary(wkb) else {
             NSLog("could not create geometry")
             return
         }
@@ -218,13 +219,13 @@ public class VectorTileEncoder {
     }
 
     public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry wkt: String) {
-        guard let geo = Geometry.create(wkt) else {
+        guard let geo = MadGeometryFactory.geometryFromWellKnownText(wkt) else {
             NSLog("could not create geometry")
             return
         }
         addFeature(layerName: name, attributes: attrs, geometry: geo)
     }
-    
+
     /// Add a feature with layer name (typically feature type name), some attributes and a Geometry. The Geometry must
     /// be in "pixel" space 0,0 lower left and 256,256 upper right.
     ///
@@ -234,55 +235,66 @@ public class VectorTileEncoder {
     /// - parameter layerName:
     /// - parameter attributes:
     /// - parameter geometry:
-    public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry geom: Geometry?) {
+    public func addFeature(layerName name: String, attributes attrs: [String: Attribute]?, geometry geom: MadGeometry?) {
         guard let geo = geom else {
             return
         }
-        
-        if let mg = geo as? MultiGeometry {
-            splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mg)
+
+        if let mmg = geo as? MadMultiGeometry {
+            splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mmg.geometries)
             return
         }
-        
+
+        if let mgc = geo as? MadGeometryCollection {
+            splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mgc.geometries)
+            return
+        }
+
         // skip small Polygon/LineString.
-        if let polygon = geo as? Polygon {
+        if let polygon = geo as? MadPolygon {
             if (polygon.area() < 1.0) {
                 return
             }
         }
-        
-        if let line = geo as? LineString {
+
+        if let line = geo as? MadLineString {
             if (line.length() < 1.0) {
                 return
             }
         }
-        
+
         // clip geometry
-        if let point = geo as? Waypoint {
+        if let point = geo as? MadPoint {
             if !(clipCovers(geometry: point)) {
                 return
             }
         } else {
             if let clippedGeo = createdClippedGeometry(geometry: geo) {
-                
+
                 // if clipping result in MultiPolygon, then split once more
-                if let collection = clippedGeo as? GeometryCollection<Geometry> {
-                    splitAndAddFeatures(layerName: name, attributes: attrs, geometry: collection)
+                if let mmg = geo as? MadMultiGeometry {
+                    splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mmg.geometries)
                     return
                 }
-                
+
+                // if clipping result in GeometryCollection, then split once more
+                if let mgc = geo as? MadGeometryCollection {
+                    splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mgc.geometries)
+                    return
+                }
+
                 // no need to add empty geometry
                 if clippedGeo.empty() {
                     return
                 }
-                
+
                 var layer = _layers[name]
                 if layer == nil {
                     layer = Layer()
                     _layers[name] = layer
                     _layerKeysOrdered.append(name)
                 }
-                
+
                 var tags = [Int]()
                 if let attributes = attrs {
                     for (key, val) in attributes {
@@ -292,63 +304,63 @@ public class VectorTileEncoder {
                 }
                 let feature = Feature(geometry: clippedGeo, tags: tags)
                 layer!._features.append(feature)
-                
+
             }
         }
-    
+
     }
-    
-    private func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool, isMultiPoint mp: Bool) -> [UInt32] {
+
+    private func commands(coordinates cs: [MadCoordinate], closePathAtEnd closedEnd: Bool, isMultiPoint mp: Bool) -> [UInt32] {
         let count = Int(cs.count)
-        
+
         if count == 0 {
             fatalError("empty geometry")
         }
-        
+
         var r = [Int]()
         var lineToIndex = 0
         var lineToLength = 0
         let scale = _autoScale ? (Double(_extent) / 256.0) : 1.0
-        
+
         var i = 0
         let first = cs[0]
         for c in cs {
             if i == 0 {
                 r.append(commandAndLength(command: .moveTo, repeated: mp ? count: 1))
             }
-            
+
             let x = Int(round(c.x * scale))
             let y = Int(round(c.y * scale))
-            
+
             // prevent point equal to the previous
             if i > 0 && x == _x && y == _y {
                 lineToLength -= 1
                 continue
             }
-            
+
             // prevent double closing
             if closedEnd && (cs.count > 1) && (i == (count - 1)) && first == c {
                 lineToLength -= 1
                 continue
             }
-            
+
             // delta, then zigzag
             r.append(zigZagencode(number: x - _x))
             r.append(zigZagencode(number: y - _y))
-            
+
             _x = x
             _y = y
-            
+
             if (i == 0) && (count > 1) && !mp {
                 // can length be too long?
                 lineToIndex = r.count
                 lineToLength = count - 1
                 r.append(commandAndLength(command: .lineTo, repeated: lineToLength))
-                
+
             }
             i += 1
         }
-        
+
         // update LineTo length
         if lineToIndex > 0 {
             if lineToLength == 0 {
@@ -358,82 +370,82 @@ public class VectorTileEncoder {
                 r[lineToIndex] = commandAndLength(command: .lineTo, repeated: lineToLength)
             }
         }
-        
+
         if closedEnd {
             r.append(commandAndLength(command: .closePath, repeated: 1))
         }
-        
+
         return toIntArray(intArray: r)
     }
-    
-    private func commands(coordinates cs: CoordinatesCollection, closePathAtEnd closedEnd: Bool) -> [UInt32] {
+
+    private func commands(coordinates cs: [MadCoordinate], closePathAtEnd closedEnd: Bool) -> [UInt32] {
         return commands(coordinates: cs, closePathAtEnd: closedEnd, isMultiPoint: false)
     }
-    
-    private func commands(geometry geo: Geometry) -> [UInt32] {
-        
+
+    private func commands(geometry geo: MadGeometry) -> [UInt32] {
+
         _x = 0
         _y = 0
-        
-        if let polygon = geo as? Polygon {
+
+        if let polygon = geo as? MadPolygon {
             var result = [UInt32]()
-            
+
             // According to the vector tile specification, the exterior ring of a polygon
             // must be in clockwise order, while the interior ring in counter-clockwise order.
             // In the tile coordinate system, Y axis is positive down.
             //
-            // However, in geographic coordinate system, Y axis is positive up.
+            // However, in geMadaphic coordinate system, Y axis is positive up.
             // Therefore, we must reverse the coordinates.
             // So, the code below will make sure that exterior ring is in counter-clockwise order
             // and interior ring in clockwise order.
-            var exteriorRing = polygon.exteriorRing
+            var exteriorRing = polygon.getExteriorRing()!
             if !exteriorRing.isCCW() {
                 exteriorRing = exteriorRing.reverse()!
             }
             result.append(contentsOf: commands(coordinates: exteriorRing.coordinates(), closePathAtEnd: true))
-            
-            for interiorRing in polygon.interiorRings {
-                var ir :LinearRing? = interiorRing
+
+            for interiorRing in polygon.getInteriorRings() {
+                var ir :MadLinearRing? = interiorRing
                 if !(interiorRing.isCCW()) {
                     ir = interiorRing.reverse()
                 }
                 result.append(contentsOf: commands(coordinates: ir!.coordinates(), closePathAtEnd: true))
             }
-            
+
             return result
         }
-        
-        if let mls = geo as? MultiLineString {
+
+        if let mls = geo as? MadMultiLineString {
             var result = [UInt32]()
-            for iGeo in mls.geometries {
+            for iGeo in mls {
                 result.append(contentsOf: commands(coordinates: iGeo.coordinates(), closePathAtEnd: false))
             }
             return result
         }
-        let isMp = geo is MultiPoint
+        let isMp = geo is MadMultiPoint
         return commands(coordinates: geo.coordinates(), closePathAtEnd: shouldClosePath(geometry: geo), isMultiPoint: isMp)
     }
-    
-    private func shouldClosePath(geometry: Geometry) -> Bool {
-        return (geometry is Polygon) || (geometry is LinearRing)
+
+    private func shouldClosePath(geometry: MadGeometry) -> Bool {
+        return (geometry is MadPolygon) || (geometry is MadLinearRing)
     }
-    
-    private func createdClippedGeometry(geometry g: Geometry?) -> Geometry? {
+
+    private func createdClippedGeometry(geometry g: MadGeometry?) -> MadGeometry? {
         guard let geo = g else {
             return nil
         }
-        
-        let intersect = _clipGeometry.intersection(geo)
-        if intersect.empty() && geo.intersects(_clipGeometry) {
-            guard let wkt = geo.WKT else {
+
+        let intersect = _clipGeometry.intersection(other: geo)
+        if (intersect?.empty())! && geo.intersects(other: _clipGeometry) {
+            guard let wkt = geo.wellKnownText() else {
                 return nil
             }
-            if let originalViaWkt = Geometry.create(wkt) {
-                return _clipGeometry.intersection(originalViaWkt)
+            if let originalViaWkt = MadGeometryFactory.geometryFromWellKnownText(wkt) {
+                return _clipGeometry.intersection(other: originalViaWkt)
             } else {
                 return nil
             }
-            
+
         }
         return intersect
     }
@@ -442,23 +454,16 @@ public class VectorTileEncoder {
     /// can be overridden to change clipping behavior. See also 'clipGeometry(Geometry)'.
     ///
     /// see https://github.com/ElectronicChartCentre/java-vector-tile/issues/13
-    private func clipCovers(geometry geo: Geometry) -> Bool {
-        return _clipGeometry.covers(geo);
+    private func clipCovers(geometry geo: MadGeometry) -> Bool {
+        return _clipGeometry.covers(other: geo);
     }
 
 
-    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: MultiGeometry) {
-        
-        for each in geo.getGeometries() {
+    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: [MadGeometry]) {
+
+        for each in geo {
             addFeature(layerName: name, attributes: attrs, geometry: each)
         }
-        
-//        if let items = geo?.geometries.makeIterator() {
-//            while let item = items.next() {
-//                addFeature(layerName: name, attributes: attrs, geometry: item)
-//            }
-//        }
     }
-    
-    
+
 }

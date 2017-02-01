@@ -1,9 +1,9 @@
-#GeosSwiftVectorTiles
+#SwiftVectorTiles
 A Swift encoder for vector tiles according to the [Mapbox vector tile spec](https://github.com/mapbox/vector-tile-spec)
 
 ###Acknowledgements
 * [Java Vector Tiles](https://github.com/ElectronicChartCentre/java-vector-tile)
-* [GEOS Swift](https://github.com/andreacremaschi/GEOSwift)
+* [Gdal-MM](https://github.com/manimaul/gdal-mm)
 
 ###Status
 Alpha - This is a work in progress
@@ -13,7 +13,7 @@ Alpha - This is a work in progress
 use_frameworks!
 
 target 'YourTarget' do
-  pod 'GeosSwiftVectorTiles', :git => 'https://github.com/manimaul/GeosSwiftVectorTiles.git', :tag => '0.1.2'
+  pod 'SwiftVectorTiles', :git => 'https://github.com/manimaul/SwiftVectorTiles.git', :tag => '0.1.2'
 end
 ```
 

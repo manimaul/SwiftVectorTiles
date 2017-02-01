@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F34CD9C0B8B6E17DFFE62B0650112E7828B8B9BA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F34CD9C0B8B6E17DFFE62B0650112E7828B8B9BA" : 9223372036854775807,
+    "736B87B491E34F7FDD97AF429A73C6685463FF24" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C4D8EBB3-47CA-4C58-B879-64DDF8C6D526",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F34CD9C0B8B6E17DFFE62B0650112E7828B8B9BA" : "SwiftVectorTiles\/",
+    "736B87B491E34F7FDD97AF429A73C6685463FF24" : "gdal-mm\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftVectorTiles",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SwiftVectorTiles.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:manimaul\/gdal-mm.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "736B87B491E34F7FDD97AF429A73C6685463FF24"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/manimaul\/GeosSwiftVectorTiles.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F34CD9C0B8B6E17DFFE62B0650112E7828B8B9BA"
+    }
+  ]
+}
