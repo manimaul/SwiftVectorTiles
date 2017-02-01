@@ -13,8 +13,13 @@ DESC
   s.author       = { "Will Kamp" => "will@madrona.io" }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/manimaul/SwiftVectorTiles.git", :tag => s.version.to_s}
-  s.source_files = 'SwiftVectorTiles/**/*.{swift,h}'
-  s.dependency 'geos'
-  s.dependency 'ProtocolBuffers-Swift'
+  s.subspec 'Core' do |cs|
+      cs.source_files = 'SwiftVectorTiles/**/*.{swift,h}'
+      cs.dependency "geos"
+      cs.dependency 'ProtocolBuffers-Swift'
+    end
+
+   s.default_subspec = 'Core'
+
 
 end
