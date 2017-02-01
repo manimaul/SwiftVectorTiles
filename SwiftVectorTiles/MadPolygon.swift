@@ -44,19 +44,19 @@ public class MadPolygon: MadGeometry {
             return nil
         }
 
-        var iRingCArrayPtr: UnsafeMutablePointer<OpaquePointer?>? = nil
+        var cPtrPtr: UnsafeMutablePointer<OpaquePointer?>? = nil
         if iRings.count > 0 {
-            iRingCArrayPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: iRings.count)
+            cPtrPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: iRings.count)
             for (i, ring) in iRings.enumerated() {
-                iRingCArrayPtr?[i] = ring.ptr
+                cPtrPtr?[i] = ring.ptr
             }
             defer {
-                iRingCArrayPtr?.deallocate(capacity: iRings.count)
+                cPtrPtr?.deallocate(capacity: iRings.count)
             }
         }
 
         let nHoles = UInt32(iRings.count)
-        guard let tPolyPtr = GEOSGeom_createPolygon_r(GeosContext, eRing.ptr, iRingCArrayPtr, nHoles) else {
+        guard let tPolyPtr = GEOSGeom_createPolygon_r(GeosContext, eRing.ptr, cPtrPtr, nHoles) else {
             return nil
         }
         return MadPolygon(tPolyPtr)

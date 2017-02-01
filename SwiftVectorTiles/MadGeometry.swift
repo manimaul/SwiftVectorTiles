@@ -8,64 +8,6 @@
 
 import Foundation
 
-internal var GeosContext: OpaquePointer = {
-    return GEOS_init_r()
-}()
-
-public class MadGeometryFactory {
-
-    fileprivate static func typeFromPtr(ptr: OpaquePointer?) -> MadGeometryType {
-        if let ptr = ptr {
-            let geometryType = GEOSGeomTypeId_r(GeosContext, ptr)
-            if let type = MadGeometryType(rawValue: Int(geometryType)) {
-                return type
-            }
-        }
-        return .unknown
-    }
-    
-    fileprivate static func madGeometry(_ ptr: OpaquePointer?) -> MadGeometry? {
-        if let ptr = ptr {
-            switch typeFromPtr(ptr: ptr) {
-            case .point:
-                return MadPoint(ptr)
-            case .lineString:
-                return MadLineString(ptr)
-            case .linearRing:
-                return MadLinearRing(ptr)
-            case .polygon:
-                return MadPolygon(ptr)
-            case .multiPoint:
-                return MadMultiPoint(ptr)
-            case .multiLineString:
-                return MadMultiLineString(ptr)
-            case .multiPolygon:
-                return MadMultiPolygon(ptr)
-            case .geometryCollection:
-                return MadMultiGeometry(ptr)
-            default:
-                GEOSGeom_destroy_r(GeosContext, ptr)
-                return nil
-            }
-        }
-        return nil
-    }
-    
-    public static func geometryFromWellKnownText(_ wkt: String) -> MadGeometry? {
-        let wktReaderPtr = GEOSWKTReader_create_r(GeosContext)
-        let geomPtr = GEOSWKTReader_read_r(GeosContext, wktReaderPtr, wkt)
-        GEOSWKTReader_destroy_r(GeosContext, wktReaderPtr)
-        return madGeometry(geomPtr)
-    }
-    
-    public static func geometryFromWellKnownBinary(_ wkb: Data) -> MadGeometry? {
-        let wkbReaderPtr = GEOSWKBReader_create_r(GeosContext)
-        let geomPtr = GEOSWKBReader_read_r(GeosContext, wkbReaderPtr, [UInt8](wkb), 0)
-        GEOSWKBReader_destroy_r(GeosContext, wkbReaderPtr)
-        return madGeometry(geomPtr)
-    }
-}
-
 public class MadGeometry {
 
     weak var owner: MadGeometry?
@@ -127,7 +69,7 @@ public class MadGeometry {
     }
     
     public func geometryType() -> MadGeometryType {
-        return MadGeometryFactory.typeFromPtr(ptr: ptr)
+        return MadGeometryType.typeFromPtr(ptr: ptr)
     }
     
     public func coordinateSequence() -> MadCoordinateSequence? {

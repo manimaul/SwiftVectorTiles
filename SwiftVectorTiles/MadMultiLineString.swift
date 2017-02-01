@@ -25,7 +25,7 @@ public class MadMultiLineString : MadMultiGeometry {
                 cArrayArray?.deallocate(capacity: geoms.count)
             }
         }
-        let type = Int32(MadGeometryType.multiLineString.rawValue)
+        let type = MadGeometryType.multiLineString.cType()
         guard let ptr = GEOSGeom_createCollection_r(GeosContext, type, cArrayArray, UInt32(geoms.count)) else {
             fatalError()
         }

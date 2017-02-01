@@ -17,10 +17,11 @@ public class MadMultiGeometry: MadGeometry, Sequence {
         super.init(ptr, owner: owner)
         let count = Int(GEOSGetNumGeometries_r(GeosContext, ptr))
         for i in 0...Int32(count - 1) {
-            guard let geomPtr = GEOSGetGeometryN_r(GeosContext, ptr, i) else {
+            guard let geomPtr = GEOSGetGeometryN_r(GeosContext, ptr, i),
+                  let geometry = MadGeometryFactory.madGeometry(geomPtr, owner: self) else {
                 fatalError("the supplied geometry was not a collection")
             }
-            geometries.append(MadGeometry(geomPtr, owner: self))
+            geometries.append(geometry)
         }
     }
 
@@ -42,14 +43,32 @@ public class MadMultiGeometry: MadGeometry, Sequence {
         }
     }
 
-//    override public func transform(_ t: MadCoordinateTransform) -> Self? {
-//        var tGeometries = [MadGeometry]()
-//        for geometry in geometries {
-//            guard let tGeom = geometry.transform(t) else {
-//                return nil
-//            }
-//            tGeometries.append(tGeom)
-//        }
-//    }
+    override public func transform(_ t: MadCoordinateTransform) -> MadMultiGeometry? {
+        var tGeometries = [MadGeometry]()
+        for geometry in geometries {
+            guard let tGeom = geometry.transform(t) else {
+                return nil
+            }
+            tGeometries.append(tGeom)
+        }
+
+        var geomPtr: OpaquePointer
+        let type = geometryType().cType()
+        var cPtrPtr: UnsafeMutablePointer<OpaquePointer?>? = nil
+        if tGeometries.count > 0 {
+            cPtrPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geometries.count)
+            for (i, geom) in tGeometries.enumerated() {
+                cPtrPtr?[i] = geom.ptr
+            }
+            let count = UInt32(tGeometries.count)
+            geomPtr = GEOSGeom_createCollection_r(GeosContext, type, cPtrPtr, count)
+        } else {
+            geomPtr = GEOSGeom_createCollection_r(GeosContext, type, nil, 0)
+        }
+        guard let retVal = MadGeometryFactory.madGeometry(geomPtr) as? MadMultiGeometry else {
+            return nil
+        }
+        return retVal
+    }
 
 }

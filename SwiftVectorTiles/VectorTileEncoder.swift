@@ -240,8 +240,13 @@ public class VectorTileEncoder {
             return
         }
 
-        if let mg = geo as? MadMultiGeometry {
-            splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mg)
+        if let mmg = geo as? MadMultiGeometry {
+            splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mmg.geometries)
+            return
+        }
+
+        if let mgc = geo as? MadGeometryCollection {
+            splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mgc.geometries)
             return
         }
 
@@ -267,8 +272,14 @@ public class VectorTileEncoder {
             if let clippedGeo = createdClippedGeometry(geometry: geo) {
 
                 // if clipping result in MultiPolygon, then split once more
-                if let collection = clippedGeo as? MadMultiGeometry {
-                    splitAndAddFeatures(layerName: name, attributes: attrs, geometry: collection)
+                if let mmg = geo as? MadMultiGeometry {
+                    splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mmg.geometries)
+                    return
+                }
+
+                // if clipping result in GeometryCollection, then split once more
+                if let mgc = geo as? MadGeometryCollection {
+                    splitAndAddFeatures(layerName: name, attributes: attrs, geometry: mgc.geometries)
                     return
                 }
 
@@ -448,7 +459,7 @@ public class VectorTileEncoder {
     }
 
 
-    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: MadMultiGeometry) {
+    private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: [MadGeometry]) {
 
         for each in geo {
             addFeature(layerName: name, attributes: attrs, geometry: each)
