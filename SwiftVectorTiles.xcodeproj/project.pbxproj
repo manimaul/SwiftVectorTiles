@@ -13,6 +13,7 @@
 		2672CBEF0CAB4F8EBFDF3F37 /* MadLineString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C51262B05C72BC7A5366 /* MadLineString.swift */; };
 		2672CC2D5AFD33C1D33CFAB0 /* MadMultiPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672C987E5E29DD9A7140641 /* MadMultiPolygon.swift */; };
 		2672CFB28C0E0CB4871C3CE3 /* MadLinearRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672CA96A50E2CD7BFD803DC /* MadLinearRing.swift */; };
+		5056E6F3A223E5D7BF0FF2D4 /* MadGeometryTransformTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5056EC06C036A4C83627558C /* MadGeometryTransformTests.swift */; };
 		893C02B408652E42F6F579AF /* Pods_SwiftVectorTiles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89AA4BF2E5A4FFAE2FF08D56 /* Pods_SwiftVectorTiles.framework */; };
 		D036DA061E2E74EE0049137A /* SwiftVectorTiles.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D036D9FC1E2E74EE0049137A /* SwiftVectorTiles.framework */; };
 		D036DA0B1E2E74EE0049137A /* SwiftVectorTilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D036DA0A1E2E74EE0049137A /* SwiftVectorTilesTests.swift */; };
@@ -50,6 +51,7 @@
 		2672CA96A50E2CD7BFD803DC /* MadLinearRing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadLinearRing.swift; sourceTree = "<group>"; };
 		2672CAAFBC50883CDDE8D83B /* MadMultiLineString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadMultiLineString.swift; sourceTree = "<group>"; };
 		4560D9939ECEEB09B647EDC7 /* Pods-SwiftVectorTiles.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftVectorTiles.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftVectorTiles/Pods-SwiftVectorTiles.debug.xcconfig"; sourceTree = "<group>"; };
+		5056EC06C036A4C83627558C /* MadGeometryTransformTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MadGeometryTransformTests.swift; sourceTree = "<group>"; };
 		5C68D2958B4C3DA142177BF9 /* Pods-SwiftVectorTilesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftVectorTilesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftVectorTilesTests/Pods-SwiftVectorTilesTests.release.xcconfig"; sourceTree = "<group>"; };
 		89AA4BF2E5A4FFAE2FF08D56 /* Pods_SwiftVectorTiles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftVectorTiles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D036D9FC1E2E74EE0049137A /* SwiftVectorTiles.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftVectorTiles.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,6 +136,7 @@
 				D036DA0A1E2E74EE0049137A /* SwiftVectorTilesTests.swift */,
 				D036DA0C1E2E74EE0049137A /* Info.plist */,
 				2672C282A752B4E792DECC72 /* MadGeometryTypeTests.swift */,
+				5056EC06C036A4C83627558C /* MadGeometryTransformTests.swift */,
 			);
 			path = SwiftVectorTilesTests;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 			files = (
 				D036DA0B1E2E74EE0049137A /* SwiftVectorTilesTests.swift in Sources */,
 				2672C69489F5EB9931C12470 /* MadGeometryTypeTests.swift in Sources */,
+				5056E6F3A223E5D7BF0FF2D4 /* MadGeometryTransformTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
