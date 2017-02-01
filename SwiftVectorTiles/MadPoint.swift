@@ -14,8 +14,7 @@ public class MadPoint : MadGeometry {
         guard let ptr = GEOSGeom_createPoint_r(GeosContext, coordinateSequence.sequencePtr) else {
             fatalError("could not create point from coordinate sequence")
         }
-        let ggp = GeosGeometryPointer(ptr: ptr, owner: nil)
-        self.init(ggp)
+        self.init(ptr)
     }
 
     public convenience init(_ coordinate: (Double, Double)) {

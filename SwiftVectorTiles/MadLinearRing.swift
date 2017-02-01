@@ -15,7 +15,7 @@ public class MadLinearRing: MadLineString {
         guard let ptr = GEOSGeom_createLinearRing_r(GeosContext, coordinateSequence.sequencePtr) else {
             fatalError("coordinates did not form a ring")
         }
-        self.init(GeosGeometryPointer(ptr: ptr, owner: nil))
+        self.init(ptr)
     }
 
     override public func reverse() -> MadLinearRing? {

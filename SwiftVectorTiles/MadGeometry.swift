@@ -12,11 +12,6 @@ internal var GeosContext: OpaquePointer = {
     return GEOS_init_r()
 }()
 
-internal struct GeosGeometryPointer {
-    let ptr: OpaquePointer
-    weak var owner: MadGeometry?
-}
-
 public class MadGeometryFactory {
 
     fileprivate static func typeFromPtr(ptr: OpaquePointer?) -> MadGeometryType {
@@ -29,28 +24,27 @@ public class MadGeometryFactory {
         return .unknown
     }
     
-    fileprivate static func madGeometry(geometryPtr: OpaquePointer?) -> MadGeometry? {
-        if let geometryPtr = geometryPtr {
-            let ggp = GeosGeometryPointer(ptr: geometryPtr, owner: nil)
-            switch typeFromPtr(ptr: geometryPtr) {
+    fileprivate static func madGeometry(_ ptr: OpaquePointer?) -> MadGeometry? {
+        if let ptr = ptr {
+            switch typeFromPtr(ptr: ptr) {
             case .point:
-                return MadPoint(ggp)
+                return MadPoint(ptr)
             case .lineString:
-                return MadLineString(ggp)
+                return MadLineString(ptr)
             case .linearRing:
-                return MadLinearRing(ggp)
+                return MadLinearRing(ptr)
             case .polygon:
-                return MadPolygon(ggp)
+                return MadPolygon(ptr)
             case .multiPoint:
-                return MadMultiPoint(ggp)
+                return MadMultiPoint(ptr)
             case .multiLineString:
-                return MadMultiLineString(ggp)
+                return MadMultiLineString(ptr)
             case .multiPolygon:
-                return MadMultiPolygon(ggp)
+                return MadMultiPolygon(ptr)
             case .geometryCollection:
-                return MadMultiGeometry(ggp)
+                return MadMultiGeometry(ptr)
             default:
-                GEOSGeom_destroy_r(GeosContext, geometryPtr)
+                GEOSGeom_destroy_r(GeosContext, ptr)
                 return nil
             }
         }
@@ -61,44 +55,46 @@ public class MadGeometryFactory {
         let wktReaderPtr = GEOSWKTReader_create_r(GeosContext)
         let geomPtr = GEOSWKTReader_read_r(GeosContext, wktReaderPtr, wkt)
         GEOSWKTReader_destroy_r(GeosContext, wktReaderPtr)
-        return madGeometry(geometryPtr: geomPtr)
+        return madGeometry(geomPtr)
     }
     
     public static func geometryFromWellKnownBinary(_ wkb: Data) -> MadGeometry? {
         let wkbReaderPtr = GEOSWKBReader_create_r(GeosContext)
         let geomPtr = GEOSWKBReader_read_r(GeosContext, wkbReaderPtr, [UInt8](wkb), 0)
         GEOSWKBReader_destroy_r(GeosContext, wkbReaderPtr)
-        return madGeometry(geometryPtr: geomPtr)
+        return madGeometry(geomPtr)
     }
 }
 
 public class MadGeometry {
-    
-    internal let geometryPtr: GeosGeometryPointer
+
+    weak var owner: MadGeometry?
+    let ptr: OpaquePointer
     fileprivate var wkt: String?
     fileprivate var wkb: Data?
-    
-    internal init(_ ptr: GeosGeometryPointer) {
-        geometryPtr = ptr
+
+    internal init(_ ptr: OpaquePointer, owner: MadGeometry? = nil) {
+        self.ptr = ptr
+        self.owner = owner
     }
     
     public func covers(other: MadGeometry) -> Bool {
-        return GEOSCovers(geometryPtr.ptr, other.geometryPtr.ptr) == CChar("1")
+        return GEOSCovers(ptr, other.ptr) == CChar("1")
     }
 
     public func intersection(other: MadGeometry) -> MadGeometry? {
-        guard let ptr = GEOSIntersection_r(GeosContext, geometryPtr.ptr, other.geometryPtr.ptr) else {
+        guard let ptr = GEOSIntersection_r(GeosContext, ptr, other.ptr) else {
             return nil
         }
-        return MadGeometryFactory.madGeometry(geometryPtr: ptr)
+        return MadGeometryFactory.madGeometry(ptr)
     }
     
     public func intersects(other: MadGeometry) -> Bool {
-        return GEOSIntersects(geometryPtr.ptr, other.geometryPtr.ptr) == CChar("1")
+        return GEOSIntersects(ptr, other.ptr) == CChar("1")
     }
     
     public func empty() -> Bool {
-        return GEOSisEmpty_r(GeosContext, geometryPtr.ptr) == CChar("1")
+        return GEOSisEmpty_r(GeosContext, ptr) == CChar("1")
     }
     
     public func wellKnownText() -> String? {
@@ -106,7 +102,7 @@ public class MadGeometry {
             return text
         }
         let wktWriter = GEOSWKTWriter_create_r(GeosContext)
-        let wktData = GEOSWKTWriter_write_r(GeosContext, wktWriter, geometryPtr.ptr)
+        let wktData = GEOSWKTWriter_write_r(GeosContext, wktWriter, ptr)
         GEOSWKTWriter_destroy_r(GeosContext, wktWriter)
         if let wktData = wktData {
             wkt = String(cString: wktData)
@@ -121,7 +117,7 @@ public class MadGeometry {
         }
         let wkbWriter = GEOSWKBWriter_create_r(GeosContext)
         var size :Int = 0
-        let wkbData = GEOSWKBWriter_write_r(GeosContext, wkbWriter, geometryPtr.ptr, &size)
+        let wkbData = GEOSWKBWriter_write_r(GeosContext, wkbWriter, ptr, &size)
         GEOSWKBWriter_destroy_r(GeosContext, wkbWriter)
         if let wkbData = wkbData {
             wkb = Data(bytes: wkbData, count: size)
@@ -131,11 +127,11 @@ public class MadGeometry {
     }
     
     public func geometryType() -> MadGeometryType {
-        return MadGeometryFactory.typeFromPtr(ptr: geometryPtr.ptr)
+        return MadGeometryFactory.typeFromPtr(ptr: ptr)
     }
     
     public func coordinateSequence() -> MadCoordinateSequence? {
-        guard let seq = GEOSGeom_getCoordSeq_r(GeosContext, geometryPtr.ptr) else {
+        guard let seq = GEOSGeom_getCoordSeq_r(GeosContext, ptr) else {
             return nil
         }
         return MadCoordinateSequence(seq)
@@ -154,8 +150,8 @@ public class MadGeometry {
     }
     
     deinit {
-        if geometryPtr.owner != nil {
-            GEOSGeom_destroy_r(GeosContext, geometryPtr.ptr)
+        if owner != nil {
+            GEOSGeom_destroy_r(GeosContext, ptr)
         }
     }
     

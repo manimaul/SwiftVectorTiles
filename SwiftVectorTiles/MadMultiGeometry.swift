@@ -11,17 +11,16 @@ import Foundation
 
 public class MadMultiGeometry: MadGeometry, Sequence {
 
-    private var geometries = [MadGeometry]()
+    internal var geometries = [MadGeometry]()
 
-    override internal init(_ ptr: GeosGeometryPointer) {
-        super.init(ptr)
-        let count = Int(GEOSGetNumGeometries_r(GeosContext, ptr.ptr))
+    override internal init(_ ptr: OpaquePointer, owner: MadGeometry? = nil) {
+        super.init(ptr, owner: owner)
+        let count = Int(GEOSGetNumGeometries_r(GeosContext, ptr))
         for i in 0...Int32(count - 1) {
-            guard let geomPtr = GEOSGetGeometryN_r(GeosContext, ptr.ptr, i) else {
+            guard let geomPtr = GEOSGetGeometryN_r(GeosContext, ptr, i) else {
                 fatalError("the supplied geometry was not a collection")
             }
-            let ggp = GeosGeometryPointer(ptr: geomPtr, owner: self)
-            geometries.append(MadGeometry(ggp))
+            geometries.append(MadGeometry(geomPtr, owner: self))
         }
     }
 
@@ -42,5 +41,15 @@ public class MadMultiGeometry: MadGeometry, Sequence {
             return item
         }
     }
+
+//    override public func transform(_ t: MadCoordinateTransform) -> Self? {
+//        var tGeometries = [MadGeometry]()
+//        for geometry in geometries {
+//            guard let tGeom = geometry.transform(t) else {
+//                return nil
+//            }
+//            tGeometries.append(tGeom)
+//        }
+//    }
 
 }

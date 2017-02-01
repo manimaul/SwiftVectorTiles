@@ -12,19 +12,19 @@ import Foundation
 public class MadPolygon: MadGeometry {
 
     public func getExteriorRing() -> MadLinearRing? {
-        guard let ptr = GEOSGetExteriorRing_r(GeosContext, geometryPtr.ptr) else {
+        guard let ptr = GEOSGetExteriorRing_r(GeosContext, ptr) else {
             return nil
         }
-        return MadLinearRing(GeosGeometryPointer(ptr: ptr, owner: self))
+        return MadLinearRing(ptr)
     }
 
     public func getInteriorRings() -> [MadLinearRing] {
         var retVal = [MadLinearRing]()
-        let count = GEOSGetNumInteriorRings_r(GeosContext, geometryPtr.ptr)
+        let count = GEOSGetNumInteriorRings_r(GeosContext, ptr)
         if count > 0 {
             for i in 0...(count - 1) {
-                let ptr = GEOSGetInteriorRingN_r(GeosContext, geometryPtr.ptr, i)!
-                let ring = MadLinearRing(GeosGeometryPointer(ptr: ptr, owner: self))
+                let iRingPtr = GEOSGetInteriorRingN_r(GeosContext, ptr, i)!
+                let ring = MadLinearRing(iRingPtr)
                 retVal.append(ring)
             }
         }
@@ -48,7 +48,7 @@ public class MadPolygon: MadGeometry {
         if iRings.count > 0 {
             iRingCArrayPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: iRings.count)
             for (i, ring) in iRings.enumerated() {
-                iRingCArrayPtr?[i] = ring.geometryPtr.ptr
+                iRingCArrayPtr?[i] = ring.ptr
             }
             defer {
                 iRingCArrayPtr?.deallocate(capacity: iRings.count)
@@ -56,15 +56,15 @@ public class MadPolygon: MadGeometry {
         }
 
         let nHoles = UInt32(iRings.count)
-        guard let tPolyPtr = GEOSGeom_createPolygon_r(GeosContext, eRing.geometryPtr.ptr, iRingCArrayPtr, nHoles) else {
+        guard let tPolyPtr = GEOSGeom_createPolygon_r(GeosContext, eRing.ptr, iRingCArrayPtr, nHoles) else {
             return nil
         }
-        return MadPolygon(GeosGeometryPointer(ptr: tPolyPtr, owner: nil))
+        return MadPolygon(tPolyPtr)
     }
     
     public func area() -> Double {
         var a :Double = 0
-        GEOSArea_r(GeosContext, self.geometryPtr.ptr, &a)
+        GEOSArea_r(GeosContext, ptr, &a)
         return a
     }
     

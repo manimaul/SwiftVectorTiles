@@ -15,7 +15,7 @@ public class MadLineString: MadGeometry {
         guard let ptr = GEOSGeom_createLineString_r(GeosContext, coordinateSequence.sequencePtr) else {
             fatalError("coordinates did not form a ring")
         }
-        self.init(GeosGeometryPointer(ptr: ptr, owner: nil))
+        self.init(ptr)
     }
 
     convenience init(_ coordinates: [MadCoordinate]) {
@@ -46,7 +46,7 @@ public class MadLineString: MadGeometry {
 
     public func length() -> Double {
         var value: Double = 0
-        _ = GEOSGeomGetLength_r(GeosContext, geometryPtr.ptr, &value)
+        _ = GEOSGeomGetLength_r(GeosContext, ptr, &value)
         return value
     }
 
