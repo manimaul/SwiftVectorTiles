@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "SwiftVectorTiles"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "A Swift Mapbox vector tile encoder"
 
   s.description  = <<-DESC
@@ -12,9 +12,9 @@ DESC
   s.license      = { :type => "BSD", :file => "LICENSE.md" }
   s.author       = { "Will Kamp" => "will@madrona.io" }
   s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/manimaul/GeosSwiftVectorTiles.git", :tag => s.version.to_s}
-
-  s.dependency 'gdal-mm', '0.1.0'
+  s.source       = { :git => "https://github.com/manimaul/SwiftVectorTiles.git", :tag => s.version.to_s}
+  
+  s.dependency 'geos'
   s.dependency 'ProtocolBuffers-Swift'
 
 end

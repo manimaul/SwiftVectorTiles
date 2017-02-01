@@ -66,7 +66,7 @@ class MadGeometryTypeTests: XCTestCase {
     func testLinearRing() {
         let wkt = "LINEARRING (3 4,10 50,20 25,3 4)"
         guard let geom = MadGeometryFactory.geometryFromWellKnownText(wkt) as? MadLinearRing else {
-            XCTFail("invalid linear ring wkt")
+            XCTFail("invalid wkt")
             return
         }
         XCTAssertEqual(MadGeometryType.linearRing, geom.geometryType())
@@ -75,7 +75,7 @@ class MadGeometryTypeTests: XCTestCase {
     func testGeometryCollection() {
         let wkt = "GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))"
         guard let geom = MadGeometryFactory.geometryFromWellKnownText(wkt) as? MadMultiGeometry else {
-            XCTFail("invalid linear ring wkt")
+            XCTFail("invalid wkt")
             return
         }
         XCTAssertEqual(MadGeometryType.geometryCollection, geom.geometryType())
