@@ -431,23 +431,25 @@ public class VectorTileEncoder {
     }
 
     private func createdClippedGeometry(geometry g: MadGeometry?) -> MadGeometry? {
-        guard let geo = g else {
-            return nil
+        guard let geo = g,
+              let clipped = _clipGeometry.intersection(other: geo) else {
+            // could not intersect. original geometry will be used instead.
+            return g
         }
 
-        let intersect = _clipGeometry.intersection(other: geo)
-        if (intersect?.empty())! && geo.intersects(other: _clipGeometry) {
-            guard let wkt = geo.wellKnownText() else {
-                return nil
-            }
-            if let originalViaWkt = MadGeometryFactory.geometryFromWellKnownText(wkt) {
-                return _clipGeometry.intersection(other: originalViaWkt)
+        // some times a intersection is returned as an empty geometry.
+        // going via wkt fixes the problem.
+        if clipped.empty() && geo.intersects(other: _clipGeometry) {
+            if let wkt = geo.wellKnownText(),
+               let wktGeo = MadGeometryFactory.geometryFromWellKnownText(wkt),
+               let clippedWktGeo = _clipGeometry.intersection(other: wktGeo) {
+                return clippedWktGeo
             } else {
-                return nil
+                return g
             }
-
         }
-        return intersect
+
+        return clipped
     }
 
     /// A short circuit clip to the tile extent (tile boundary + buffer) for points to improve performance. This method
@@ -457,7 +459,6 @@ public class VectorTileEncoder {
     private func clipCovers(geometry geo: MadGeometry) -> Bool {
         return _clipGeometry.covers(other: geo);
     }
-
 
     private func splitAndAddFeatures(layerName name: String, attributes attrs: [String: Attribute]?, geometry geo: [MadGeometry]) {
 
