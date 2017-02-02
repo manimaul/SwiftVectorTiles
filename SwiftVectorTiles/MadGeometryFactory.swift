@@ -47,7 +47,7 @@ public class MadGeometryFactory {
 
     public static func geometryFromWellKnownBinary(_ wkb: Data) -> MadGeometry? {
         let wkbReaderPtr = GEOSWKBReader_create_r(GeosContext)
-        let geomPtr = GEOSWKBReader_read_r(GeosContext, wkbReaderPtr, [UInt8](wkb), 0)
+        let geomPtr = GEOSWKBReader_read_r(GeosContext, wkbReaderPtr, [UInt8](wkb), wkb.count)
         GEOSWKBReader_destroy_r(GeosContext, wkbReaderPtr)
         return madGeometry(geomPtr)
     }
