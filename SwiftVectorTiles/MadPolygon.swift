@@ -12,10 +12,11 @@ import Foundation
 public class MadPolygon: MadGeometry {
 
     public func getExteriorRing() -> MadLinearRing? {
-        guard let ptr = GEOSGetExteriorRing_r(GeosContext, ptr) else {
+        guard let ptr = GEOSGetExteriorRing_r(GeosContext, ptr),
+              let clonePtr = GEOSGeom_clone_r(GeosContext, ptr)  else {
             return nil
         }
-        return MadLinearRing(ptr)
+        return MadLinearRing(clonePtr)
     }
 
     public func getInteriorRings() -> [MadLinearRing] {
@@ -24,7 +25,8 @@ public class MadPolygon: MadGeometry {
         if count > 0 {
             for i in 0...(count - 1) {
                 let iRingPtr = GEOSGetInteriorRingN_r(GeosContext, ptr, i)!
-                let ring = MadLinearRing(iRingPtr)
+                let iRingClonePtr = GEOSGeom_clone_r(GeosContext, iRingPtr)!
+                let ring = MadLinearRing(iRingClonePtr)
                 retVal.append(ring)
             }
         }
