@@ -74,7 +74,7 @@ class MadGeometryTypeTests: XCTestCase {
 
     func testGeometryCollection() {
         let wkt = "GEOMETRYCOLLECTION(POINT(4 6),LINESTRING(4 6,7 10))"
-        guard let geom = MadGeometryFactory.geometryFromWellKnownText(wkt) as? MadMultiGeometry else {
+        guard let geom = MadGeometryFactory.geometryFromWellKnownText(wkt) as? MadGeometryCollection else {
             XCTFail("invalid wkt")
             return
         }

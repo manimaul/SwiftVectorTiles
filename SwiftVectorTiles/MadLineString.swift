@@ -11,6 +11,14 @@ import Foundation
 
 public class MadLineString: MadGeometry {
 
+    public lazy var length: Double = { [unowned self] in
+        return self.getLength()
+    }()
+
+    public lazy var isCounterClockWise: Bool = { [unowned self] in
+        return self.getIsCCW()
+    }()
+
     convenience init(_ coordinateSequence: MadCoordinateSequence) {
         guard let ptr = GEOSGeom_createLineString_r(GeosContext, coordinateSequence.sequencePtr) else {
             fatalError("coordinates did not form a ring")
@@ -28,15 +36,15 @@ public class MadLineString: MadGeometry {
         self.init(coordinateSequence)
     }
 
-    public func isCCW() -> Bool {
-        guard let seq = coordinateSequence() else {
+    private func getIsCCW() -> Bool {
+        guard let seq = coordinateSequence else {
             fatalError("a linear ring should have a coordinate sequence")
         }
-        return seq.isCCW()
+        return seq.isCounterClockWise
     }
 
     public func reverse() -> MadLineString? {
-        guard let coordinateSequence = coordinateSequence() else {
+        guard let coordinateSequence = coordinateSequence else {
             return nil
         }
         var coords = [MadCoordinate](coordinateSequence)
@@ -44,14 +52,14 @@ public class MadLineString: MadGeometry {
         return MadLineString(coords)
     }
 
-    public func length() -> Double {
+    private func getLength() -> Double {
         var value: Double = 0
         _ = GEOSGeomGetLength_r(GeosContext, ptr, &value)
         return value
     }
 
     override public func transform(_ t: MadCoordinateTransform) -> MadLineString? {
-        guard let tCoords = coordinateSequence()?.transform(t: t) else {
+        guard let tCoords = coordinateSequence?.transform(t: t) else {
             fatalError()
         }
         return MadLineString(tCoords)

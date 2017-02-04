@@ -10,10 +10,13 @@ import Foundation
 
 public class MadGeometry {
 
-    weak var owner: MadGeometry?
-    let ptr: OpaquePointer
+    internal weak var owner: MadGeometry?
+    internal let ptr: OpaquePointer
     fileprivate var wkt: String?
     fileprivate var wkb: Data?
+    public lazy var coordinateSequence: MadCoordinateSequence? = { [unowned self] in
+        return self.getCoordinateSequence()
+    }()
 
     internal init(_ ptr: OpaquePointer, owner: MadGeometry? = nil) {
         self.ptr = ptr
@@ -71,19 +74,19 @@ public class MadGeometry {
     public func geometryType() -> MadGeometryType {
         return MadGeometryType.typeFromPtr(ptr: ptr)
     }
-    
-    public func coordinateSequence() -> MadCoordinateSequence? {
-        guard let seq = GEOSGeom_getCoordSeq_r(GeosContext, ptr) else {
+
+    private func getCoordinateSequence() -> MadCoordinateSequence? {
+        guard let seq = GEOSGeom_getCoordSeq_r(GeosContext, ptr),
+              let seqClone = GEOSCoordSeq_clone_r(GeosContext, seq) else {
             return nil
         }
-        return MadCoordinateSequence(seq)
+        return MadCoordinateSequence(seqClone)
     }
 
     public func coordinates() -> [MadCoordinate] {
-        guard let seq = coordinateSequence() else {
+        guard let seq = coordinateSequence else {
             return [MadCoordinate]()
         }
-
         return [MadCoordinate](seq)
     }
     

@@ -16,7 +16,6 @@ private class Feature {
         self._geometry = geometry
         self._tags = tags
     }
-    
 }
 
 private class Layer {
@@ -252,13 +251,13 @@ public class VectorTileEncoder {
 
         // skip small Polygon/LineString.
         if let polygon = geo as? MadPolygon {
-            if (polygon.area() < 1.0) {
+            if (polygon.area < 1.0) {
                 return
             }
         }
 
         if let line = geo as? MadLineString {
-            if (line.length() < 1.0) {
+            if (line.length < 1.0) {
                 return
             }
         }
@@ -398,15 +397,15 @@ public class VectorTileEncoder {
             // Therefore, we must reverse the coordinates.
             // So, the code below will make sure that exterior ring is in counter-clockwise order
             // and interior ring in clockwise order.
-            var exteriorRing = polygon.getExteriorRing()!
-            if !exteriorRing.isCCW() {
+            var exteriorRing = polygon.exteriorRing!
+            if !exteriorRing.isCounterClockWise {
                 exteriorRing = exteriorRing.reverse()!
             }
             result.append(contentsOf: commands(coordinates: exteriorRing.coordinates(), closePathAtEnd: true))
 
-            for interiorRing in polygon.getInteriorRings() {
+            for interiorRing in polygon.interiorRings {
                 var ir :MadLinearRing? = interiorRing
-                if !(interiorRing.isCCW()) {
+                if !(interiorRing.isCounterClockWise) {
                     ir = interiorRing.reverse()
                 }
                 result.append(contentsOf: commands(coordinates: ir!.coordinates(), closePathAtEnd: true))

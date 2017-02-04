@@ -11,15 +11,27 @@ import Foundation
 
 public class MadPolygon: MadGeometry {
 
-    public func getExteriorRing() -> MadLinearRing? {
+    public lazy var exteriorRing: MadLinearRing? = { [unowned self] in
+       return self.getExteriorRing()
+    }()
+
+    public lazy var interiorRings: [MadLinearRing] = { [unowned self] in
+        return self.getInteriorRings()
+    }()
+
+    public lazy var area: Double = { [unowned self] in
+        return self.getArea()
+    }()
+
+    private func getExteriorRing() -> MadLinearRing? {
         guard let ptr = GEOSGetExteriorRing_r(GeosContext, ptr),
-              let clonePtr = GEOSGeom_clone_r(GeosContext, ptr)  else {
+              let clonePtr = GEOSGeom_clone_r(GeosContext, ptr) else {
             return nil
         }
         return MadLinearRing(clonePtr)
     }
 
-    public func getInteriorRings() -> [MadLinearRing] {
+    private func getInteriorRings() -> [MadLinearRing] {
         var retVal = [MadLinearRing]()
         let count = GEOSGetNumInteriorRings_r(GeosContext, ptr)
         if count > 0 {
@@ -34,7 +46,6 @@ public class MadPolygon: MadGeometry {
     }
     
     override public func transform(_ t: MadCoordinateTransform) -> MadPolygon? {
-
         var iRings = [MadLinearRing]()
         for ring in getInteriorRings() {
             guard let tRing = ring.transform(t) else {
@@ -42,29 +53,25 @@ public class MadPolygon: MadGeometry {
             }
             iRings.append(tRing)
         }
-        guard let eRing = getExteriorRing()?.transform(t) else {
+        guard let eRing = exteriorRing?.transform(t) else {
             return nil
         }
-
         var cPtrPtr: UnsafeMutablePointer<OpaquePointer?>? = nil
         if iRings.count > 0 {
             cPtrPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: iRings.count)
             for (i, ring) in iRings.enumerated() {
                 cPtrPtr?[i] = ring.ptr
             }
-            defer {
-                cPtrPtr?.deallocate(capacity: iRings.count)
-            }
         }
-
         let nHoles = UInt32(iRings.count)
         guard let tPolyPtr = GEOSGeom_createPolygon_r(GeosContext, eRing.ptr, cPtrPtr, nHoles) else {
             return nil
         }
+        cPtrPtr?.deallocate(capacity: iRings.count)
         return MadPolygon(tPolyPtr)
     }
     
-    public func area() -> Double {
+    private func getArea() -> Double {
         var a :Double = 0
         GEOSArea_r(GeosContext, ptr, &a)
         return a

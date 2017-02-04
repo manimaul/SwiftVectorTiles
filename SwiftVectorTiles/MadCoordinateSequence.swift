@@ -11,8 +11,12 @@ import Foundation
 typealias MadCoordinateTransform = (MadCoordinate) -> MadCoordinate
 
 public class MadCoordinateSequence: Sequence, Equatable {
-    let sequencePtr: OpaquePointer
+    internal weak var weakOwner: MadGeometry?
+    internal let sequencePtr: OpaquePointer
     public let count: Int
+    public lazy var isCounterClockWise: Bool = { [unowned self] in
+        return self.getIsCCW()
+    }()
 
     init(_ coordinates: [MadCoordinate]) {
         count = coordinates.count
@@ -42,8 +46,9 @@ public class MadCoordinateSequence: Sequence, Equatable {
         self.init(coordinates)
     }
 
-    init(_ sequence: OpaquePointer) {
+    init(_ sequence: OpaquePointer, owner: MadGeometry? = nil) {
         self.sequencePtr = sequence
+        self.weakOwner = owner
         var num: UInt32 = 0
         GEOSCoordSeq_getSize_r(GeosContext, sequencePtr, &num)
         count = Int(num)
@@ -73,7 +78,7 @@ public class MadCoordinateSequence: Sequence, Equatable {
         return MadCoordinateSequence(ptr)
     }
 
-    public func isCCW() -> Bool {
+    private func getIsCCW() -> Bool {
         let ring = [MadCoordinate](self)
 
         // # of points without closing endpoint
@@ -189,6 +194,12 @@ public class MadCoordinateSequence: Sequence, Equatable {
             return true
         }
         return false
+    }
+
+    deinit {
+        if weakOwner != nil {
+            GEOSCoordSeq_destroy_r(GeosContext, sequencePtr)
+        }
     }
 
 }

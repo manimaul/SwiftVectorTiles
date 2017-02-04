@@ -11,10 +11,15 @@ import Foundation
 public class MadPoint : MadGeometry {
 
     public convenience init(_ coordinateSequence: MadCoordinateSequence) {
+        if coordinateSequence.weakOwner != nil {
+            fatalError("supplied coordinate sequence is owned by another geometry")
+        }
         guard let ptr = GEOSGeom_createPoint_r(GeosContext, coordinateSequence.sequencePtr) else {
             fatalError("could not create point from coordinate sequence")
         }
         self.init(ptr)
+        coordinateSequence.weakOwner = self
+        self.coordinateSequence = coordinateSequence
     }
 
     public convenience init(_ coordinate: (Double, Double)) {
@@ -28,9 +33,10 @@ public class MadPoint : MadGeometry {
     }
     
     override public func transform(_ t: MadCoordinateTransform) -> MadPoint? {
-        if let tCoordinates = coordinateSequence()?.transform(t: t) {
+        if let tCoordinates = coordinateSequence?.transform(t: t) {
             if (tCoordinates.count == 1) {
-                return MadPoint(tCoordinates[0])
+                let point = MadPoint(tCoordinates)
+                return point
             }
         }
         return nil
