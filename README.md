@@ -11,9 +11,9 @@ A Swift encoder for vector tiles according to the [Mapbox vector tile spec](http
 Beta - expect a few bugs
 
 ###Screenshots
-Encoded [Natural Earth Data]() geometries
-[[https://github.com/manimaul/SwiftVectorTiles/blob/master/screenshots/shot1.png|alt=shot1]]
-[[https://github.com/manimaul/SwiftVectorTiles/blob/master/screenshots/shot2.png|alt=shot2]]
+Encoded [Natural Earth Data](http://www.naturalearthdata.com/) geometries
+![screenshot1](https://raw.githubusercontent.com/manimaul/SwiftVectorTiles/master/screenshots/shot1.png =150x)
+![screenshot2](https://github.com/manimaul/SwiftVectorTiles/blob/master/screenshots/shot2.png|alt=shot2)
 
 ###Cocoapods
 ```ruby
