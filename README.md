@@ -3,10 +3,17 @@ A Swift encoder for vector tiles according to the [Mapbox vector tile spec](http
 
 ###Acknowledgements
 * [Java Vector Tiles](https://github.com/ElectronicChartCentre/java-vector-tile)
-* [GEOS](https://trac.osgeo.org/geos/)
+* [GEOS & JTS](https://trac.osgeo.org/geos/)
+* [Mapbox Vector Tile Spec](https://github.com/mapbox/vector-tile-spec)
+* [Swift Google Protocol Buffers](http://protobuf.io/#swift)
 
 ###Status
-Alpha - This is a work in progress
+Beta - expect a few bugs
+
+###Screenshots
+Encoded [Natural Earth Data]() geometries
+![screenshot1](screenshots/shot1.png =150x)
+![screenshot2](screenshots/shot2.png =150x)
 
 ###Cocoapods
 ```ruby
