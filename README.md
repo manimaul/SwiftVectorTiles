@@ -12,8 +12,8 @@ Beta - expect a few bugs
 
 ###Screenshots
 Encoded [Natural Earth Data](http://www.naturalearthdata.com/) geometries
-![](screenshots/shot1.png)
-![](screenshots/shot2.png)
+* ![](screenshots/shot1.png)
+* ![](screenshots/shot2.png)
 
 ###Cocoapods
 ```ruby
