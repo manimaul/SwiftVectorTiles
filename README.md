@@ -12,8 +12,8 @@ Beta - expect a few bugs
 
 ###Screenshots
 Encoded [Natural Earth Data]() geometries
-![screenshot1](https://raw.githubusercontent.com/manimaul/SwiftVectorTiles/master/screenshots/shot1.png =150x)
-![screenshot2](https://raw.githubusercontent.com/manimaul/SwiftVectorTiles/master/screenshots/shot2.png =150x)
+[[https://github.com/manimaul/SwiftVectorTiles/blob/master/screenshots/shot1.png|alt=shot1]]
+[[https://github.com/manimaul/SwiftVectorTiles/blob/master/screenshots/shot2.png|alt=shot2]]
 
 ###Cocoapods
 ```ruby
