@@ -10,11 +10,6 @@ A Swift encoder for vector tiles according to the [Mapbox vector tile spec](http
 ###Status
 Beta - expect a few bugs
 
-###Screenshots
-Encoded [Natural Earth Data](http://www.naturalearthdata.com/) geometries
-* ![](screenshots/shot1.png)
-* ![](screenshots/shot2.png)
-
 ###Cocoapods
 ```ruby
 use_frameworks!
@@ -45,3 +40,9 @@ encoder.addFeature(layerName: "land", attributes: atts, geometry: wkt)
 let data :Data = encoder.encode()
 
 ```
+
+###Screenshots
+
+| Encoded [Natural Earth Data](http://www.naturalearthdata.com/) geometries| |
+| --------------------------------------------- | ---------------------------------------- |
+|![](screenshots/shot1.png)|![](screenshots/shot2.png)|
