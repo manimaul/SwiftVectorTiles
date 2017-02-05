@@ -21,14 +21,12 @@ public class MadMultiLineString : MadMultiGeometry {
                 cArrayArray?[i] = lineString.ptr
 
             }
-            defer {
-                cArrayArray?.deallocate(capacity: geoms.count)
-            }
         }
         let type = MadGeometryType.multiLineString.cType()
         guard let ptr = GEOSGeom_createCollection_r(GeosContext, type, cArrayArray, UInt32(geoms.count)) else {
             fatalError()
         }
+        cArrayArray?.deallocate(capacity: geoms.count)
         self.init(ptr)
         geometries.append(contentsOf: geoms)
     }

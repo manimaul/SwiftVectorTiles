@@ -23,6 +23,7 @@ public class MadGeometryCollection : MadGeometry, Sequence {
             }
             let count = UInt32(geometries.count)
             geomPtr = GEOSGeom_createCollection_r(GeosContext, MadGeometryType.geometryCollection.cType(), cPtrPtr, count)
+            cPtrPtr?.deallocate(capacity: geometries.count)
         } else {
             geomPtr = GEOSGeom_createEmptyCollection_r(GeosContext, MadGeometryType.geometryCollection.cType())
         }

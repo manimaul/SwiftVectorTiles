@@ -62,6 +62,7 @@ public class MadMultiGeometry: MadGeometry, Sequence {
             }
             let count = UInt32(tGeometries.count)
             geomPtr = GEOSGeom_createCollection_r(GeosContext, type, cPtrPtr, count)
+            cPtrPtr?.deallocate(capacity: geometries.count)
         } else {
             geomPtr = GEOSGeom_createCollection_r(GeosContext, type, nil, 0)
         }
