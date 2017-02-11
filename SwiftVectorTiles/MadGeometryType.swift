@@ -23,9 +23,9 @@ public enum MadGeometryType : Int {
         return Int32(rawValue)
     }
 
-    internal static func typeFromPtr(ptr: OpaquePointer?) -> MadGeometryType {
-        if let ptr = ptr {
-            let geometryType = GEOSGeomTypeId_r(GeosContext, ptr)
+    internal static func typeFromPtr(_ geosPtr: GeosGeometryPtr?) -> MadGeometryType {
+        if let geosPtr = geosPtr {
+            let geometryType = GEOSGeomTypeId_r(GeosContext, geosPtr.ptr)
             if let type = MadGeometryType(rawValue: Int(geometryType)) {
                 return type
             }

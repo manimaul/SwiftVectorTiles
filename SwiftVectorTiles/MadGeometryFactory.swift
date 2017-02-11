@@ -5,50 +5,46 @@
 
 import Foundation
 
-internal var GeosContext: OpaquePointer = {
-    return GEOS_init_r()
-}()
-
 public class MadGeometryFactory {
 
-    internal static func madGeometry(_ ptr: OpaquePointer?, owner: MadGeometry? = nil) -> MadGeometry? {
-        if let ptr = ptr {
-            switch MadGeometryType.typeFromPtr(ptr: ptr) {
+    internal static func madGeometry(_ geos: GPtrOwner?) -> Geometry? {
+        if let geos = geos {
+            switch MadGeometryType.typeFromPtr(geos.ownedPtr) {
             case .point:
-                return MadPoint(ptr, owner: owner)
+                return GeosPoint(geos)
             case .lineString:
-                return MadLineString(ptr, owner: owner)
+                return GeosLineString(geos)
             case .linearRing:
-                return MadLinearRing(ptr, owner: owner)
+                return GeosLinearRing(geos)
             case .polygon:
-                return MadPolygon(ptr, owner: owner)
+                return GeosPolygon(geos)
             case .multiPoint:
-                return MadMultiPoint(ptr, owner: owner)
+                return GeosMultiPoint(geos)
             case .multiLineString:
-                return MadMultiLineString(ptr, owner: owner)
+                return GeosMultiLineString(geos)
             case .multiPolygon:
-                return MadMultiPolygon(ptr, owner: owner)
+                return GeosMultiPolygon(geos)
             case .geometryCollection:
-                return MadGeometryCollection(ptr, owner: owner)
+                return GeosGeometryCollection(geos)
             default:
-                GEOSGeom_destroy_r(GeosContext, ptr)
+                geos.destroy()
                 return nil
             }
         }
         return nil
     }
 
-    public static func geometryFromWellKnownText(_ wkt: String) -> MadGeometry? {
-        let wktReaderPtr = GEOSWKTReader_create_r(GeosContext)
-        let geomPtr = GEOSWKTReader_read_r(GeosContext, wktReaderPtr, wkt)
-        GEOSWKTReader_destroy_r(GeosContext, wktReaderPtr)
-        return madGeometry(geomPtr)
+    public static func geometryFromWellKnownText(_ wkt: String) -> Geometry? {
+        guard let owner = geosGeometryFromWellKnownText(wkt) else {
+            return nil
+        }
+        return madGeometry(owner)
     }
 
-    public static func geometryFromWellKnownBinary(_ wkb: Data) -> MadGeometry? {
-        let wkbReaderPtr = GEOSWKBReader_create_r(GeosContext)
-        let geomPtr = GEOSWKBReader_read_r(GeosContext, wkbReaderPtr, [UInt8](wkb), wkb.count)
-        GEOSWKBReader_destroy_r(GeosContext, wkbReaderPtr)
-        return madGeometry(geomPtr)
+    public static func geometryFromWellKnownBinary(_ wkb: Data) -> Geometry? {
+        guard let owner = geosGeometryFromWellKnownBinary(wkb) else {
+            return nil
+        }
+        return madGeometry(owner)
     }
 }

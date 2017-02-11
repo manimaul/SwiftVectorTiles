@@ -8,7 +8,10 @@
 
 import Foundation
 
+public protocol MultiPolygon : MultiGeometry {
 
-public class MadMultiPolygon: MadMultiGeometry {
+}
+
+internal class GeosMultiPolygon: GeosMultiGeometry, MultiPolygon {
 
 }

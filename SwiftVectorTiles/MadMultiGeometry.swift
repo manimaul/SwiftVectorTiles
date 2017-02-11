@@ -8,30 +8,99 @@
 
 import Foundation
 
+public protocol MultiGeometry: Geometry, Sequence {
+    var geometries: [Geometry] { get }
+    var count: Int { get }
+    subscript(index: Int) -> Geometry { get }
+    func makeIterator() -> AnyIterator<Geometry>
+}
 
-public class MadMultiGeometry: MadGeometry, Sequence {
+//region geosGeometry
 
-    internal var geometries = [MadGeometry]()
+internal func geosMultiGeometryTransform(_ geosPtr: GPtrOwner, trans: GeosCoordinateTransform) -> GPtrOwner {
+    let count = geosMultiGeometryCount(geosPtr)
+    let type = MadGeometryType.typeFromPtr(geosPtr.ownedPtr).cType()
+    var cPtrPtr: UnsafeMutablePointer<OpaquePointer?>? = nil
+    if count > 0 {
+        cPtrPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geometries.count)
+        for i in 0 ... (count - 1) {
+            let gPtr = geosMultiGeometryAt(geosPtr, index: i)
+            // creating a geometry from an internal (managed) ptr that will not destroy it's ptr
+            // when it falls out of scope
+            let mGPtr = GPtrOwnerManagedCreate(gPtr.ptr)
+            let temp = MadGeometryFactory.madGeometry(mGPtr)
 
-    override internal init(_ ptr: OpaquePointer, owner: MadGeometry? = nil) {
-        super.init(ptr, owner: owner)
-        let count = Int(GEOSGetNumGeometries_r(GeosContext, ptr))
-        for i in 0...Int32(count - 1) {
-            guard let geomPtr = GEOSGetGeometryN_r(GeosContext, ptr, i),
-                  let geometry = MadGeometryFactory.madGeometry(geomPtr, owner: self) else {
-                fatalError("the supplied geometry was not a collection")
-            }
-            geometries.append(geometry)
+            // don't allow the transformed geometry to destroy it's ptr when it falls out of scope
+            // since we will be moving it into a new multi-geometry
+            let unManaged = temp.transform(trans) as! GeosGeometry
+            let unManagedPtr = GPtrOwnerMakeManaged(unManaged.geos)
+            unManaged.geos = unManagedPtr
+
+            cPtrPtr[i] = unManagedPtr.ptr
         }
     }
+    let ptr = GEOSGeom_createCollection(type, cPtrPtr, UInt32(count))
+    cPtrPtr?.deallocate(capacity: count)
+    return GPtrOwnerCreate(ptr)
+}
 
-    public subscript(index: Int) -> MadGeometry {
+internal func geosMultiGeometryCreate(_ geosPtr: [GPtrOwner]) -> GPtrOwner {
+    var geomPtr: OpaquePointer
+    let type = geometryType().cType()
+    var cPtrPtr: UnsafeMutablePointer<OpaquePointer?>? = nil
+    if tGeometries.count > 0 {
+        cPtrPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geometries.count)
+        for (i, geom) in tGeometries.enumerated() {
+            cPtrPtr?[i] = geom.geos
+        }
+        let count = UInt32(tGeometries.count)
+        geomPtr = GEOSGeom_createCollection_r(GeosContext, type, cPtrPtr, count)
+        cPtrPtr?.deallocate(capacity: geometries.count)
+    } else {
+        geomPtr = GEOSGeom_createCollection_r(GeosContext, type, nil, 0)
+    }
+    guard let retVal = MadGeometryFactory.madGeometry(geomPtr) as? MadMultiGeometry else {
+        return nil
+    }
+    return retVal
+}
+
+internal func geosMultiGeometryCount(_ geosPtr: GeosGeometryPtr) -> Int {
+    return Int(GEOSGetNumCoordinates_r(GeosContext, geosPtr.ptr))
+}
+
+internal func geosMultiGeometryAt(_ geosPtr: GeosGeometryPtr, index: Int) -> GeosGeometryPtr {
+    guard let ptr = GEOSGetGeometryN_r(GeosContext, ptr, Int32(index)) else {
+        fatalError("index out of bounds")
+    }
+    return GeosGeometryPtr(ptr: ptr)
+}
+
+//endregion
+
+internal class GeosMultiGeometry: GeosGeometry, MultiGeometry {
+
+    internal lazy var geometries: [Geometry] = { [unowned self] in
+        var geoms = [Geometry]()
+        for i in 0 ... (self.count - 1) {
+            let gPtr = geosMultiGeometryAt(self.geos.ownedPtr, index: i)
+            let gOwner = geosGeometryClone(gPtr)
+            geoms.append(MadGeometryFactory.madGeometry(gOwner))
+        }
+        return geoms
+    }
+
+    internal lazy var count: Int = { [unowned self] in
+        return geosMultiGeometryCount(self.geos.ownedPtr)
+    }
+
+    subscript(index: Int) -> Geometry {
         assert(geometries.count > index, "Index out of bounds")
         assert(index >= 0, "index less than zero")
         return geometries[index]
     }
 
-    public func makeIterator() -> AnyIterator<MadGeometry> {
+    func makeIterator() -> AnyIterator<Geometry> {
         var index = 0
         return AnyIterator {
             guard index < self.geometries.count else {
@@ -43,33 +112,9 @@ public class MadMultiGeometry: MadGeometry, Sequence {
         }
     }
 
-    override public func transform(_ t: MadCoordinateTransform) -> MadMultiGeometry? {
-        var tGeometries = [MadGeometry]()
-        for geometry in geometries {
-            guard let tGeom = geometry.transform(t) else {
-                return nil
-            }
-            tGeometries.append(tGeom)
-        }
-
-        var geomPtr: OpaquePointer
-        let type = geometryType().cType()
-        var cPtrPtr: UnsafeMutablePointer<OpaquePointer?>? = nil
-        if tGeometries.count > 0 {
-            cPtrPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geometries.count)
-            for (i, geom) in tGeometries.enumerated() {
-                cPtrPtr?[i] = geom.ptr
-            }
-            let count = UInt32(tGeometries.count)
-            geomPtr = GEOSGeom_createCollection_r(GeosContext, type, cPtrPtr, count)
-            cPtrPtr?.deallocate(capacity: geometries.count)
-        } else {
-            geomPtr = GEOSGeom_createCollection_r(GeosContext, type, nil, 0)
-        }
-        guard let retVal = MadGeometryFactory.madGeometry(geomPtr) as? MadMultiGeometry else {
-            return nil
-        }
-        return retVal
+    override public func transform(_ trans: GeoCoordinateTransform) -> GeosMultiGeometry? {
+        let gOwner = geosMultiGeometryTransform(self.geos, trans: trans)
+        return MadGeometryFactory.madGeometry(gOwner) as? GeosMultiGeometry
     }
 
 }

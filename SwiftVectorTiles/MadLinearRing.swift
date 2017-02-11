@@ -8,35 +8,52 @@
 
 import Foundation
 
+public protocol LinearRing: Geometry {
+    var length: Double { get }
+    var isCounterClockWise: Bool { get }
+    func reverse() -> Self?
+}
 
-public class MadLinearRing: MadLineString {
 
-    convenience init(_ coordinateSequence: MadCoordinateSequence) {
-        if coordinateSequence.weakOwner != nil {
-            fatalError("supplied coordinate sequence is owned by another geometry")
-        }
-        guard let ptr = GEOSGeom_createLinearRing_r(GeosContext, coordinateSequence.sequencePtr) else {
-            fatalError("coordinates did not form a ring")
-        }
-        self.init(ptr)
-        coordinateSequence.weakOwner = self
-        self.coordinateSequence = coordinateSequence
+internal func geosLinearRingCreate(_ coordinates: CSPtrOwner) -> GPtrOwner {
+    guard let ptr = GEOSGeom_createLinearRing_r(GeosContext, coordinates.ptr) else {
+        fatalError("coordinates did not form a ring")
+    }
+    return GPtrOwnerCreate(ptr)
+}
+
+internal final class GeosLinearRing: GeosGeometry, LinearRing {
+
+    public lazy var length: Double = { [unowned self] in
+        return geosLineStringLength(self.geos.ownedPtr)
+    }()
+
+    public lazy var isCounterClockWise: Bool = { [unowned self] in
+        return self.coordinateSequence!.isCounterClockWise
+    }()
+
+    convenience init(_ coordinateSequence: GeosCoordinateSequence) {
+        let sOwner = geosCoordinateSequenceClone(coordinateSequence.geos.ownedPtr)
+        let gOwner = geosLinearRingCreate(sOwner)
+        self.init(gOwner)
     }
 
-    override public func reverse() -> MadLinearRing? {
-        guard let coordinateSequence = coordinateSequence else {
+    public func reverse() -> GeosLinearRing? {
+        guard let sOwned = geosGeometryCoordinateSequence(geos.ownedPtr) else {
             return nil
         }
-        var coords = [MadCoordinate](coordinateSequence)
-        coords.reverse()
-        return MadLinearRing(coords)
+        let sOwner = geosCoordinateSequenceReversed(sOwned)
+        return GeosLinearRing(geosLinearRingCreate(sOwner))
     }
 
-    override public func transform(_ t: MadCoordinateTransform) -> MadLinearRing? {
-        guard let tCoords = coordinateSequence?.transform(t: t) else {
-            fatalError()
+    override public func transform(_ trans: GeoCoordinateTransform) -> GeosLinearRing? {
+        guard let sOwned = geosGeometryCoordinateSequence(geos.ownedPtr) else {
+            return nil
         }
-        return MadLinearRing(tCoords)
+        let sOwner = geosCoordinateSequenceTransform(sOwned, trans: trans)
+        let sOwnerReversed = geosCoordinateSequenceReversed(sOwned)
+        sOwner.destroy()
+        return GeosLinearRing(geosLinearRingCreate(sOwnerReversed))
     }
-    
+
 }

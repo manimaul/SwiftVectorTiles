@@ -8,96 +8,172 @@
 
 import Foundation
 
-public class MadGeometry {
+public protocol Geometry {
+    var wkt: String? { get }
+    var wkb: Data? { get }
+    var coordinates: [GeoCoordinate] { get }
+    var geometryType: MadGeometryType { get }
+    var isEmpty: Bool { get }
+    func covers(other: Geometry) -> Bool
+    func intersection(other: Geometry) -> Geometry?
+    func intersects(other: Geometry) -> Bool
+    func transform(_ trans: GeoCoordinateTransform) -> Self?
+}
 
-    internal weak var owner: MadGeometry?
-    internal let ptr: OpaquePointer
-    fileprivate var wkt: String?
-    fileprivate var wkb: Data?
-    public lazy var coordinateSequence: MadCoordinateSequence? = { [unowned self] in
-        return self.getCoordinateSequence()
-    }()
+//region geosGeometry
 
-    internal init(_ ptr: OpaquePointer, owner: MadGeometry? = nil) {
-        self.ptr = ptr
-        self.owner = owner
+internal func geosGeometryFromWellKnownText(_ wkt: String) -> GPtrOwner? {
+    let wktReaderPtr = GEOSWKTReader_create_r(GeosContext)
+    guard let geomPtr = GEOSWKTReader_read_r(GeosContext, wktReaderPtr, wkt) else {
+        return nil
     }
-    
-    public func covers(other: MadGeometry) -> Bool {
-        return GEOSCovers(ptr, other.ptr) == CChar("1")
-    }
+    GEOSWKTReader_destroy_r(GeosContext, wktReaderPtr)
+    return GPtrOwnerCreate(geomPtr)
+}
 
-    public func intersection(other: MadGeometry) -> MadGeometry? {
-        guard let ptr = GEOSIntersection_r(GeosContext, ptr, other.ptr) else {
-            return nil
-        }
-        return MadGeometryFactory.madGeometry(ptr)
+internal func geosGeometryFromWellKnownBinary(_ wkb: Data) -> GPtrOwner? {
+    let wkbReaderPtr = GEOSWKBReader_create_r(GeosContext)
+    guard let geomPtr = GEOSWKBReader_read_r(GeosContext, wkbReaderPtr, [UInt8](wkb), wkb.count) else {
+        return nil
     }
-    
-    public func intersects(other: MadGeometry) -> Bool {
-        return GEOSIntersects(ptr, other.ptr) == CChar("1")
+    GEOSWKBReader_destroy_r(GeosContext, wkbReaderPtr)
+    return GPtrOwnerCreate(geomPtr)
+}
+
+func geosGeometryClone(_ geosPtr: GeosGeometryPtr) -> GPtrOwner {
+    guard let ptr = GEOSGeom_clone_r(GeosContext, geosPtr.ptr) else {
+        fatalError("fatal error cloning coordinate sequence")
     }
-    
-    public func empty() -> Bool {
-        return GEOSisEmpty_r(GeosContext, ptr) == CChar("1")
+    return GPtrOwnerCreate(ptr)
+}
+
+func geosGeometryCovers(_ geosPtr: GeosGeometryPtr, other: GeosGeometryPtr) -> Bool {
+    return GEOSCovers(geosPtr.ptr, other.ptr) == CChar("1")
+}
+
+func geosGeometryIntersection(_ geosPtr: GeosGeometryPtr, other: GeosGeometryPtr) -> GPtrOwner? {
+    guard let ptr = GEOSIntersection_r(GeosContext, geosPtr.ptr, other.ptr) else {
+        return nil
     }
-    
-    public func wellKnownText() -> String? {
-        if let text = wkt {
-            return text
-        }
-        let wktWriter = GEOSWKTWriter_create_r(GeosContext)
-        let wktData = GEOSWKTWriter_write_r(GeosContext, wktWriter, ptr)
-        GEOSWKTWriter_destroy_r(GeosContext, wktWriter)
-        if let wktData = wktData {
-            wkt = String(cString: wktData)
-            GEOSFree_r(GeosContext, wktData)
-        }
+    return GPtrOwnerCreate(ptr)
+}
+
+func geosGeometryIntersects(_ geosPtr: GeosGeometryPtr, other: GeosGeometryPtr) -> Bool {
+    return GEOSIntersects(geosPtr.ptr, other.ptr) == CChar("1")
+}
+
+func geosGeometryEmpty(_ geosPtr: GeosGeometryPtr) -> Bool {
+    return GEOSisEmpty_r(GeosContext, geosPtr.ptr) == CChar("1")
+}
+
+func geosGeometryCoordinateSequence(_ geosPtr: GeosGeometryPtr) -> GeosCoordinateSequencePtr? {
+    guard let ptr = GEOSGeom_getCoordSeq_r(GeosContext, geosPtr.ptr) else {
+        return nil
+    }
+    return GeosCoordinateSequencePtr(ptr: ptr)
+}
+
+func geosGeometryCoordinateSequenceClone(_ geosPtr: GeosGeometryPtr) -> CSPtrOwner? {
+    guard let seq = geosGeometryCoordinateSequence(geosPtr),
+          let seqClone = GEOSCoordSeq_clone_r(GeosContext, seq.ptr) else {
+        return nil
+    }
+    return CSPtrOwnerCreate(seqClone)
+}
+
+func geosGeometryWellKnownText(_ geosPtr: GeosGeometryPtr) -> String? {
+    let wktWriter = GEOSWKTWriter_create_r(GeosContext)
+    let wktData = GEOSWKTWriter_write_r(GeosContext, wktWriter, geosPtr.ptr)
+    GEOSWKTWriter_destroy_r(GeosContext, wktWriter)
+    if let wktData = wktData {
+        let wkt = String(cString: wktData)
+        GEOSFree_r(GeosContext, wktData)
         return wkt
     }
-    
-    public func wellKnownBinary() -> Data? {
-        if let bin = wkb {
-            return bin
-        }
-        let wkbWriter = GEOSWKBWriter_create_r(GeosContext)
-        var size :Int = 0
-        let wkbData = GEOSWKBWriter_write_r(GeosContext, wkbWriter, ptr, &size)
-        GEOSWKBWriter_destroy_r(GeosContext, wkbWriter)
-        if let wkbData = wkbData {
-            wkb = Data(bytes: wkbData, count: size)
-            GEOSFree_r(GeosContext, wkbData)
-        }
+    return nil
+}
+
+func geosGeometryWellKnownBinary(_ geosPtr: GeosGeometryPtr) -> Data? {
+    let wkbWriter = GEOSWKBWriter_create_r(GeosContext)
+    var size :Int = 0
+    let wkbData = GEOSWKBWriter_write_r(GeosContext, wkbWriter, geosPtr.ptr, &size)
+    GEOSWKBWriter_destroy_r(GeosContext, wkbWriter)
+    if let wkbData = wkbData {
+        let wkb = Data(bytes: wkbData, count: size)
+        GEOSFree_r(GeosContext, wkbData)
         return wkb
     }
-    
-    public func geometryType() -> MadGeometryType {
-        return MadGeometryType.typeFromPtr(ptr: ptr)
-    }
+    return nil
+}
 
-    private func getCoordinateSequence() -> MadCoordinateSequence? {
-        guard let seq = GEOSGeom_getCoordSeq_r(GeosContext, ptr),
-              let seqClone = GEOSCoordSeq_clone_r(GeosContext, seq) else {
+//endregion
+
+internal class GeosGeometry : Geometry {
+
+    internal var geos: GPtrOwner
+
+    lazy var wkt: String? = { [unowned self] in
+        return geosGeometryWellKnownText(self.geos.ownedPtr)
+    }()
+
+    lazy var wkb: Data? = { [unowned self] in
+        return geosGeometryWellKnownBinary(self.geos.ownedPtr)
+    }()
+
+    lazy var coordinates: [GeoCoordinate] = { [unowned self] in
+        guard let coordGeos = geosGeometryCoordinateSequence(self.geos.ownedPtr) else {
+            return [GeoCoordinate]()
+        }
+        return geosCoordinateSequenceCoordinates(coordGeos)
+    }()
+
+    lazy var geometryType: MadGeometryType = { [unowned self] in
+        return MadGeometryType.typeFromPtr(self.geos.ownedPtr)
+    }()
+
+    lazy var isEmpty: Bool = { [unowned self] in
+        return geosGeometryEmpty(self.geos.ownedPtr)
+    }()
+
+    lazy var coordinateSequence: GeosCoordinateSequence? = { [unowned self] in
+        guard let seq = geosGeometryCoordinateSequenceClone(self.geos.ownedPtr) else {
             return nil
         }
-        return MadCoordinateSequence(seqClone)
+        return GeosCoordinateSequence(seq)
+    }()
+
+    internal init(_ ptrOwner: GPtrOwner) {
+        self.geos = ptrOwner
     }
 
-    public func coordinates() -> [MadCoordinate] {
-        guard let seq = coordinateSequence else {
-            return [MadCoordinate]()
-        }
-        return [MadCoordinate](seq)
-    }
-    
-    public func transform(_ t: MadCoordinateTransform) -> Self? {
-        fatalError("abstract")
-    }
-    
     deinit {
-        if owner != nil {
-            GEOSGeom_destroy_r(GeosContext, ptr)
+        geos.destroy()
+    }
+    
+    func covers(other: Geometry) -> Bool {
+        let other = other as! GeosGeometry
+        return geosGeometryCovers(geos.ownedPtr, other: other.geos.ownedPtr)
+    }
+
+    func intersection(other: Geometry) -> Geometry? {
+        let other = other as! GeosGeometry
+        guard let geos = geosGeometryIntersection(geos.ownedPtr, other: other.geos.ownedPtr) else {
+            return nil
         }
+        return MadGeometryFactory.madGeometry(geos)
+    }
+    
+    func intersects(other: Geometry) -> Bool {
+        let other = other as! GeosGeometry
+        return geosGeometryIntersects(geos.ownedPtr, other: other.geos.ownedPtr)
+    }
+    
+    func empty() -> Bool {
+        return geosGeometryEmpty(geos.ownedPtr)
+    }
+    
+    func transform(_ trans: GeoCoordinateTransform) -> Self? {
+        fatalError("unimplemented abstract function")
     }
     
 }

@@ -8,78 +8,164 @@
 
 import Foundation
 
-typealias MadCoordinateTransform = (MadCoordinate) -> MadCoordinate
+public typealias GeoCoordinate = (Double, Double)
+public typealias GeoCoordinateTransform = (GeoCoordinate) -> GeoCoordinate
 
-public class MadCoordinateSequence: Sequence, Equatable {
-    internal weak var weakOwner: MadGeometry?
-    internal let sequencePtr: OpaquePointer
-    public let count: Int
-    public lazy var isCounterClockWise: Bool = { [unowned self] in
+public protocol CoordinateSequence : Sequence, Equatable {
+    var count: Int { get }
+    var isCounterClockWise: Bool { get }
+    func clone() -> Self?
+    func transform(trans: GeoCoordinateTransform) -> Self?
+
+    //Sequence
+    subscript(index: Int) -> GeoCoordinate { get }
+    func makeIterator() -> AnyIterator<GeoCoordinate>
+
+    //Equatable
+    static func ==(lhs: Self, rhs: Self) -> Bool
+}
+
+private let DIMENSIONS = UInt32(2)
+
+//region geosCoordinateSequence
+
+func geosCoordinateSequenceCreate(_ coordinates: GeoCoordinate...) -> CSPtrOwner {
+    return geosCoordinateSequenceCreate(coordinates)
+}
+
+func geosCoordinateSequenceCreate(_ coordinates: [GeoCoordinate]) -> CSPtrOwner {
+    let count = UInt32(coordinates.count)
+    guard let ptr = GEOSCoordSeq_create_r(GeosContext, count, 2) else {
+        fatalError("fatal error creating coordinate sequence")
+    }
+    for (i, coord) in coordinates.enumerated() {
+        let index = UInt32(i)
+        GEOSCoordSeq_setX_r(GeosContext, ptr, index, coord.0)
+        GEOSCoordSeq_setY_r(GeosContext, ptr, index, coord.1)
+    }
+    return CSPtrOwnerCreate(ptr)
+}
+
+func geosCoordinateSequenceClone(_  geosPtr: GeosCoordinateSequencePtr) -> CSPtrOwner {
+    guard let ptr = GEOSCoordSeq_clone_r(GeosContext, geosPtr.ptr) else {
+        fatalError("fatal error cloning coordinate sequence")
+    }
+    return CSPtrOwnerCreate(ptr)
+}
+
+func geosCoordinateSequenceTransform(_  geosPtr: GeosCoordinateSequencePtr, trans: GeoCoordinateTransform) -> CSPtrOwner {
+    let count = UInt32(geosCoordinateSequenceCount(geosPtr))
+    guard let ptr = GEOSCoordSeq_create_r(GeosContext, count, DIMENSIONS) else {
+        fatalError("error transforming coordinate sequence")
+    }
+    if (count > 0) {
+        var coord = (0.0, 0.0)
+        for i in 0 ... (count - 1) {
+            _ = GEOSCoordSeq_getX_r(GeosContext, geosPtr.ptr, i, &coord.0)
+            _ = GEOSCoordSeq_getY_r(GeosContext, geosPtr.ptr, i, &coord.1)
+            coord = trans(coord)
+            _ = GEOSCoordSeq_setX_r(GeosContext, ptr, i, coord.0)
+            _ = GEOSCoordSeq_setY_r(GeosContext, ptr, i, coord.1)
+        }
+    }
+    return CSPtrOwnerCreate(ptr)
+}
+
+func geosCoordinateSequenceReversed(_  geosPtr: GeosCoordinateSequencePtr) -> CSPtrOwner {
+    let count = UInt32(geosCoordinateSequenceCount(geosPtr))
+    guard let ptr = GEOSCoordSeq_create_r(GeosContext, count, DIMENSIONS) else {
+        fatalError("error transforming coordinate sequence")
+    }
+    if (count > 0) {
+        var coord = (0.0, 0.0)
+        let r = count - 1
+        for i in 0 ... r {
+            _ = GEOSCoordSeq_getX_r(GeosContext, geosPtr.ptr, r - i, &coord.0)
+            _ = GEOSCoordSeq_getY_r(GeosContext, geosPtr.ptr, r - i, &coord.1)
+            _ = GEOSCoordSeq_setX_r(GeosContext, ptr, i, coord.0)
+            _ = GEOSCoordSeq_setY_r(GeosContext, ptr, i, coord.1)
+        }
+    }
+    return CSPtrOwnerCreate(ptr)
+}
+
+func geosCoordinateSequenceCount(_  geosPtr: GeosCoordinateSequencePtr) -> Int {
+    var num: UInt32 = 0
+    GEOSCoordSeq_getSize_r(GeosContext, geosPtr.ptr, &num)
+    return Int(num)
+}
+
+func geosCoordinateSequenceCoordinateAt(_  geosPtr: GeosCoordinateSequencePtr, index: Int) -> GeoCoordinate {
+    var x: Double = 0
+    var y: Double = 0
+    assert(geosCoordinateSequenceCount(geosPtr) > index, "Index out of bounds")
+    assert(index >= 0, "index less than zero")
+    let i = UInt32(index)
+    GEOSCoordSeq_getX_r(GeosContext, geosPtr.ptr, i, &x);
+    GEOSCoordSeq_getY_r(GeosContext, geosPtr.ptr, i, &y);
+    return (x, y)
+}
+
+func geosCoordinateSequenceCoordinates(_ geosPtr: GeosCoordinateSequencePtr) -> [GeoCoordinate] {
+    let count = geosCoordinateSequenceCount(geosPtr)
+    var coordinates = [GeoCoordinate]()
+    if count > 0 {
+        for i in 0...(count - 1) {
+            coordinates.append(geosCoordinateSequenceCoordinateAt(geosPtr, index: i))
+        }
+    }
+    return coordinates
+}
+
+//endregion
+
+internal final class GeosCoordinateSequence: CoordinateSequence {
+
+    //region PROPERTIES CONFORMS TO: CoordinateSequence
+
+    lazy var count: Int = { [unowned self] in
+        return geosCoordinateSequenceCount(self.geos.ownedPtr)
+    }()
+
+    lazy var isCounterClockWise: Bool = { [unowned self] in
         return self.getIsCCW()
     }()
 
-    init(_ coordinates: [MadCoordinate]) {
-        count = coordinates.count
-        sequencePtr = GEOSCoordSeq_create_r(GeosContext, UInt32(count), 2)
-        for (i, coord) in coordinates.enumerated() {
-            let index = UInt32(i)
-            GEOSCoordSeq_setX_r(GeosContext, sequencePtr, index, coord.x)
-            GEOSCoordSeq_setY_r(GeosContext, sequencePtr, index, coord.y)
-        }
+    //endregion
+
+    //region INTERNAL PROPERTIES
+
+    internal let geos: CSPtrOwner
+
+    //endregion
+
+    //region PRIVATE PROPERTIES
+    //endregion
+
+    //region INITIALIZERS
+
+    convenience init(_ coordinates: [GeoCoordinate]) {
+        self.init(geosCoordinateSequenceCreate(coordinates))
     }
 
-    convenience init(_ coordinates: MadCoordinate...) {
+    convenience init(_ coordinates: GeoCoordinate...) {
         self.init(coordinates)
     }
 
-    init(_ coordinates: [(Double, Double)]) {
-        count = coordinates.count
-        sequencePtr = GEOSCoordSeq_create_r(GeosContext, UInt32(count), 2)
-        for (i, coord) in coordinates.enumerated() {
-            let index = UInt32(i)
-            GEOSCoordSeq_setX_r(GeosContext, sequencePtr, index, coord.0)
-            GEOSCoordSeq_setY_r(GeosContext, sequencePtr, index, coord.1)
-        }
+    init(_ geos: CSPtrOwner) {
+        self.geos = geos
     }
 
-    convenience init(_ coordinates: (Double, Double)...) {
-        self.init(coordinates)
+    deinit {
+        self.geos.destroy()
     }
 
-    init(_ sequence: OpaquePointer, owner: MadGeometry? = nil) {
-        self.sequencePtr = sequence
-        self.weakOwner = owner
-        var num: UInt32 = 0
-        GEOSCoordSeq_getSize_r(GeosContext, sequencePtr, &num)
-        count = Int(num)
-    }
+    //endregion
 
-    public func clone() -> MadCoordinateSequence? {
-        guard let ptr = GEOSCoordSeq_clone_r(GeosContext, sequencePtr) else {
-            return nil
-        }
-        return MadCoordinateSequence(ptr)
-    }
-
-    public func transform(t: MadCoordinateTransform) -> MadCoordinateSequence? {
-        guard let ptr = GEOSCoordSeq_create_r(GeosContext, UInt32(count), 2) else {
-            return nil
-        }
-        for (i, coord) in enumerated() {
-            let index = UInt32(i)
-            let tCoord = t(coord)
-            let rX = GEOSCoordSeq_setX_r(GeosContext, ptr, index, tCoord.x)
-            let rY = GEOSCoordSeq_setY_r(GeosContext, ptr, index, tCoord.y)
-            if (rX + rY) == 0 {
-                GEOSCoordSeq_destroy_r(GeosContext, ptr)
-                return nil
-            }
-        }
-        return MadCoordinateSequence(ptr)
-    }
+    //region PRIVATE FUNCTIONS
 
     private func getIsCCW() -> Bool {
-        let ring = [MadCoordinate](self)
+        let ring = [GeoCoordinate](self)
 
         // # of points without closing endpoint
         let nPts = ring.count - 1
@@ -95,7 +181,7 @@ public class MadCoordinateSequence: Sequence, Equatable {
 
         for i in 0 ... ring.count - 1 {
             let p = ring[i]
-            if p.y > hiPt.y {
+            if p.1 > hiPt.1 {
                 hiPt = p
                 hiIndex = i
             }
@@ -137,7 +223,7 @@ public class MadCoordinateSequence: Sequence, Equatable {
          * On exceptions, return 2.
          *
          */
-        let disc = GEOSOrientationIndex_r(GeosContext, prev.x, prev.y, hiPt.x, hiPt.y, next.x, next.y)
+        let disc = GEOSOrientationIndex_r(GeosContext, prev.0, prev.1, hiPt.0, hiPt.1, next.0, next.1)
 
         /**
          * If disc is exactly 0, lines are collinear. There are two possible cases:
@@ -151,7 +237,7 @@ public class MadCoordinateSequence: Sequence, Equatable {
         var isCCW = false
         if (disc == 0) {
             // poly is CCW if prev x is right of next x
-            isCCW = (prev.x > next.x);
+            isCCW = (prev.0 > next.1);
         } else {
             // if area is positive, points are ordered CCW
             isCCW = (disc > 0);
@@ -159,20 +245,27 @@ public class MadCoordinateSequence: Sequence, Equatable {
         return isCCW;
     }
 
-    // pragma: Sequence
+    //endregion
 
-    public subscript(index: Int) -> MadCoordinate {
-        var x: Double = 0
-        var y: Double = 0
-        assert(self.count > index, "Index out of bounds")
-        assert(index >= 0, "index less than zero")
-        let i = UInt32(index)
-        GEOSCoordSeq_getX_r(GeosContext, sequencePtr, i, &x);
-        GEOSCoordSeq_getY_r(GeosContext, sequencePtr, i, &y);
-        return MadCoordinate(x: x, y: y)
+    //region CONFORMS TO: CoordinateSequence
+
+    public func clone() -> GeosCoordinateSequence? {
+        return GeosCoordinateSequence(geosCoordinateSequenceClone(geos.ownedPtr))
     }
 
-    public func makeIterator() -> AnyIterator<MadCoordinate> {
+    public func transform(trans: GeoCoordinateTransform) -> GeosCoordinateSequence? {
+        return GeosCoordinateSequence(geosCoordinateSequenceTransform(geos.ownedPtr, trans: trans))
+    }
+
+    //endregion
+
+    //region CONFORMS TO: Sequence
+
+    public subscript(index: Int) -> GeoCoordinate {
+        return geosCoordinateSequenceCoordinateAt(geos.ownedPtr, index: index)
+    }
+
+    public func makeIterator() -> AnyIterator<GeoCoordinate> {
         var index = 0
         return AnyIterator {
             guard index < self.count else {
@@ -184,10 +277,14 @@ public class MadCoordinateSequence: Sequence, Equatable {
         }
     }
 
-    public static func ==(lhs: MadCoordinateSequence, rhs: MadCoordinateSequence) -> Bool {
+    //endregion
+
+    //region CONFORMS TO: Equatable
+
+    public static func ==(lhs: GeosCoordinateSequence, rhs: GeosCoordinateSequence) -> Bool {
         if lhs.count == rhs.count {
             for (lhsCoord, rhsCoord) in zip(lhs, rhs) {
-                if lhsCoord.x != rhsCoord.x && lhsCoord.y != rhsCoord.y {
+                if lhsCoord.0 != rhsCoord.0 && lhsCoord.1 != rhsCoord.1 {
                     return false
                 }
             }
@@ -196,10 +293,6 @@ public class MadCoordinateSequence: Sequence, Equatable {
         return false
     }
 
-    deinit {
-        if weakOwner != nil {
-            GEOSCoordSeq_destroy_r(GeosContext, sequencePtr)
-        }
-    }
+    //endregion
 
 }

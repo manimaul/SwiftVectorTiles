@@ -8,30 +8,39 @@
 
 import Foundation
 
-public class MadMultiLineString : MadMultiGeometry {
+public protocol MultiLineString : MultiGeometry {
 
-    public convenience init(_ coordinates: [MadCoordinateSequence]) {
-        var geoms = [MadGeometry]()
-        var cArrayArray: UnsafeMutablePointer<OpaquePointer?>? = nil
-        if coordinates.count > 0 {
-            cArrayArray = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: coordinates.count)
-            for (i, coordinateSequence) in coordinates.enumerated() {
-                let lineString = MadLineString(coordinateSequence)
-                geoms.append(lineString)
-                cArrayArray?[i] = lineString.ptr
+}
 
-            }
+internal func geosMultiLineStringCreate(_ geosPtrs: [CSPtrOwner]) -> GPtrOwner {
+    var cArrayArray: UnsafeMutablePointer<OpaquePointer?>? = nil
+    if geosPtrs.count > 0 {
+        cArrayArray = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geosPtrs.count)
+        for (i, geosPtr) in geosPtrs.enumerated() {
+            let gOwner = geosLineStringCreate(geosPtr)
+            cArrayArray?[i] = gOwner.ptr
         }
-        let type = MadGeometryType.multiLineString.cType()
-        guard let ptr = GEOSGeom_createCollection_r(GeosContext, type, cArrayArray, UInt32(geoms.count)) else {
-            fatalError()
+    }
+    let type = MadGeometryType.multiLineString.cType()
+    guard let ptr = GEOSGeom_createCollection_r(GeosContext, type, cArrayArray, UInt32(geoms.count)) else {
+        fatalError("could not create multi line string")
+    }
+    cArrayArray?.deallocate(capacity: geoms.count)
+    return GPtrOwner(ptr)
+}
+
+public class GeosMultiLineString : GeosMultiGeometry, MultiLineString {
+
+    public convenience init(_ coordinates: [GeosCoordinateSequence]) {
+        var geosPtrs = [CSPtrOwner]()
+        for cs in coordinates {
+            geosPtrs.append(geosCoordinateSequenceClone(cs.geos))
         }
-        cArrayArray?.deallocate(capacity: geoms.count)
-        self.init(ptr)
-        geometries.append(contentsOf: geoms)
+        let gOwner = geosMultiLineStringCreate(geosPtrs)
+        self.init(gOwner)
     }
 
-    public convenience init(_ coordinates: MadCoordinateSequence...) {
+    public convenience init(_ coordinates: GeosCoordinateSequence...) {
         self.init(coordinates)
     }
     

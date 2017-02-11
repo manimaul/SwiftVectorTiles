@@ -8,6 +8,10 @@
 
 import Foundation
 
-public class MadMultiPoint : MadMultiGeometry {
+public protocol MultiPoint : MultiGeometry {
+
+}
+
+internal class GeosMultiPoint : GeosMultiGeometry, MultiPoint {
     
 }

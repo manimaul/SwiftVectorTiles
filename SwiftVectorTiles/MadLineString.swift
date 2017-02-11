@@ -8,60 +8,68 @@
 
 import Foundation
 
+public protocol LineString: Geometry {
+    var length: Double { get }
+    var isCounterClockWise: Bool { get }
+    func reverse() -> LineString?
+}
 
-public class MadLineString: MadGeometry {
+func geosLineStringLength(_ geosPtr: GeosGeometryPtr) -> Double {
+    var value: Double = 0
+    _ = GEOSGeomGetLength_r(GeosContext, geosPtr.ptr, &value)
+    return value
+}
+
+func geosLineStringCreate(_ coordinates: CSPtrOwner) -> GPtrOwner {
+    guard let ptr = GEOSGeom_createLineString_r(GeosContext, coordinates.ptr) else {
+        fatalError("coordinates did not form a ring")
+    }
+    return GPtrOwnerCreate(ptr)
+}
+
+internal final class GeosLineString: GeosLineString, LineString {
 
     public lazy var length: Double = { [unowned self] in
-        return self.getLength()
+        return geosLineStringLength(self.geos.ownedPtr)
     }()
 
     public lazy var isCounterClockWise: Bool = { [unowned self] in
-        return self.getIsCCW()
+        return self.coordinateSequence!.isCounterClockWise
     }()
 
-    convenience init(_ coordinateSequence: MadCoordinateSequence) {
-        guard let ptr = GEOSGeom_createLineString_r(GeosContext, coordinateSequence.sequencePtr) else {
-            fatalError("coordinates did not form a ring")
-        }
-        self.init(ptr)
+    convenience init(_ coordinateSequence: GeosCoordinateSequence) {
+        let sOwner = geosCoordinateSequenceClone(coordinateSequence.geos.ownedPtr)
+        let gOwner = geosLineStringCreate(sOwner)
+        self.init(gOwner)
     }
 
-    convenience init(_ coordinates: [MadCoordinate]) {
-        let coordinateSequence = MadCoordinateSequence(coordinates)
-        self.init(coordinateSequence)
+    convenience init(_ coordinates: [GeoCoordinate]) {
+        let sOwner = geosCoordinateSequenceCreate(coordinates)
+        let gOwner = geosLineStringCreate(sOwner)
+        self.init(gOwner)
     }
 
-    convenience init(_ coordinates: (Double, Double)...) {
-        let coordinateSequence = MadCoordinateSequence(coordinates)
-        self.init(coordinateSequence)
+    convenience init(_ coordinates: GeoCoordinate...) {
+        let sOwner = geosCoordinateSequenceCreate(coordinates)
+        let gOwner = geosLineStringCreate(sOwner)
+        self.init(gOwner)
     }
 
-    private func getIsCCW() -> Bool {
-        guard let seq = coordinateSequence else {
-            fatalError("a linear ring should have a coordinate sequence")
-        }
-        return seq.isCounterClockWise
-    }
-
-    public func reverse() -> MadLineString? {
-        guard let coordinateSequence = coordinateSequence else {
+    public func reverse() -> GeosLineString? {
+        guard let ownedCoordinateSequence = geosGeometryCoordinateSequence(self.geos.ownedPtr) else {
             return nil
         }
-        var coords = [MadCoordinate](coordinateSequence)
-        coords.reverse()
-        return MadLineString(coords)
+        let sOwner = geosCoordinateSequenceReversed(ownedCoordinateSequence)
+        let gOwner = geosLineStringCreate(sOwner)
+        return GeosLineString(gOwner)
     }
 
-    private func getLength() -> Double {
-        var value: Double = 0
-        _ = GEOSGeomGetLength_r(GeosContext, ptr, &value)
-        return value
-    }
-
-    override public func transform(_ t: MadCoordinateTransform) -> MadLineString? {
-        guard let tCoords = coordinateSequence?.transform(t: t) else {
-            fatalError()
+    override public func transform(_ trans: GeoCoordinateTransform) -> GeosLineString? {
+        guard let sPtr = geosGeometryCoordinateSequence(self.geos.ownedPtr) else {
+            return nil
         }
-        return MadLineString(tCoords)
+        let sOwner = geosCoordinateSequenceTransform(sPtr, trans: trans)
+        let gOwner = geosLineStringCreate(sOwner)
+        return GeosLineString(gOwner)
     }
 }
