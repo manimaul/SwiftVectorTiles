@@ -15,7 +15,7 @@ class MadGeometryTypeTests: XCTestCase {
             XCTFail("invalid wkt")
             return
         }
-        XCTAssertEqual(MadGeometryType.point, geom.geometryType())
+        XCTAssertEqual(MadGeometryType.point, geom.geometryType)
     }
 
     func testMultiPoint() {
@@ -24,7 +24,7 @@ class MadGeometryTypeTests: XCTestCase {
             XCTFail("invalid wkt")
             return
         }
-        XCTAssertEqual(MadGeometryType.multiPoint, geom.geometryType())
+        XCTAssertEqual(MadGeometryType.multiPoint, geom.geometryType)
     }
 
     func testPolygon() {
@@ -33,7 +33,7 @@ class MadGeometryTypeTests: XCTestCase {
             XCTFail("invalid wkt")
             return
         }
-        XCTAssertEqual(MadGeometryType.polygon, geom.geometryType())
+        XCTAssertEqual(MadGeometryType.polygon, geom.geometryType)
     }
 
     func testMultiPolygon() {
@@ -42,7 +42,7 @@ class MadGeometryTypeTests: XCTestCase {
             XCTFail("invalid wkt")
             return
         }
-        XCTAssertEqual(MadGeometryType.multiPolygon, geom.geometryType())
+        XCTAssertEqual(MadGeometryType.multiPolygon, geom.geometryType)
     }
 
     func testLineString() {
@@ -51,7 +51,7 @@ class MadGeometryTypeTests: XCTestCase {
             XCTFail("invalid wkt")
             return
         }
-        XCTAssertEqual(MadGeometryType.lineString, geom.geometryType())
+        XCTAssertEqual(MadGeometryType.lineString, geom.geometryType)
     }
 
     func testMultiLineString() {
@@ -60,7 +60,7 @@ class MadGeometryTypeTests: XCTestCase {
             XCTFail("invalid wkt")
             return
         }
-        XCTAssertEqual(MadGeometryType.multiLineString, geom.geometryType())
+        XCTAssertEqual(MadGeometryType.multiLineString, geom.geometryType)
     }
 
     func testLinearRing() {
@@ -69,7 +69,7 @@ class MadGeometryTypeTests: XCTestCase {
             XCTFail("invalid wkt")
             return
         }
-        XCTAssertEqual(MadGeometryType.linearRing, geom.geometryType())
+        XCTAssertEqual(MadGeometryType.linearRing, geom.geometryType)
     }
 
     func testGeometryCollection() {
@@ -78,7 +78,7 @@ class MadGeometryTypeTests: XCTestCase {
             XCTFail("invalid wkt")
             return
         }
-        XCTAssertEqual(MadGeometryType.geometryCollection, geom.geometryType())
+        XCTAssertEqual(MadGeometryType.geometryCollection, geom.geometryType)
     }
 }
 

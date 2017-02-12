@@ -8,40 +8,59 @@
 
 import Foundation
 
-public protocol MultiLineString : MultiGeometry {
+public class MadMultiLineString : MadMultiGeometry {
 
-}
+    //region PUBLIC PROPERTIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //endregion
 
-internal func geosMultiLineStringCreate(_ geosPtrs: [CSPtrOwner]) -> GPtrOwner {
-    var cArrayArray: UnsafeMutablePointer<OpaquePointer?>? = nil
-    if geosPtrs.count > 0 {
-        cArrayArray = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geosPtrs.count)
-        for (i, geosPtr) in geosPtrs.enumerated() {
-            let gOwner = geosLineStringCreate(geosPtr)
-            cArrayArray?[i] = gOwner.ptr
-        }
-    }
-    let type = MadGeometryType.multiLineString.cType()
-    guard let ptr = GEOSGeom_createCollection_r(GeosContext, type, cArrayArray, UInt32(geoms.count)) else {
-        fatalError("could not create multi line string")
-    }
-    cArrayArray?.deallocate(capacity: geoms.count)
-    return GPtrOwner(ptr)
-}
+    //region INTERNAL PROPERTIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //endregion
 
-public class GeosMultiLineString : GeosMultiGeometry, MultiLineString {
+    //region PRIVATE PROPERTIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //endregion
 
-    public convenience init(_ coordinates: [GeosCoordinateSequence]) {
+    //region INITIALIZERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public convenience init(_ coordinates: [MadCoordinateSequence]) {
         var geosPtrs = [CSPtrOwner]()
         for cs in coordinates {
-            geosPtrs.append(geosCoordinateSequenceClone(cs.geos))
+            geosPtrs.append(MadCoordinateSequence.geosCoordinateSequenceClone(cs.geos.ownedPtr))
         }
-        let gOwner = geosMultiLineStringCreate(geosPtrs)
+        let gOwner = MadMultiLineString.geosMultiLineStringCreate(geosPtrs)
         self.init(gOwner)
     }
 
-    public convenience init(_ coordinates: GeosCoordinateSequence...) {
+    public convenience init(_ coordinates: MadCoordinateSequence...) {
         self.init(coordinates)
     }
+
+    //endregion
+
+    //region PUBLIC FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //endregion
+
+    //region INTERNAL FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    internal static func geosMultiLineStringCreate(_ geosPtrs: [CSPtrOwner]) -> GPtrOwner {
+        var cArrayArray: UnsafeMutablePointer<OpaquePointer?>? = nil
+        if geosPtrs.count > 0 {
+            cArrayArray = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geosPtrs.count)
+            for (i, geosPtr) in geosPtrs.enumerated() {
+                let gOwner = MadLineString.geosLineStringCreate(geosPtr)
+                cArrayArray?[i] = gOwner.ptr
+            }
+        }
+        let type = MadGeometryType.multiLineString.cType()
+        guard let ptr = GEOSGeom_createCollection_r(GeosContext, type, cArrayArray, UInt32(geosPtrs.count)) else {
+            fatalError("could not create multi line string")
+        }
+        cArrayArray?.deallocate(capacity: geosPtrs.count)
+        return GPtrOwnerCreate(ptr)
+    }
+
+    //endregion
+
+    //region PRIVATE FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //endregion
     
 }

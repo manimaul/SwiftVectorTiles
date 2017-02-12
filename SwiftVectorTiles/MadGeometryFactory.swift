@@ -7,25 +7,25 @@ import Foundation
 
 public class MadGeometryFactory {
 
-    internal static func madGeometry(_ geos: GPtrOwner?) -> Geometry? {
+    internal static func madGeometry(_ geos: GPtrOwner?) -> MadGeometry? {
         if let geos = geos {
             switch MadGeometryType.typeFromPtr(geos.ownedPtr) {
             case .point:
-                return GeosPoint(geos)
+                return MadPoint(geos)
             case .lineString:
-                return GeosLineString(geos)
+                return MadLineString(geos)
             case .linearRing:
-                return GeosLinearRing(geos)
+                return MadLinearRing(geos)
             case .polygon:
-                return GeosPolygon(geos)
+                return MadPolygon(geos)
             case .multiPoint:
-                return GeosMultiPoint(geos)
+                return MadMultiPoint(geos)
             case .multiLineString:
-                return GeosMultiLineString(geos)
+                return MadMultiLineString(geos)
             case .multiPolygon:
-                return GeosMultiPolygon(geos)
+                return MadMultiPolygon(geos)
             case .geometryCollection:
-                return GeosGeometryCollection(geos)
+                return MadGeometryCollection(geos)
             default:
                 geos.destroy()
                 return nil
@@ -34,15 +34,15 @@ public class MadGeometryFactory {
         return nil
     }
 
-    public static func geometryFromWellKnownText(_ wkt: String) -> Geometry? {
-        guard let owner = geosGeometryFromWellKnownText(wkt) else {
+    public static func geometryFromWellKnownText(_ wkt: String) -> MadGeometry? {
+        guard let owner = MadGeometry.geosGeometryFromWellKnownText(wkt) else {
             return nil
         }
         return madGeometry(owner)
     }
 
-    public static func geometryFromWellKnownBinary(_ wkb: Data) -> Geometry? {
-        guard let owner = geosGeometryFromWellKnownBinary(wkb) else {
+    public static func geometryFromWellKnownBinary(_ wkb: Data) -> MadGeometry? {
+        guard let owner = MadGeometry.geosGeometryFromWellKnownBinary(wkb) else {
             return nil
         }
         return madGeometry(owner)

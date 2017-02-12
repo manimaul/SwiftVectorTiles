@@ -70,10 +70,9 @@ internal class CSPtrOwner {
         self.ownedPtr = ownedPtr
     }
     func destroy() {
-        GEOSCoordSeq_destroy_r(GeosContext, seqPtr.ptr)
+        GEOSCoordSeq_destroy_r(GeosContext, ptr)
     }
 }
-
 
 /// container for an `GeosGeometryPtr` that cannot be destroyed
 internal class GPtrOwnerManaged : GPtrOwner {

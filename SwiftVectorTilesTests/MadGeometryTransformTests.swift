@@ -15,7 +15,7 @@ class MadGeometryTransformTests: XCTestCase {
         let wkt = "POLYGON ((0 0, 4096 0, 4096 4096, 0 4096, 0 0))"
         let g = MadGeometryFactory.geometryFromWellKnownText(wkt) as! MadPolygon
         let tg = g.transform { c in
-            return MadCoordinate(x: c.x * 2, y: c.y * 2)
+            return (c.0 * 2, c.1 * 2)
         }
         XCTAssertNotNil(tg)
         let expected = "POLYGON ((0.0000000000000000 0.0000000000000000, " +
@@ -23,7 +23,7 @@ class MadGeometryTransformTests: XCTestCase {
                 "8192.0000000000000000 8192.0000000000000000, " +
                 "0.0000000000000000 8192.0000000000000000, " +
                 "0.0000000000000000 0.0000000000000000))"
-        XCTAssertEqual(expected, tg?.wellKnownText())
+        XCTAssertEqual(expected, tg?.wkt)
     }
 
     func testTransformGeometryCollection() {
@@ -33,7 +33,7 @@ class MadGeometryTransformTests: XCTestCase {
             return
         }
         guard let gct = multiGeom.transform({ coord in
-            MadCoordinate(x: coord.x * 2, y: coord.y * 2)
+            (coord.0 * 2, coord.1 * 2)
         }) else {
             XCTFail()
             return
@@ -47,10 +47,10 @@ class MadGeometryTransformTests: XCTestCase {
                 "8192.0000000000000000 8192.0000000000000000, " +
                 "0.0000000000000000 8192.0000000000000000, " +
                 "0.0000000000000000 0.0000000000000000))"
-        XCTAssertEqual(expected1, gt1.wellKnownText())
+        XCTAssertEqual(expected1, gt1.wkt)
 
         let expected2 = "POINT (12.0000000000000000 20.0000000000000000)"
-        XCTAssertEqual(expected2, gt2.wellKnownText())
+        XCTAssertEqual(expected2, gt2.wkt)
     }
 
     func testTransformMultiPolygon() {
@@ -60,7 +60,7 @@ class MadGeometryTransformTests: XCTestCase {
             return
         }
         guard let gct = multiGeom.transform({ coord in
-            MadCoordinate(x: coord.x * 2, y: coord.y * 2)
+            (coord.0 * 2, y: coord.1 * 2)
         }) else {
             XCTFail()
             return
@@ -74,14 +74,14 @@ class MadGeometryTransformTests: XCTestCase {
                 "8192.0000000000000000 8192.0000000000000000, " +
                 "0.0000000000000000 8192.0000000000000000, " +
                 "0.0000000000000000 0.0000000000000000))"
-        XCTAssertEqual(expected1, gt1.wellKnownText())
+        XCTAssertEqual(expected1, gt1.wkt)
 
         let expected2 = "POLYGON ((0.0000000000000000 0.0000000000000000, " +
                 "4096.0000000000000000 0.0000000000000000, " +
                 "4096.0000000000000000 4096.0000000000000000, " +
                 "0.0000000000000000 4096.0000000000000000, " +
                 "0.0000000000000000 0.0000000000000000))"
-        XCTAssertEqual(expected2, gt2.wellKnownText())
+        XCTAssertEqual(expected2, gt2.wkt)
     }
 
 }

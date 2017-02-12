@@ -8,40 +8,17 @@
 
 import Foundation
 
-public protocol GeometryCollection: Geometry, Sequence {
-    var geometries: [Geometry] { get }
-    subscript(index: Int) -> Geometry {
-        get
-    }
+internal final class MadGeometryCollection: MadGeometry, Sequence {
 
-    func makeIterator() -> AnyIterator<Geometry>
-}
+    //region PUBLIC PROPERTIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-//region geosGeometryCollection
-
-internal func geosGeometryCollectionCount(_ geosPtr: GeosGeometryPtr) -> Int {
-    return Int(GEOSGetNumGeometries_r(GeosContext, geosPtr.ptr))
-}
-
-internal func geosGeometryCollectionGeometryAt(_ geosPtr: GeosGeometryPtr, index: Int) -> GeosGeometryPtr {
-    guard let ownedPtr = GEOSGetGeometryN_r(GeosContext, geosPtr.ptr, Int32(index)) else {
-        fatalError("index out of bounds")
-    }
-    return GeosGeometryPtr(ptr: ownedPtr)
-}
-
-//endregion
-
-
-internal final class GeosGeometryCollection: GeosGeometry, GeometryCollection {
-
-    lazy var geometries: [Geometry] = { [unowned self] in
-        var geoms = [Geometry]()
-        let count = geosGeometryCollectionCount(self.geos.ownedPtr)
+    public private(set) lazy var geometries: [MadGeometry] = { [unowned self] in
+        var geoms = [MadGeometry]()
+        let count = MadGeometryCollection.geosGeometryCollectionCount(self.geos.ownedPtr)
         if count > 0 {
             for i in 0 ... (count - 1) {
-                let ownedPtr = geosGeometryCollectionGeometryAt(self.geos.ownedPtr, index: i)
-                let unownedPtr = geosGeometryClone(ownedPtr)
+                let ownedPtr = MadGeometryCollection.geosGeometryCollectionGeometryAt(self.geos.ownedPtr, index: i)
+                let unownedPtr = MadGeometry.geosGeometryClone(ownedPtr)
                 guard let geom = MadGeometryFactory.madGeometry(unownedPtr) else {
                     fatalError("unable to create geometry collection")
                 }
@@ -51,14 +28,28 @@ internal final class GeosGeometryCollection: GeosGeometry, GeometryCollection {
         return geoms
     }()
 
-    convenience init(_ geometries: [Geometry]) {
+    public private(set) lazy var count: Int = { [unowned self] in
+        return MadMultiGeometry.geosMultiGeometryCount(self.geos.ownedPtr)
+    }()
+
+    //endregion
+
+    //region INTERNAL PROPERTIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //endregion
+
+    //region PRIVATE PROPERTIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //endregion
+
+    //region INITIALIZERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    convenience init(_ geometries: [MadGeometry]) {
         var geomPtr: OpaquePointer
         var cPtrPtr: UnsafeMutablePointer<OpaquePointer?>? = nil
         if geometries.count > 0 {
             cPtrPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geometries.count)
             for (i, geom) in geometries.enumerated() {
-                let mg = geom as! GeosGeometry
-                let geosPtr = geosGeometryClone(mg.geos.ownedPtr)
+                let mg = geom as! MadGeometry
+                let geosPtr = MadGeometry.geosGeometryClone(mg.geos.ownedPtr)
                 cPtrPtr?[i] = geosPtr.ptr
             }
             let count = UInt32(geometries.count)
@@ -67,16 +58,37 @@ internal final class GeosGeometryCollection: GeosGeometry, GeometryCollection {
         } else {
             geomPtr = GEOSGeom_createEmptyCollection_r(GeosContext, MadGeometryType.geometryCollection.cType())
         }
-        self.init(GeosGeometryPtr(ptr: geomPtr))
+        self.init(GPtrOwnerCreate(geomPtr))
     }
 
-    subscript(index: Int) -> Geometry {
+    //endregion
+
+    //region PUBLIC FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//    todo: look at this
+    override public func transform(_ t: GeoCoordinateTransform) -> MadGeometryCollection? {
+        return nil
+//        var tGeometries = [MadGeometry]()
+//        for geometry in geometries {
+//            guard let tGeom = geometry.transform(t) else {
+//                return nil
+//            }
+//            tGeometries.append(tGeom)
+//        }
+//        return MadGeometryCollection(tGeometries)
+    }
+
+    //endregion
+
+    //region CONFORMS Sequence ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    public subscript(index: Int) -> MadGeometry {
         assert(geometries.count > index, "Index out of bounds")
         assert(index >= 0, "index less than zero")
         return geometries[index]
     }
 
-    func makeIterator() -> AnyIterator<Geometry> {
+    public func makeIterator() -> AnyIterator<MadGeometry> {
         var index = 0
         return AnyIterator {
             guard index < self.geometries.count else {
@@ -88,15 +100,24 @@ internal final class GeosGeometryCollection: GeosGeometry, GeometryCollection {
         }
     }
 
-    override func transform(_ t: GeoCoordinateTransform) -> GeosGeometryCollection? {
-        var tGeometries = [Geometry]()
-        for geometry in geometries {
-            guard let tGeom = geometry.transform(t) else {
-                return nil
-            }
-            tGeometries.append(tGeom)
-        }
-        return GeosGeometryCollection(tGeometries)
+    //endregion
+
+    //region INTERNAL FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    internal static func geosGeometryCollectionCount(_ geosPtr: GeosGeometryPtr) -> Int {
+        return Int(GEOSGetNumGeometries_r(GeosContext, geosPtr.ptr))
     }
+
+    internal static func geosGeometryCollectionGeometryAt(_ geosPtr: GeosGeometryPtr, index: Int) -> GeosGeometryPtr {
+        guard let ownedPtr = GEOSGetGeometryN_r(GeosContext, geosPtr.ptr, Int32(index)) else {
+            fatalError("index out of bounds")
+        }
+        return GeosGeometryPtr(ptr: ownedPtr)
+    }
+
+    //endregion
+
+    //region PRIVATE FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //endregion
 
 }
