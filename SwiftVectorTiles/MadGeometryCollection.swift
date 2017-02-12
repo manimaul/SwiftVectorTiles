@@ -42,14 +42,13 @@ internal final class MadGeometryCollection: MadGeometry, Sequence {
 
     //region INITIALIZERS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    convenience init(_ geometries: [MadGeometry]) {
+    public convenience init(_ geometries: [MadGeometry]) {
         var geomPtr: OpaquePointer
         var cPtrPtr: UnsafeMutablePointer<OpaquePointer?>? = nil
         if geometries.count > 0 {
             cPtrPtr = UnsafeMutablePointer<OpaquePointer?>.allocate(capacity: geometries.count)
             for (i, geom) in geometries.enumerated() {
-                let mg = geom as! MadGeometry
-                let geosPtr = MadGeometry.geosGeometryClone(mg.geos.ownedPtr)
+                let geosPtr = MadGeometry.geosGeometryClone(geom.geos.ownedPtr)
                 cPtrPtr?[i] = geosPtr.ptr
             }
             let count = UInt32(geometries.count)
@@ -65,17 +64,9 @@ internal final class MadGeometryCollection: MadGeometry, Sequence {
 
     //region PUBLIC FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-//    todo: look at this
-    override public func transform(_ t: GeoCoordinateTransform) -> MadGeometryCollection? {
-        return nil
-//        var tGeometries = [MadGeometry]()
-//        for geometry in geometries {
-//            guard let tGeom = geometry.transform(t) else {
-//                return nil
-//            }
-//            tGeometries.append(tGeom)
-//        }
-//        return MadGeometryCollection(tGeometries)
+    override public func transform(_ trans: GeoCoordinateTransform) -> MadGeometryCollection? {
+        let gOwner = MadMultiGeometry.geosMultiGeometryTransform(self.geos, trans: trans)
+        return MadGeometryFactory.madGeometry(gOwner) as? MadGeometryCollection
     }
 
     //endregion
