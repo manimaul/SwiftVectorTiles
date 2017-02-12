@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal final class MadLinearRing: MadGeometry {
+public final class MadLinearRing: MadGeometry {
 
     //region PUBLIC PROPERTIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

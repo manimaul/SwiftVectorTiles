@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal final class MadPolygon: MadGeometry {
+public final class MadPolygon: MadGeometry {
 
     //region PUBLIC PROPERTIES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
