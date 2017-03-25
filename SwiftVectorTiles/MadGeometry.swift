@@ -71,6 +71,13 @@ public class MadGeometry {
         return MadGeometry.geosGeometryCovers(geos.ownedPtr, other: other.geos.ownedPtr)
     }
 
+    public func difference(other: MadGeometry) -> MadGeometry? {
+        guard let geos = MadGeometry.geosGeometryDifference(geos.ownedPtr, other: other.geos.ownedPtr) else {
+            return nil
+        }
+        return MadGeometryFactory.madGeometry(geos)
+    }
+
     public func intersection(other: MadGeometry) -> MadGeometry? {
         guard let geos = MadGeometry.geosGeometryIntersection(geos.ownedPtr, other: other.geos.ownedPtr) else {
             return nil
@@ -123,6 +130,13 @@ public class MadGeometry {
         return GEOSCovers(geosPtr.ptr, other.ptr) == CChar("1")
     }
 
+    internal static func geosGeometryDifference(_ geosPtr: GeosGeometryPtr, other: GeosGeometryPtr) -> GPtrOwner? {
+        guard let ptr = GEOSDifference_r(GeosContext, geosPtr.ptr, other.ptr) else {
+            return nil
+        }
+        return GPtrOwnerCreate(ptr)
+    }
+
     internal static func geosGeometryIntersection(_ geosPtr: GeosGeometryPtr, other: GeosGeometryPtr) -> GPtrOwner? {
         guard let ptr = GEOSIntersection_r(GeosContext, geosPtr.ptr, other.ptr) else {
             return nil
@@ -167,7 +181,7 @@ public class MadGeometry {
 
     internal static func geosGeometryWellKnownBinary(_ geosPtr: GeosGeometryPtr) -> Data? {
         let wkbWriter = GEOSWKBWriter_create_r(GeosContext)
-        var size :Int = 0
+        var size: Int = 0
         let wkbData = GEOSWKBWriter_write_r(GeosContext, wkbWriter, geosPtr.ptr, &size)
         GEOSWKBWriter_destroy_r(GeosContext, wkbWriter)
         if let wkbData = wkbData {
@@ -182,5 +196,5 @@ public class MadGeometry {
 
     //region PRIVATE FUNCTIONS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //endregion
-    
+
 }
