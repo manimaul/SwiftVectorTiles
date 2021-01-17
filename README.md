@@ -1,16 +1,16 @@
-#SwiftVectorTiles
+# SwiftVectorTiles
 A Swift encoder for vector tiles according to the [Mapbox vector tile spec](https://github.com/mapbox/vector-tile-spec)
 
-###Acknowledgements
+### Acknowledgements
 * [Java Vector Tiles](https://github.com/ElectronicChartCentre/java-vector-tile)
 * [GEOS & JTS](https://trac.osgeo.org/geos/)
 * [Mapbox Vector Tile Spec](https://github.com/mapbox/vector-tile-spec)
 * [Swift Google Protocol Buffers](http://protobuf.io/#swift)
 
-###Status
+### Status
 Beta - expect a few bugs
 
-###Cocoapods
+### Cocoapods
 ```ruby
 use_frameworks!
 
@@ -19,7 +19,7 @@ target 'YourTarget' do
 end
 ```
 
-###Example
+### Example
 
 ```swift
 
@@ -41,7 +41,7 @@ let data :Data = encoder.encode()
 
 ```
 
-###Screenshots
+### Screenshots
 
 | Encoded [Natural Earth Data](http://www.naturalearthdata.com/) geometries| |
 | --------------------------------------------- | ---------------------------------------- |
